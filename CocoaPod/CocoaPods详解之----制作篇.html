@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/1db5cb08e35c -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="description" content="一、创建的github仓库1进入Github网站www.github.com登陆自己的账号后2建立一个新的仓库创建新的仓库3填写仓库信息填写仓库信息4创建完毕后创建成功二、上传...">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/1db5cb08e35c">
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/2256019">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="【最新】上传代码到cocoapod ,自己的框架提供给开发者使用" property="twitter:title">
+  <meta content="一、创建的github仓库1进入Github网站www.github.com登陆自己的账号后2建立一个新的仓库创建新的仓库3填写仓库信息填写仓库信息4创建完毕后创建成功二、上传..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/1db5cb08e35c" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="【最新】上传代码到cocoapod ,自己的框架提供给开发者使用">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/1db5cb08e35c">
+  <meta property="og:description" content="一、创建的github仓库1进入Github网站www.github.com登陆自己的账号后2建立一个新的仓库创建新的仓库3填写仓库信息填写仓库信息4创建完毕后创建成功二、上传...">
+
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/2256019">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/2256019">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+  <title>【最新】上传代码到cocoapod ,自己的框架提供给开发者使用 - 简书</title>
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="pPj0XFoakEGHTGtUxS2zPn9nZ0T/GNdR4e6F3FfLaQn246L/ncON990We93AZ2l5NXWonLyvVd/1160lTwYKwA==">
+  <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="stylesheet" media="all" href="./CocoaPods详解之----制作篇_files/base-f935477e8faba16f29c6f9e4f0e1d032.css">
+
+    <link rel="stylesheet" media="all" href="./CocoaPods详解之----制作篇_files/reading-note-4158a6eeb7c4e4a9fd15332778cfb52c.css">
+  <link rel="stylesheet" media="all" href="./CocoaPods详解之----制作篇_files/base-read-mode-64acccf6966299cfa3d580140a2582fe.css">
+  <script src="./CocoaPods详解之----制作篇_files/push.js"></script><script type="text/javascript" async="" src="./CocoaPods详解之----制作篇_files/ga.js"></script><script src="./CocoaPods详解之----制作篇_files/hm.js"></script><script src="./CocoaPods详解之----制作篇_files/modernizr-613ea63b5aa2f0e2a1946e9c28c8eedb.js"></script>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if IE 8]><link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/scaffolding/for_ie-7f1c477ffedc13c11315103e8787dc6c.css" /><![endif]-->
+  <!--[if lt IE 9]><link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/scaffolding/for_ie-7f1c477ffedc13c11315103e8787dc6c.css" /><![endif]-->
+  <link href="http://baijii-common.b0.upaiyun.com/icons/favicon.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/57-b426758a1fcfb30486f20fd073c3b8ec.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/72-feca4b183b9d29fd188665785dc7a7f1.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/76-ba757f1ad3421192ce7192170393d2b0.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="./CocoaPods详解之----制作篇_files/114-8dae53b3bcea3f06bb139e329d1edab3.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/120-fa315ee0177dba4c55d4f66d4129b47f.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/152-052f5799bec8fb3aa624bdc72ef5bd1d.png" sizes="152x152">
+  <!-- Baidu stats -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+<style type="text/css"></style></head>
+
+<body class="post output zh cn mac reader-day-mode reader-font2" data-js-module="note-show" data-locale="zh-CN">
+  
+  <div class="navbar navbar-jianshu shrink hide-wrap-btn">
+  <div class="dropdown">
+    <a class="dropdown-toggle logo" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="javascript:void(0)">
+      简
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a href="http://www.jianshu.com/"><i class="fa fa-home"></i> 首页</a></li>
+      <li><a href="http://www.jianshu.com/collections"><i class="fa fa-th"></i> 专题</a></li>
+      <li><a href="http://www.jianshu.com/user_invitations"><i class="fa fa-money"></i> 发钱啦</a></li>
+    </ul>
+  </div>
+</div>
+<div class="navbar-user">
+    <a class="login" data-signup-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_up">
+      <i class="fa fa-user"></i> 注册
+</a>    <a class="login" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+      <i class="fa fa-sign-in"></i> 登录
+</a>    <a class="daytime set-view-mode pull-right" href="javascript:void(0)"><i class="fa fa-moon-o"></i></a>
+</div>
+<div class="navbar navbar-jianshu expanded">
+  <div class="dropdown">
+      <a class="active logo" role="button" data-original-title="个人主页" data-container="div.expanded" href="http://www.jianshu.com/">
+        <b>简</b><i class="fa fa-home"></i><span class="title">首页</span>
+</a>      <a data-toggle="tooltip" data-placement="right" data-original-title="专题" data-container="div.expanded" href="http://www.jianshu.com/collections">
+        <i class="fa fa-th"></i><span class="title">专题</span>
+</a>    <a class="ad-selector" href="http://www.jianshu.com/apps">
+      <i class="fa fa-mobile"></i><span class="title">下载手机应用</span>
+</a>    <div class="ad-container ">
+      <div class="ad-pop">
+        <img class="ad-logo" src="./CocoaPods详解之----制作篇_files/114-8dae53b3bcea3f06bb139e329d1edab3.png" alt="114">
+        <p class="ad-title">简书</p>
+        <p class="ad-subtitle">交流故事，沟通想法</p>
+        <img class="ad-qrcode" src="./CocoaPods详解之----制作篇_files/download-app-qrcode-053849fa25f9b44573ef8dd3c118a20f.png" alt="Download app qrcode">
+        <div>
+          <a class="ad-link" href="https://itunes.apple.com/cn/app/jian-shu/id888237539?ls=1&amp;mt=8">iOS</a>·
+          <a class="ad-link" href="http://downloads.jianshu.io/apps/haruki/JianShu-1.10.8.apk">Android</a>
+        </div>
+      </div> 
+    </div>
+  </div>
+  <div class="nav-user">
+      <a href="http://www.jianshu.com/p/1db5cb08e35c#view-mode-modal" data-toggle="modal"><i class="fa fa-font"></i><span class="title">显示模式</span></a>
+
+      <a class="signin" data-signin-link="true" data-toggle="modal" data-placement="right" data-original-title="登录" data-container="div.expanded" href="http://www.jianshu.com/sign_in">
+        <i class="fa fa-sign-in"></i><span class="title">登录</span>
+</a>    </div>
+  </div>
+
+  
+    <div class="fixed-btn">
+    <a class="go-top" href="http://www.jianshu.com/p/1db5cb08e35c#"> <i class="fa fa-angle-up"></i></a>
+    <a class="qrcode" data-target="#bottom-qrcode" data-toggle="modal" href="javascript:void(0)"><i class="fa fa-qrcode"></i></a>
+    <a class="writer" href="http://www.jianshu.com/writer#/" data-toggle="tooltip" data-placement="left" title="" data-original-title="写篇文章"><i class="fa fa-pencil"></i></a>
+    <!-- qrcode modal -->
+    <div id="bottom-qrcode" class="modal panel-modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <h4>下载简书移动应用</h4>
+      <div class="panel-body"><img src="./CocoaPods详解之----制作篇_files/download-app-qrcode-85008f146773a25ce86bcc4d7858af68.png" alt="Download app qrcode"></div>
+    </div>
+  </div>
+
+
+  <div id="show-note-container" class="imagebubble-container imagebubble-mode-off">
+    
+<div class="post-bg" id="flag">
+  <div class="wrap-btn hide-wrap-btn" style="top: -1px;">
+    <!-- Notebook and collections button upper left -->
+      <div class="article-related pull-left">
+          <a class="collection-menu-btn" data-toggle="modal" data-target="#collection-menu" href="javascript:void(null);">
+            <i class="fa fa-th"></i>
+</a>          <a class="notebooks-menu-btn" data-toggle="modal" data-target="#notebooks-menu" href="javascript:void(null);"><i class="fa fa-list-ul"></i></a>
+        <div class="related-avatar-group activities"></div>
+      </div>
+    <!-- ******* -->
+
+      <a class="login" data-signup-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_up">
+    <i class="fa fa-user"></i> 注册
+</a>  <a class="login" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+    <i class="fa fa-sign-in"></i> 登录
+</a>
+
+    <!-- Buttons upper right -->
+    <!-- ******* -->
+  </div>
+
+  <div class="container">
+    <!-- Article activities for width under 768px -->
+    <div class="related-avatar-group activities"></div>
+      <div class="article">
+        <div class="preview">
+          <div class="author-info">
+              <div class="btn btn-small btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-plus"></i>  <span>添加关注</span></a>
+  </div>
+
+            <a class="avatar" href="http://www.jianshu.com/users/538cc0206202">
+              <img src="./CocoaPods详解之----制作篇_files/93767c4d056d.png" alt="100">
+</a>            <span class="label">
+                作者
+            </span>
+            <a class="author-name blue-link" href="http://www.jianshu.com/users/538cc0206202">
+              <span>猫爪</span>
+</a>              <span data-toggle="tooltip" data-original-title="最后编辑于 2015.10.17 15:05">2015.10.17 11:27*</span>
+            <div>
+              <span>写了11741字</span>，<span>被261人关注</span>，<span>获得了234个喜欢</span>
+            </div>
+          </div>
+          <h1 class="title">【最新】上传代码到cocoapod ,自己的框架提供给开发者使用</h1>
+          <div class="meta-top">
+            <span class="wordage">字数714</span>
+            <span class="views-count">阅读1008</span>
+            <span class="comments-count">评论25</span>
+            <span class="likes-count">喜欢29</span>
+          </div>
+
+          <!-- Collection/Bookmark/Share for width under 768px -->
+          <div class="article-share"><a class="bookmark" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"> <i class="fa fa-bookmark-o"></i><span>收藏文章</span></a><span> <a href="javascript:void(null)" data-toggle="dropdown"><i class="fa fa-share-square-o"></i> 分享</a> <ul class="dropdown-menu arrow-top"> <li> <a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/2256019/weibo/image_a139feac1d93.jpg&#39;, &#39;推荐 猫爪 的文章《【最新】上传代码到cocoapod ,自己的框架提供给开发者使用》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));"> <img src="./CocoaPods详解之----制作篇_files/weibo.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;)+&#39;&amp;title=&#39;+e(&#39;【最新】上传代码到cocoapod ,自己的框架提供给开发者使用&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()"> <img src="./CocoaPods详解之----制作篇_files/douban.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=&#39;+e(&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 猫爪 的文章《【最新】上传代码到cocoapod ,自己的框架提供给开发者使用》（ 分享自 @jianshuio ）&#39;),x=function(){if(!window.open(r,&#39;tweibo&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="./CocoaPods详解之----制作篇_files/tweibo.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 猫爪 的文章《【最新】上传代码到cocoapod ,自己的框架提供给开发者使用》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="./CocoaPods详解之----制作篇_files/qzone.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 猫爪 的文章《【最新】上传代码到cocoapod ,自己的框架提供给开发者使用》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="./CocoaPods详解之----制作篇_files/twitter.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/1db5cb08e35c&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="./CocoaPods详解之----制作篇_files/facebook.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="./CocoaPods详解之----制作篇_files/google_plus.png"> </a> </li> <li> <a href=""> <img src="./CocoaPods详解之----制作篇_files/renren.png"> </a> </li> </ul></span></div>
+          <!-- -->
+
+          <div class="show-content"><h3>一、创建的github仓库</h3>
+<h4>1 进入Github网站 <a href="http://www.jianshu.com/p/www.github.com" target="_blank">www.github.com</a> 登陆自己的账号后</h4>
+<hr>
+<h4>2 建立一个新的仓库 <div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015173737286" data-original-src="http://img.blog.csdn.net/20151015173737286" class="imagebubble-image"><br><div class="image-caption">创建新的仓库</div>
+</div>
+</h4>
+<hr>
+<h4>3 填写仓库信息<div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015173838374" data-original-src="http://img.blog.csdn.net/20151015173838374" class="imagebubble-image"><br><div class="image-caption">填写仓库信息</div>
+</div>
+</h4>
+<hr>
+<h4>4 创建完毕后<div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015173909696" data-original-src="http://img.blog.csdn.net/20151015173909696" class="imagebubble-image"><br><div class="image-caption">创建成功</div>
+</div>
+</h4>
+<hr>
+<h3>二、上传代码到创建的仓库</h3>
+<h4>1 选择clone 到本地仓库</h4>
+<hr>
+<h5>mac 电脑中，有github的客户端 <div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015173939807" data-original-src="http://img.blog.csdn.net/20151015173939807" class="imagebubble-image"><br><div class="image-caption">github MAC客户端</div>
+</div>
+</h5>
+<hr>
+<h5>进入github网站后，右边栏 <div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015174006879" data-original-src="http://img.blog.csdn.net/20151015174006879" class="imagebubble-image"><br><div class="image-caption">clone</div>
+</div>
+</h5>
+<h5>也可以用命令终端的</h5>
+<pre class="hljs objectivec"><code class="objectivec"><span class="hljs-comment">// 代码仓库clone 地址 git clone </span>
+https:<span class="hljs-comment">//github.com/boyXiong/XWSwiftRefreshT.git</span></code></pre>
+<hr>
+<h4>2.编写代码 <div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015174149128" data-original-src="http://img.blog.csdn.net/20151015174149128" class="imagebubble-image"><br><div class="image-caption">写入的代码</div>
+</div>
+</h4>
+<hr>
+<h4>3.创建一个tag 版本 <div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015174222452" data-original-src="http://img.blog.csdn.net/20151015174222452" class="imagebubble-image"><br><div class="image-caption">创建一个Tag</div>
+</div>
+</h4>
+<h5>如果这里不会,可以看我的另一篇文章Git tag的使用</h5>
+<h2><a href="http://www.jianshu.com/p/32054f3e415d" target="_blank">http://www.jianshu.com/p/32054f3e415d</a></h2>
+<h4>4.上传到github <div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015174255229" data-original-src="http://img.blog.csdn.net/20151015174255229" class="imagebubble-image"><br><div class="image-caption">上传到github仓库</div>
+</div>
+</h4>
+<hr>
+<h3>三、向本地git仓库中添加创建Pods依赖库所需文件</h3>
+<h4>1 这个文件需要放在clone 到的本地仓库目录下(需要在终端<code> cd</code> 进入<code>clone</code>的那个目录下)</h4>
+<hr>
+<h4>2 创建 podspec</h4>
+<pre class="hljs objectivec"><code class="objectivec"><span class="hljs-comment">// 在命令终端 </span>
+pod spec create XWSwiftRefreshT</code></pre>
+<h2>成功后  <div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015174340143" data-original-src="http://img.blog.csdn.net/20151015174340143" class="imagebubble-image"><br><div class="image-caption">创建podspec成功</div>
+</div> </h2>
+<h4>3 编写 <code>podspec</code> 文件,可以使用<code>Vim</code> ,或者<code>Xcode</code> ， <code>Sublime</code>也可以，这是一个<code>Ruby</code>文件</h4>
+<pre class="hljs php"><code class="php"> Pod::Spec.<span class="hljs-keyword">new</span> <span class="hljs-keyword">do</span> |s| 
+    <span class="hljs-comment"># 名称 使用的时候pod search [name] </span>
+    s.name = <span class="hljs-string">"XWSwiftRefreshT"</span> 
+    <span class="hljs-comment"># 代码库的版本 </span>
+    s.version = <span class="hljs-string">"0.1.2"</span> 
+    <span class="hljs-comment"># 简介 </span>
+    s.summary = <span class="hljs-string">"The easiest way to use pull-to-refresh with Swift2.0 program language."</span> 
+    <span class="hljs-comment"># 主页  </span>
+    s.homepage = <span class="hljs-string">"https://github.com/boyXiong/XWSwiftRefreshT"</span> 
+    <span class="hljs-comment"># 许可证书类型，要和仓库的LICENSE 的类型一致 </span>
+    s.license = <span class="hljs-string">"MIT"</span> 
+    <span class="hljs-comment"># 作者名称 和 邮箱 </span>
+    s.author = { <span class="hljs-string">"boyXiong"</span> =&gt; <span class="hljs-string">"relv@qq.com"</span> } 
+    <span class="hljs-comment"># 作者主页 s.social_media_url ="http://blog.csdn.net/boyXiong.com/" </span>
+    <span class="hljs-comment"># 代码库最低支持的版本 </span>
+    s.platform = :ios, <span class="hljs-string">"8.0"</span> 
+    <span class="hljs-comment"># 代码的Clone 地址 和 tag 版本 </span>
+    s.source = { :git =&gt; <span class="hljs-string">"https://github.com/boyXiong/XWSwiftRefreshT.git"</span>, :tag =&gt; <span class="hljs-string">"0.1.2"</span> } 
+    <span class="hljs-comment"># 如果使用pod 需要导入哪些资源 </span>
+    s.source_files = <span class="hljs-string">"XWSwiftRefreshT/**/*.{swift}"</span> 
+    s.resources = <span class="hljs-string">"XWSwiftRefreshT/Icon/xw_icon.bundle"</span> 
+    <span class="hljs-comment"># 框架是否使用的ARC </span>
+    s.requires_arc = <span class="hljs-keyword">true</span>  
+end</code></pre>
+<hr>
+<h4>4 编写完成后，先进行本地检查，使用,如何可以就是绿色，不然会报错</h4>
+<pre class="hljs objectivec"><code class="objectivec">  <span class="hljs-comment">//pod spec lint [podspec 的路径]</span>
+  pod spec lint ./XWSwiftRefreshT<span class="hljs-variable">.podspec</span></code></pre>
+<hr>
+<h4>5 注意 这个命令的检查原理，是调用Xcode app的命令检测如果Mac上安装了<code>两个Xcode</code> 那么他的检查是根据<code>Application/Xcode.app/</code>这种路径来的，两个Xcode 就要确保<code>Xcode.app</code>是最新的<code>正式版本</code>不是<code>测试版本</code>
+</h4>
+<hr>
+<h4>6 然后可以发送到cocoapod管理了</h4>
+<pre class="hljs perl"><code class="perl">//pod trunk <span class="hljs-keyword">push</span> [podspec 的路径]
+pod trunk <span class="hljs-keyword">push</span> ./XWSwiftRefreshT.podspec</code></pre>
+<h2><div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015174543172" data-original-src="http://img.blog.csdn.net/20151015174543172" class="imagebubble-image"><br><div class="image-caption">上传到cocoapod成功</div>
+</div></h2>
+<h4>7.到这里如果成功就搜索的到，那么就是说可以成功使用了</h4>
+<pre class="hljs undefined"><code> pod search XWSwiftRefreshT</code></pre>
+<div class="image-package imagebubble" widget="ImageBubble">
+<img src="./CocoaPods详解之----制作篇_files/20151015174633383" data-original-src="http://img.blog.csdn.net/20151015174633383" class="imagebubble-image"><br><div class="image-caption">成功搜索到框架</div>
+</div>
+<p>个人微信:wrdxxs<br>个人Github:<a href="https://github.com/boyXiong" target="_blank">https://github.com/boyXiong</a><br>个人简书主题:cocoa （一起开始写文章吧)<br>关注我，持续推出新文章</p>
+</div>
+        </div>
+      </div>
+
+      <div class="visitor_edit">
+        <!-- further readings -->
+        <div id="further-readings" data-user-slug="" data-user-nickname="">
+          <div id="further-reading-line" class="hide further-reading-line"></div>
+          <ul id="further-readings-list" class="reading-list unstyled"></ul>
+          <div id="further-reading-new" class="reading-edit">
+              <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+                <i class="fa fa-plus-circle"></i> 推荐拓展阅读
+</a>            <div id="further-reading-form"></div>
+          </div>
+        </div>
+        <div class="pull-right">
+          <!-- copyright -->
+          <div class="author-copyright pull-right" data-toggle="tooltip" data-html="true" title="" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            <a><i class="fa fa-copyright"></i> 著作权归作者所有</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reward / Support Author -->
+        <div class="support-author">
+          <p>请我吃个糖啦  ^o^</p>
+            <a class="btn btn-pay" data-toggle="modal" href="http://www.jianshu.com/p/1db5cb08e35c#pay-modal">¥ 打赏支持</a>
+          <div class="avatar-list"></div>
+        </div>
+
+      <!-- article meta bottom -->
+      <div class="meta-bottom clearfix">
+        <!--  Like Button -->
+        <div class="like ">
+            <div class="like-button">
+              <a id="like-note" class="like-content" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+                <i class="fa fa-heart-o"></i>  喜欢
+</a></div>          <span id="likes-count" data-toggle="tooltip" data-placement="right" title="" data-original-title="查看所有喜欢的用户">29</span>        </div>
+        <!--  share group -->
+        <div class="share-group pull-right">
+          <a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/2256019/weibo/image_a139feac1d93.jpg&#39;, &#39;推荐 猫爪 的文章《【最新】上传代码到cocoapod ,自己的框架提供给开发者使用》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-name="weibo">
+            <i class="fa fa-weibo"></i><span>分享到微博</span>
+          </a>
+          <a data-toggle="modal" href="http://www.jianshu.com/p/1db5cb08e35c#share-weixin-modal" data-name="weixin">
+            <i class="fa fa-weixin"></i><span>分享到微信</span>
+          </a>
+          <div class="more">
+            <a href="javascript:void(0)" data-toggle="dropdown">更多分享<i class="fa fa-caret-down"></i></a>
+            <ul class="dropdown-menu arrow-top">
+                <li><a href="http://cwb.assets.jianshu.io/notes/images/2256019/weibo/image_a139feac1d93.jpg" target="_blank" data-name="changweibo"><i class="fa fa-arrow-circle-o-down"></i> 下载长微博图片</a></li>
+                <li>
+                  <a data-name="tweibo" href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=&#39;+e(&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 猫爪 的文章《【最新】上传代码到cocoapod ,自己的框架提供给开发者使用》（ 分享自 @jianshuio ）&#39;),x=function(){if(!window.open(r,&#39;tweibo&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="./CocoaPods详解之----制作篇_files/tweibo.png" alt="Tweibo"> 分享到腾讯微博
+</a>                </li>
+                <li>
+                  <a data-name="qzone" href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 猫爪 的文章《【最新】上传代码到cocoapod ,自己的框架提供给开发者使用》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="./CocoaPods详解之----制作篇_files/qzone.png" alt="Qzone"> 分享到QQ空间
+</a>                </li>
+                <li>
+                  <a data-name="twitter" href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 猫爪 的文章《【最新】上传代码到cocoapod ,自己的框架提供给开发者使用》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="./CocoaPods详解之----制作篇_files/twitter.png" alt="Twitter"> 分享到Twitter
+</a>                </li>
+                <li>
+                  <a data-name="facebook" href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/1db5cb08e35c&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="./CocoaPods详解之----制作篇_files/facebook.png" alt="Facebook"> 分享到Facebook
+</a>                </li>
+                <li>
+                  <a data-name="google_plus" href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="./CocoaPods详解之----制作篇_files/google_plus.png" alt="Google plus"> 分享到Google+
+</a>                </li>
+                <li>
+                  <a data-name="douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/1db5cb08e35c&#39;)+&#39;&amp;title=&#39;+e(&#39;【最新】上传代码到cocoapod ,自己的框架提供给开发者使用&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+                    <img src="./CocoaPods详解之----制作篇_files/douban.png" alt="Douban"> 分享到豆瓣
+</a>                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modals -->
+      <div id="share-weixin-modal" class="modal hide fade share-weixin-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div class="modal-body" title="http://www.jianshu.com/p/1db5cb08e35c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weixin">
+    <h5>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</h5>
+  <canvas width="170" height="170" style="display: none;"></canvas><img src="data:image/png;base64,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" style="display: block;"></div>
+</div>
+
+      
+      <div id="notebooks-menu" class="panel notebooks-menu arrow-top modal hide fade"><img class="loader-tiny" src="./CocoaPods详解之----制作篇_files/tiny.gif" alt="Tiny"></div>
+      <div id="collection-menu" class="panel collection-menu arrow-top modal hide fade"><img class="loader-tiny" src="./CocoaPods详解之----制作篇_files/tiny.gif" alt="Tiny"></div>
+      
+      <div id="likes-modal" class="modal modal_new support_list-modal fullscreen hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>喜欢的用户</h3>
+      </div>
+      <div class="modal-body">
+        <ul class="unstyled users">
+        <li data-user-id="1755754"> <a class="avatar" href="http://www.jianshu.com/users/4c4d4eb26324"> <img src="./CocoaPods详解之----制作篇_files/10-f47ea4d685571bcb63f5b1ea99527d09.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/4c4d4eb26324">闭眼看看代码</a> <span class="time">2016.05.20 13:07</span></li><li data-user-id="1281983"> <a class="avatar" href="http://www.jianshu.com/users/4c13facf2a78"> <img src="./CocoaPods详解之----制作篇_files/fd6627235724.jpeg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/4c13facf2a78">篮球火</a> <span class="time">2016.05.09 09:39</span></li><li data-user-id="874748"> <a class="avatar" href="http://www.jianshu.com/users/b470b9fc7145"> <img src="./CocoaPods详解之----制作篇_files/3-575b6d78d8c89400d30e4ed72c2675bf.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/b470b9fc7145">年小羊</a> <span class="time">2016.05.02 20:30</span></li><li data-user-id="1908008"> <a class="avatar" href="http://www.jianshu.com/users/d4b775eae61a"> <img src="./CocoaPods详解之----制作篇_files/bba759633c22"> </a> <a class="blue-link" href="http://www.jianshu.com/users/d4b775eae61a">像风一样的孩子丶</a> <span class="time">2016.04.21 08:20</span></li><li data-user-id="638171"> <a class="avatar" href="http://www.jianshu.com/users/4d9892c8d3bb"> <img src="./CocoaPods详解之----制作篇_files/b49d005bf4a0.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/4d9892c8d3bb">我是Asha</a> <span class="time">2016.04.13 13:29</span></li><li data-user-id="900142"> <a class="avatar" href="http://www.jianshu.com/users/dbf13edac76e"> <img src="./CocoaPods详解之----制作篇_files/9-ece2d3668ecf525c902de6c8672b6435.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/dbf13edac76e">JonneyDai</a> <span class="time">2016.03.30 10:04</span></li><li data-user-id="940819"> <a class="avatar" href="http://www.jianshu.com/users/6bbfc93fb7c3"> <img src="./CocoaPods详解之----制作篇_files/a152be4f299c.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/6bbfc93fb7c3">大笛哥</a> <span class="time">2016.02.26 22:44</span></li><li data-user-id="1443056"> <a class="avatar" href="http://www.jianshu.com/users/389c20d5a244"> <img src="./CocoaPods详解之----制作篇_files/399bc0091f0a.jpeg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/389c20d5a244">WzxJiang</a> <span class="time">2016.02.24 21:09</span></li><li data-user-id="1608607"> <a class="avatar" href="http://www.jianshu.com/users/afd5e54bf773"> <img src="./CocoaPods详解之----制作篇_files/758d3b3c2cee"> </a> <a class="blue-link" href="http://www.jianshu.com/users/afd5e54bf773">我爱学习iOS</a> <span class="time">2016.02.20 15:31</span></li><li data-user-id="1391549"> <a class="avatar" href="http://www.jianshu.com/users/e2ed12011d4f"> <img src="./CocoaPods详解之----制作篇_files/ed659e063047.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/e2ed12011d4f">zhiyi</a> <span class="time">2016.01.24 23:46</span></li><li data-user-id="1320218"> <a class="avatar" href="http://www.jianshu.com/users/5c9488284711"> <img src="./CocoaPods详解之----制作篇_files/5b57b00a5512.jpeg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/5c9488284711">sun_sx</a> <span class="time">2016.01.15 21:02</span></li><li data-user-id="761142"> <a class="avatar" href="http://www.jianshu.com/users/599e6c1b22ad"> <img src="./CocoaPods详解之----制作篇_files/55e0fdb7ebeb"> </a> <a class="blue-link" href="http://www.jianshu.com/users/599e6c1b22ad">wangjun</a> <span class="time">2015.12.24 15:51</span></li><li data-user-id="1059554"> <a class="avatar" href="http://www.jianshu.com/users/46057a9d6a19"> <img src="./CocoaPods详解之----制作篇_files/abcdf0c4b154.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/46057a9d6a19">Cjoee</a> <span class="time">2015.12.19 16:36</span></li><li data-user-id="660313"> <a class="avatar" href="http://www.jianshu.com/users/be47022ef6ea"> <img src="./CocoaPods详解之----制作篇_files/24df1d102709"> </a> <a class="blue-link" href="http://www.jianshu.com/users/be47022ef6ea">be47022ef6ea</a> <span class="time">2015.12.10 21:06</span></li><li data-user-id="1112917"> <a class="avatar" href="http://www.jianshu.com/users/4822e57eabb6"> <img src="./CocoaPods详解之----制作篇_files/30bd598cefc9.JPG"> </a> <a class="blue-link" href="http://www.jianshu.com/users/4822e57eabb6">说给你听1988</a> <span class="time">2015.12.01 16:38</span></li><a class="more hidden" data-max-id="10025713" href="javascript:void(null);"><i class="fa fa-ellipsis-h"></i></a></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Comments -->
+    <div id="comments" class="comment-list clearfix">
+        <div class="comment-head clearfix">
+          25条评论
+          <span class="order">
+            （
+            <a data-order="asc" class="active" href="javascript:void(0)">按时间正序</a>·
+            <a data-order="desc" href="javascript:void(0)">按时间倒序</a>·
+            <a data-order="likes_count" href="javascript:void(0)">按喜欢排序</a>
+            ）
+          </span>
+            <a class="goto-comment pull-right" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+              <i class="fa fa-pencil"></i>添加新评论
+</a>        </div>
+        <div id="comment-list"><script type="application/json" data-name="comments-info">
+  {"comments":[{"id":752854,"children_count":0,"likes_count":0},{"id":756349,"children_count":0,"likes_count":0},{"id":763751,"children_count":0,"likes_count":0},{"id":1097823,"children_count":13,"likes_count":0},{"id":1547194,"children_count":0,"likes_count":0},{"id":1875664,"children_count":0,"likes_count":0},{"id":2195761,"children_count":1,"likes_count":1},{"id":2537101,"children_count":3,"likes_count":0}]}
+</script>
+
+
+<div class="note-comment clearfix" id="comment-752854">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/55df555b10c0">
+          <img src="./CocoaPods详解之----制作篇_files/e18a14963930.jpg" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/55df555b10c0">风了个1</a>
+        </p>
+        <span class="reply-time">
+          <small>2 楼 · </small>
+          <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/752854#comment-752854">2015.10.17 15:00</a></span>
+      </div>
+      <p>回去细读，收藏了</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="752854" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="752854" data-nickname="风了个1" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-756349">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/98f349961868">
+          <img src="./CocoaPods详解之----制作篇_files/9f60de02c6c8" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/98f349961868">CoderRyan</a>
+        </p>
+        <span class="reply-time">
+          <small>3 楼 · </small>
+          <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/756349#comment-756349">2015.10.17 23:47</a></span>
+      </div>
+      <p>还可以，不错。</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="756349" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="756349" data-nickname="CoderRyan" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-763751">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/a8bcbb277470">
+          <img src="./CocoaPods详解之----制作篇_files/dd943997d5b7" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/a8bcbb277470">Scott_Mr</a>
+        </p>
+        <span class="reply-time">
+          <small>4 楼 · </small>
+          <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/763751#comment-763751">2015.10.19 17:09</a></span>
+      </div>
+      <p>mark</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="763751" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="763751" data-nickname="Scott_Mr" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-1097823">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/599e6c1b22ad">
+          <img src="./CocoaPods详解之----制作篇_files/55e0fdb7ebeb" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/599e6c1b22ad">wangjun</a>
+        </p>
+        <span class="reply-time">
+          <small>5 楼 · </small>
+          <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1097823#comment-1097823">2015.12.25 10:45</a></span>
+      </div>
+      <p>卡在第四步了，一直校验不通过。<br>而且没有错误详细信息，没有指出spec文件具体哪里写错了，求解惑。<br><br>终端报错只有这一句：[!] The spec did not pass validation, due to 2 errors and 1 warning.</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="1097823" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="1097823" data-nickname="wangjun" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list ">
+        <div class="child-comment" id="comment-1102885" data-id="1102885">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/538cc0206202">猫爪</a>：
+      <a href="http://www.jianshu.com/users/599e6c1b22ad" class="maleskine-author" target="_blank" data-user-slug="599e6c1b22ad">@wangjun</a> 上面说明有 有 2 个 errors 说明是有问题， 根据它提示的错误去修改
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="猫爪" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1102885#comment-1102885">2015.12.26 11:34</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-1127476" data-id="1127476">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/599e6c1b22ad">wangjun</a>：
+      关键是没有任何提示啊，报错语句就那么一句话。
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="wangjun" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1127476#comment-1127476">2015.12.30 10:40</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-1322079" data-id="1322079">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/e2ed12011d4f">zhiyi</a>：
+      <a href="http://www.jianshu.com/users/599e6c1b22ad" class="maleskine-author" target="_blank" data-user-slug="599e6c1b22ad">@wangjun</a> 直接push提交pod，然后会有error和warn提示的，不过比较慢
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="zhiyi" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1322079#comment-1322079">2016.01.26 12:43</a></span>
+      
+    </div>
+  </div>
+
+      <div data-state="remaining-child-comments">  <div class="child-comment" id="comment-1713819" data-id="1713819">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/599e6c1b22ad">wangjun</a>：
+      <a href="http://www.jianshu.com/users/e2ed12011d4f" class="maleskine-author" target="_blank" data-user-slug="e2ed12011d4f">@zhiyi</a> 直接push提交pod，也只有一个[!] The podspec does not validate.提示，并没有指出哪里写错了，搞不懂。
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="wangjun" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1713819#comment-1713819">2016.03.14 14:24</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-1714689" data-id="1714689">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/e2ed12011d4f">zhiyi</a>：
+      <a href="http://www.jianshu.com/users/599e6c1b22ad" class="maleskine-author" target="_blank" data-user-slug="599e6c1b22ad">@wangjun</a> 这样。。。我这里每次push trunk都有详细提示哦。。。
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="zhiyi" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1714689#comment-1714689">2016.03.14 16:07</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-1715057" data-id="1715057">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/599e6c1b22ad">wangjun</a>：
+      <a href="http://www.jianshu.com/users/e2ed12011d4f" class="maleskine-author" target="_blank" data-user-slug="e2ed12011d4f">@zhiyi</a> 错误忘记打印了 <br>warning: Could not find remote branch 0.0.1 to clone.<br>fatal: Remote branch 0.0.1 not found in upstream origin<br>都说找不到分支是怎么回事啊？
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="wangjun" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1715057#comment-1715057">2016.03.14 16:54</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-1715378" data-id="1715378">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/599e6c1b22ad">wangjun</a>：
+      <a href="http://www.jianshu.com/users/e2ed12011d4f" class="maleskine-author" target="_blank" data-user-slug="e2ed12011d4f">@zhiyi</a> 墙外找到类似问题了，说是tag被打到本地了，需要push到origin。<br>能不能问一下push到origin是什么操作？
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="wangjun" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1715378#comment-1715378">2016.03.14 17:33</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-1715486" data-id="1715486">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/599e6c1b22ad">wangjun</a>：
+      <a href="http://www.jianshu.com/users/538cc0206202" class="maleskine-author" target="_blank" data-user-slug="538cc0206202">@猫爪</a> 墙外找到类似问题了，说是tag被打到本地了，需要push到origin。<br>能不能问一下push到origin是什么操作？ 
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="wangjun" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1715486#comment-1715486">2016.03.14 17:50</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-1719260" data-id="1719260">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/e2ed12011d4f">zhiyi</a>：
+      <a href="http://www.jianshu.com/users/599e6c1b22ad" class="maleskine-author" target="_blank" data-user-slug="599e6c1b22ad">@wangjun</a> 这可能是pod在你的git上抓取不到这个tag。首先在项目目录下打标签，例如打一个0.0.3的tag (git tag 0.0.3)，然后需要push到git(git push origin --tags)，success后可以到对应的仓库里查看下是否已经存在该tag，再push到pod上
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="zhiyi" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1719260#comment-1719260">2016.03.15 00:14</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-1720937" data-id="1720937">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/599e6c1b22ad">wangjun</a>：
+      <a href="http://www.jianshu.com/users/e2ed12011d4f" class="maleskine-author" target="_blank" data-user-slug="e2ed12011d4f">@zhiyi</a> 谢谢啊，搞定了。 
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="wangjun" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1720937#comment-1720937">2016.03.15 10:05</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-1720941" data-id="1720941">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/599e6c1b22ad">wangjun</a>：
+      <a href="http://www.jianshu.com/users/e2ed12011d4f" class="maleskine-author" target="_blank" data-user-slug="e2ed12011d4f">@zhiyi</a> 感谢🙏
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="wangjun" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1720941#comment-1720941">2016.03.15 10:05</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-1721467" data-id="1721467">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/e2ed12011d4f">zhiyi</a>：
+      <a href="http://www.jianshu.com/users/599e6c1b22ad" class="maleskine-author" target="_blank" data-user-slug="599e6c1b22ad">@wangjun</a> 小事
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="zhiyi" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1721467#comment-1721467">2016.03.15 11:10</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-2275381" data-id="2275381">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/6f9c2932e868">eggswift</a>：
+      <a href="http://www.jianshu.com/users/599e6c1b22ad" class="maleskine-author" target="_blank" data-user-slug="599e6c1b22ad">@wangjun</a> 可以在命令后添加 '--verbose' 可以在查看日志. 你也可以看我写的一个.podspec : <a href="https://github.com/eggswift/pull-to-refresh/blob/master/ESPullToRefresh.podspec" rel="nofollow" target="_blank">https://github.com/eggswift/pull-to-refresh/blob/master/ESPullToRefresh.podspec</a>
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1097823" data-nickname="eggswift" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/2275381#comment-2275381">2016.05.06 11:23</a></span>
+      
+    </div>
+  </div>
+</div>
+        <div class="comment-toolbar clearfix">
+            <span><a class="blue-link" data-action="toggle-child-comments" href="javascript:void(0) "><i class="fa fa-angle-double-up"></i>收起</a></span>
+          <span class="pull-right">
+            <a data-id="1097823" class="reply" href="javascript:void(null)"><i class="fa fa-pencil"></i> 添加新回复</a>
+          </span>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-1547194">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/4c13facf2a78">
+          <img src="./CocoaPods详解之----制作篇_files/fd6627235724.jpeg" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/4c13facf2a78">篮球火</a>
+        </p>
+        <span class="reply-time">
+          <small>6 楼 · </small>
+          <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1547194#comment-1547194">2016.02.26 14:15</a></span>
+      </div>
+      <p>值得研究<img src="./CocoaPods详解之----制作篇_files/smile.png" alt=":smile:" title=":smile:" class="emoji" width="20" height="20"></p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="1547194" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="1547194" data-nickname="篮球火" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-1875664">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/dbf13edac76e">
+          <img src="./CocoaPods详解之----制作篇_files/9-ece2d3668ecf525c902de6c8672b6435.jpg" alt="9">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/dbf13edac76e">JonneyDai</a>
+        </p>
+        <span class="reply-time">
+          <small>7 楼 · </small>
+          <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/1875664#comment-1875664">2016.03.30 10:04</a></span>
+      </div>
+      <p>写的不错</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="1875664" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="1875664" data-nickname="JonneyDai" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-2195761">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/c2284263c9ba">
+          <img src="./CocoaPods详解之----制作篇_files/5-7cb2e7ce742a5c05b1a4fbebace48f1a.jpg" alt="5">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/c2284263c9ba">Luoyuanfeng</a>
+        </p>
+        <span class="reply-time">
+          <small>8 楼 · </small>
+          <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/2195761#comment-2195761">2016.04.28 11:18</a></span>
+      </div>
+      <p>请问- WARN  | xcodebuild:  LYFLooper/LYFLooper/LYFLooper.m:241:13: warning: variable 'row' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]应该如何解决？</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2195761" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(1)</span>
+</a>        
+
+        <a data-id="2195761" data-nickname="Luoyuanfeng" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list ">
+        <div class="child-comment" id="comment-2218446" data-id="2218446">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/538cc0206202">猫爪</a>：
+      <a href="http://www.jianshu.com/users/c2284263c9ba" class="maleskine-author" target="_blank" data-user-slug="c2284263c9ba">@Luoyuanfeng</a> 警告，如果你确认没问题，可以使用命令 忽略
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="2195761" data-nickname="猫爪" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/2218446#comment-2218446">2016.04.30 22:25</a></span>
+      
+    </div>
+  </div>
+
+      <div data-state="remaining-child-comments"></div>
+        <div class="comment-toolbar clearfix">
+          <span class="pull-right">
+            <a data-id="2195761" class="reply" href="javascript:void(null)"><i class="fa fa-pencil"></i> 添加新回复</a>
+          </span>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-2537101">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/f1535a71d2d8">
+          <img src="./CocoaPods详解之----制作篇_files/4cfe4fd81e48" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/f1535a71d2d8">浮尘4848</a>
+        </p>
+        <span class="reply-time">
+          <small>9 楼 · </small>
+          <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/2537101#comment-2537101">2016.05.26 15:39</a></span>
+      </div>
+      <p>第四步 总是报错  - ERROR | [iOS] file patterns: The `source_files` pattern did not match any file. 怎么解决。。。<br></p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2537101" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="2537101" data-nickname="浮尘4848" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list ">
+        <div class="child-comment" id="comment-2578533" data-id="2578533">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/538cc0206202">猫爪</a>：
+      <a href="http://www.jianshu.com/users/f1535a71d2d8" class="maleskine-author" target="_blank" data-user-slug="f1535a71d2d8">@浮尘4848</a> 说明 你那个 podspec  文件中的 s.source_files  写错路径了
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="2537101" data-nickname="猫爪" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/2578533#comment-2578533">2016.05.30 12:06</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-2578564" data-id="2578564">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/f1535a71d2d8">浮尘4848</a>：
+      <a href="http://www.jianshu.com/users/538cc0206202" class="maleskine-author" target="_blank" data-user-slug="538cc0206202">@猫爪</a> 错了 我是知道了 关键是我怎么改都不对 这个应该怎么弄？
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="2537101" data-nickname="浮尘4848" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/2578564#comment-2578564">2016.05.30 12:11</a></span>
+      
+    </div>
+  </div>
+  <div class="child-comment" id="comment-2578576" data-id="2578576">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/538cc0206202">猫爪</a>：
+      <a href="http://www.jianshu.com/users/f1535a71d2d8" class="maleskine-author" target="_blank" data-user-slug="f1535a71d2d8">@浮尘4848</a> 你可以看看，我那个github项目，下载下来，然后，看看我那个podspec 文件，和对应的 代码路径
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="2537101" data-nickname="猫爪" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/1db5cb08e35c/comments/2578576#comment-2578576">2016.05.30 12:12</a></span>
+      
+    </div>
+  </div>
+
+      <div data-state="remaining-child-comments"></div>
+        <div class="comment-toolbar clearfix">
+          <span class="pull-right">
+            <a data-id="2537101" class="reply" href="javascript:void(null)"><i class="fa fa-pencil"></i> 添加新回复</a>
+          </span>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+          <p class="signout-comment">
+    <a class="btn btn-info" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+      登录后发表评论
+</a>  </p>
+
+    </div>
+    <!-- -->
+
+  </div>
+
+  <script type="application/json" data-name="note">
+    {"id":2256019,"abbr":"一、创建的github仓库1进入Github网站www.github.com登陆自己的账号后2建立一个新的仓库创建新的仓库3填写仓库信息填写仓库信息4创建完毕后创建成功二、上传...","slug":"1db5cb08e35c","url":"http://www.jianshu.com/p/1db5cb08e35c","image_url":"http://cwb.assets.jianshu.io/notes/images/2256019/weibo/image_a139feac1d93.jpg","wordage":714,"has_further_readings":false,"views_count":1008,"likes_count":29,"comments_count":25,"rewards_total_count":0}
+  </script>
+
+  <script type="application/json" data-name="uuid">
+    {"uuid":"e51d6830-1275-0134-9f4e-525400918cd7"}
+  </script>
+
+  <script type="application/json" data-name="author">
+    {"id":624018,"nickname":"猫爪","slug":"538cc0206202","public_notes_count":19,"followers_count":261,"total_likes_count":234,"is_current_user":false,"is_signed_author":false}
+  </script>
+
+
+    <div class="include-collection">
+      <div class="content">
+        <h5>被以下专题收入，发现更多相似内容：</h5>
+        <ul id="all-collections" class="unstyled collections-list">
+            <li>
+              <a class="avatar" href="http://www.jianshu.com/collection/NEt52a"><img src="./CocoaPods详解之----制作篇_files/computer_guy.jpg" alt="180"></a>              <div class="collections-info">
+                <h5>
+                  <a href="http://www.jianshu.com/collection/NEt52a">程序员</a>
+                </h5>
+                
+  <div class="btn btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-fw fa-plus"></i>  <span>添加关注</span></a>
+    <span>96.3K</span>
+  </div>
+
+                <p class="description">简书程序员大本营
+
+投稿须知：
+1.本专题仅收录与程序有关的文章。
+2.请在代码框里写代码，尽量保证可看性。
+
+关注简书官...</p>
+                <p>
+                  <a class="blue-link" href="http://www.jianshu.com/collection/NEt52a">15259篇文章</a> · 96396人关注
+                </p>
+              </div>
+            </li>
+            <li>
+              <a class="avatar" href="http://www.jianshu.com/collection/e2a2a0073e2d"><img src="./CocoaPods详解之----制作篇_files/github-logo1.jpg" alt="180"></a>              <div class="collections-info">
+                <h5>
+                  <a href="http://www.jianshu.com/collection/e2a2a0073e2d">GitHub上有趣的资源</a>
+                </h5>
+                
+  <div class="btn btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-fw fa-plus"></i>  <span>添加关注</span></a>
+    <span>16.1K</span>
+  </div>
+
+                <p class="description">主题是Github上有趣的资源。
+
+当然写Github周边也可以～
+
+本专题的初衷是发现/介绍GitHub上优秀的Repo，欢...</p>
+                <p>
+                  <a class="blue-link" href="http://www.jianshu.com/collection/e2a2a0073e2d">247篇文章</a> · 16127人关注
+                </p>
+              </div>
+            </li>
+            <li>
+              <a class="avatar" href="http://www.jianshu.com/collection/2ffaa203eb6a"><img src="./CocoaPods详解之----制作篇_files/1427906959.jpg" alt="180"></a>              <div class="collections-info">
+                <h5>
+                  <a href="http://www.jianshu.com/collection/2ffaa203eb6a">iOS 开发 </a>
+                </h5>
+                
+  <div class="btn btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-fw fa-plus"></i>  <span>添加关注</span></a>
+    <span>4.5K</span>
+  </div>
+
+                <p class="description"></p>
+                <p>
+                  <a class="blue-link" href="http://www.jianshu.com/collection/2ffaa203eb6a">4577篇文章</a> · 4527人关注
+                </p>
+              </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+  <!-- Modal -->
+    <div class="modal pay-modal text-center hide fade" id="pay-modal">
+  <div class="modal-header clearfix">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <form id="new_reward" class="new_reward" target="_blank" action="http://www.jianshu.com/notes/2256019/rewards" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="pPj0XFoakEGHTGtUxS2zPn9nZ0T/GNdR4e6F3FfLaQn246L/ncON990We93AZ2l5NXWonLyvVd/1160lTwYKwA==">
+    <div class="modal-body">
+      <a href="http://www.jianshu.com/users/538cc0206202">
+        <div class="avatar"><img src="./CocoaPods详解之----制作篇_files/93767c4d056d.png" alt="100"></div>
+</a>      <p><i class="fa fa-quote-left pull-left"></i>请我吃个糖啦  ^o^<i class="fa fa-quote-right pull-right"></i></p>
+      <div class="main-inputs text-left">
+        <div class="control-group">
+          <label for="reward_amount">打赏金额</label><i class="fa fa-yen"></i>
+          <input value="2.00" type="text" name="reward[amount_in_yuan]" id="reward_amount_in_yuan">
+        </div>
+        <div class="control-group message">
+          <textarea placeholder="给Ta留言" name="reward[message]" id="reward_message"></textarea>
+        </div>
+      </div>
+      <div class="choose-pay text-left">
+        <h5>选择支付方式：</h5>
+        <div>
+          <label for="reward_channel_alipay">
+            <div class="iradio_minimal checked" style="position: relative;"><input type="radio" value="alipay" checked="checked" name="reward[channel]" id="reward_channel_alipay" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
+            <span class="alipay-bg"></span>
+</label>
+          
+          <label for="reward_channel_wx_pub_qr">
+            <div class="iradio_minimal" style="position: relative;"><input type="radio" value="wx_pub_qr" name="reward[channel]" id="reward_channel_wx_pub_qr" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
+            微信支付
+</label>        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button name="button" type="submit" class="btn btn-large btn-pay">立即支付</button>
+    </div>
+</form></div>
+
+    <div class="modal success-pay text-center hide fade" id="success-pay">
+  <div class="modal-header clearfix">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div class="modal-body">
+    <h3><i class="icon-ok"></i>打赏成功</h3>
+    <img src="./CocoaPods详解之----制作篇_files/complete-pay-25426877089eb23bd76d9d0e6aad89c1.png" alt="Complete pay">
+  </div>
+  <div class="modal-footer">
+    
+  </div>
+</div>
+
+</div>
+
+  <div class="imagebubble-backmask image-package" style="z-index: 1000;"><div class="image-caption">创建新的仓库</div><div class="image-caption">填写仓库信息</div><div class="image-caption">创建成功</div><div class="image-caption">github MAC客户端</div><div class="image-caption">clone</div><div class="image-caption">写入的代码</div><div class="image-caption">创建一个Tag</div><div class="image-caption">上传到github仓库</div><div class="image-caption">创建podspec成功</div><div class="image-caption">上传到cocoapod成功</div><div class="image-caption">成功搜索到框架</div><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015173737286" style="top: 459px; left: 306.5px; width: 620px; height: 105px;"><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015173939807" style="top: 1777px; left: 306.5px; width: 620px; height: 209px;"><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015173909696" style="top: 1133px; left: 306.5px; width: 620px; height: 430px;"><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015174222452" style="top: 3301px; left: 306.5px; width: 620px; height: 17px;"><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015174006879" style="top: 2103px; left: 359.5px; width: 514px; height: 576px;"><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015174149128" style="top: 2913px; left: 306.5px; width: 620px; height: 257px;"><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015174340143" style="top: 4243px; left: 306.5px; width: 620px; height: 152px;"><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015174633383" style="top: 5878px; left: 306.5px; width: 620px; height: 152px;"><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015174543172" style="top: 5513px; left: 306.5px; width: 620px; height: 202px;"><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015173838374" style="top: 684px; left: 306.5px; width: 620px; height: 328px;"><img class="imagebubble-ghost" src="./CocoaPods详解之----制作篇_files/20151015174255229" style="top: 3500px; left: 306.5px; width: 620px; height: 365px;"></div></div>
+  <div id="flash" class="hide"></div>
+  
+  <div id="view-mode-modal" tabindex="-1" class="modal hide read-modal" aria-hidden="false" data-js-module="view-mode-modal">
+    <div class="btn-group change-background" data-toggle="buttons-radio">
+      <a class="btn btn-daytime active" data-mode="day" href="javascript:void(null);">
+        <i class="fa fa-sun-o"></i>
+</a>      <a class="btn btn-nighttime " data-mode="night" href="javascript:void(null);">
+        <i class="fa fa-moon-o"></i>
+</a>    </div>
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+      <a class="btn font " data-font="font1" href="javascript:void(null);">宋体</a>
+      <a class="btn font hei active" data-font="font2" href="javascript:void(null);">黑体</a>
+    </div>
+    <div class="btn-group change-locale" data-toggle="buttons-radio">
+      <a class="btn font active" data-locale="zh-CN" href="javascript:void(null);">简</a>
+      <a class="btn font hei " data-locale="zh-TW" href="javascript:void(null);">繁</a>
+    </div>
+  </div>
+
+  
+
+  <script src="./CocoaPods详解之----制作篇_files/base-d3f9a709e5a4537b87b3eff40e94a46e.js"></script>
+  
+  <script src="./CocoaPods详解之----制作篇_files/reading-base-9132a81390eb5b2cc4f21734b0e9cd08.js"></script>
+  <script src="./CocoaPods详解之----制作篇_files/note_show-12e94137c3593b4c6278c57fead5ad33.js"></script>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35169517-1']);
+  _gaq.push(['_setCustomVar', 2, 'User Type', 'Visitor', 1 ]);
+  _gaq.push(['_trackPageview']);
+
+  
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+</body></html>
