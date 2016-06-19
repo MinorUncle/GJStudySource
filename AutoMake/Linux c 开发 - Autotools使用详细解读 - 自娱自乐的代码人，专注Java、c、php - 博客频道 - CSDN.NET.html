@@ -1,0 +1,1822 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>   
+   
+
+    <script type="text/javascript" src="http://c.csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <title>Linux c 开发 - Autotools使用详细解读 - 自娱自乐的代码人，专注Java、c、php
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Etag - Last-Modified和Etags如何帮助提高性能?把Last-Modified和ETags请求的http报头一起使用，这样可利用客户端（例如浏览器）的缓存。因为服务器首先产生Last-Modified/Etag标记，服务器可在稍后使用它来判断页面是否已经被修改。本质上，客户端通过将该记号传回服务器要求服务器验证其（客户端）缓存。过程如下:1.客户端请求一个页面（A）。2.服务器返回页面A，并在给A" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+      <script type="text/javascript" src="http://static.blog.csdn.net/scripts/jquery-version.js"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/css/index.css">        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="http://ads.csdn.net/js/tracking.js"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/light_blue/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/initphp/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/nobg.css" />
+ 
+
+
+</head>
+<body>
+    <!-- 广告位开始 -->
+        <ins data-revive-zoneid="149" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/initphp">自娱自乐的代码人，专注Java、c、php</a></h2>
+            <h3>GIT：https://github.com/zhuli     InitPHP开源框架：http://initphp.com</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            
+                <li id="btnContents"><a href="http://blog.csdn.net/initphp?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/initphp?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/initphp/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "initphp";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/initphp";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+
+<a href="http://ask.csdn.net/subjects/9">
+<font color=blue>【专家问答】韦玮：Python基础编程实战专题</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://lib.csdn.net/base/swift/resource">
+<font color=red>【知识库】Swift资源大集合
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/51668917">
+<font color=blue>【公告】博客新皮肤上线啦</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://bbs.csdn.net/topics/391967935">
+<font color=red>CSDN福利第二期
+</font></a>
+&nbsp;&nbsp;&nbsp;
+</font></a>
+</div>                        </div>
+                        
+
+
+
+<!-- 广告位开始 -->
+<ins data-revive-zoneid="72" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+<!-- 广告位结束 -->
+
+  
+<link href="http://static.blog.csdn.net/css/comment1.css" type="text/css" rel="stylesheet" />
+<link href="http://static.blog.csdn.net/css/style1.css" type="text/css" rel="stylesheet" />
+<script language='JavaScript' type='text/javascript' src='http://download.csdn.net/js/jquery.cookie.js'></script>
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/search-service/main.js"></script>
+<link rel="stylesheet" href="http://static.blog.csdn.net/public/res-min/markdown_views.css?v=1.0" />
+<link rel="stylesheet" href="http://static.blog.csdn.net/css/category.css?v=1.0" />
+<script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/web-storage-cache.min.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/replace.min.js"></script>
+
+<link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_code.css" />
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/saveToCode.js"></script>
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+          
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/initphp/article/details/43705765">
+        Linux c 开发 - Autotools使用详细解读            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2015-02-10 17:35</span>
+            <span class="link_view" title="阅读次数">1675人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(3)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle('Linux c 开发 - Autotools使用详细解读','43705765');return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="#report" onclick="javascript:report(43705765,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+    <div class="embody"  style="display:none" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[]}"></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script  type="text/javascript">
+        $(function () {
+            var lib = eval("("+$("#lib").attr("value")+")");
+            var html = "";
+            if (lib.err == 0) {
+                $.each(lib.data, function (i) {
+                    var obj = lib.data[i];
+                    //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                    html += ' <a href="' + obj.url + '" target="_blank">';
+                    html += ' <img src="' + obj.logo + '">';
+                    html += ' <em><b>' + obj.name + '</b></em>';
+                    html += ' </a>';
+                });
+                if (html != "") {
+                    setTimeout(function () {
+                        $("#lib").html(html);
+                        /*
+                        var testhtml = "";
+                        testhtml += '<a href="#">';
+                        testhtml += '<img src="http://img.knowledge.csdn.net/upload/base/1455589744328_328.jpg">';
+                        testhtml += '<em>Android知识库</em>';
+                        testhtml += '</a>';
+                        $(".embody_c").html(testhtml);
+                        */
+                        $("#embody").show();
+                    }, 100);
+                }
+            }          
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label  onclick="GetCategoryArticles('2609039','initphp','top','43705765');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">Linux c 开发系列<em>（17）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/initphp/article/category/2609039"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_2609039">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>  
+        <div   class="bog_copyright">         
+            <p  class="copyright_p" >版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div id="article_content" class="article_content">
+
+<h3>关于Autotools<br>
+</h3>
+<p>我们前面的章节中已经讲到了Makefile的使用（<a target="_blank" target="_blank" href="http://blog.csdn.net/initphp/article/details/7692923">点击进入查看文章</a>）。我们知道在Linux下面如果编译一个比较大型的项目，我们可以通过Makefile的方式来完成。</p>
+<p>但是，我们又蛋疼了，Makefile拥有复杂的语法结构，甚至让人难以领会，当我们项目非常大的时候，维护Makefile会成为一件非常头疼的事情。于是我们就有了<strong><span style="color:#FF0000">autotools工具</span></strong>，专门用来生成Makefile，这个工具让我们很大程度的降低了开发的难度。</p>
+<p>Autotools并不是一个工具，而是一系列工具：</p>
+<p>1. autoscan</p>
+<p>2. aclocal</p>
+<p>3. autoconf</p>
+<p>4. autoheader</p>
+<p>5. automake</p>
+<p>记住，这一系列工具看着复杂，<span style="color:#FF0000">最终的目标还是生成Makefile</span><br>
+</p>
+<p>一般情况下系统中都会默认安装这一系列工具，如果未安装，则在Centeros中可以通过下面命令安装：</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_1_2393373"  code_snippet_id="601884" snippet_file_name="blog_20150210_1_2393373" name="code" class="plain">sudo yum install automake</pre>
+<p><br>
+</p>
+<h3>c源文件同一目录下Autotools的使用</h3>
+<p>如果你的源文件都放在同一个目录下面，那么使用Autotools的时候会相对简单很多。比较著名的开源软件Memcache也是放在同一目录下的，你可以去看下它的源码包。</p>
+<p>下面会按照步骤来实现同一目录下的Autotools工具的使用。</p>
+<h4>1. 源代码例子</h4>
+<p>入口文件main.c</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_2_1808932"  code_snippet_id="601884" snippet_file_name="blog_20150210_2_1808932" name="code" class="cpp">#include &lt;stdio.h&gt;  
+#include &lt;stdlib.h&gt;  
+#include &lt;unistd.h&gt;  
+#include &quot;sum.h&quot;  
+#include &quot;get.h&quot;  
+  
+  
+//入口主函数  
+int main() {  
+    int x = 10;  
+    int y = 20;  
+    int z = sum(&amp;x, &amp;y);  
+    puts(&quot;This is Main&quot;);  
+    printf(&quot;Z:%d\n&quot;, z);  
+    x = 20;  
+    z = get(&amp;x, &amp;y);  
+    printf(&quot;Z:%d\n&quot;, z);  
+    return 1;  
+} </pre>
+<p></p>
+<p>sum.h和sum.c</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_3_3232463"  code_snippet_id="601884" snippet_file_name="blog_20150210_3_3232463" name="code" class="cpp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+
+int sum(int *x, int *y);
+</pre><pre code_snippet_id="601884" snippet_file_name="blog_20150210_4_7786697"  code_snippet_id="601884" snippet_file_name="blog_20150210_4_7786697" name="code" class="cpp">#include &quot;sum.h&quot;
+#include &quot;val.h&quot;
+
+int sum(int *x, int *y) {
+	val(x);
+	puts(&quot;This is SUM Method!=========HDH&quot;);
+	return *x + *y;
+}
+
+</pre>val.h和val.c
+<p></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_5_7390460"  code_snippet_id="601884" snippet_file_name="blog_20150210_5_7390460" name="code" class="cpp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+
+int val(int *x);</pre><pre code_snippet_id="601884" snippet_file_name="blog_20150210_6_1171701"  code_snippet_id="601884" snippet_file_name="blog_20150210_6_1171701" name="code" class="cpp">#include &quot;val.h&quot;
+
+int val(int *x) {
+	puts(&quot;This is Value==&quot;);
+	printf(&quot;X:%d \n&quot;, *x);
+	return 0;
+}</pre>get.h和get.c
+<p></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_7_2336003"  code_snippet_id="601884" snippet_file_name="blog_20150210_7_2336003" name="code" class="cpp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+
+int get(int *x, int *y);</pre><pre code_snippet_id="601884" snippet_file_name="blog_20150210_8_5136507"  code_snippet_id="601884" snippet_file_name="blog_20150210_8_5136507" name="code" class="cpp">#include &quot;get.h&quot;
+
+int get(int *x, int *y) {
+	puts(&quot;This is get&quot;);
+	return (*x) * (*y);
+}</pre>
+<p>上面这个例子，我们在<a target="_blank" target="_blank" href="http://blog.csdn.net/initphp/article/details/7692923">Makefile这篇文章</a>中已经讲解过如何来手工编写Makefile编译。这边的话我们继续使用这个例子，实现Autotools的工具编译。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_9_558798"  code_snippet_id="601884" snippet_file_name="blog_20150210_9_558798" name="code" class="plain">[admin@localhost test_c2]$ ls
+get.c  get.h  main.c  sum.c  sum.h  val.c  val.h</pre>
+<p></p>
+<p><br>
+</p>
+<h4>2. Autoscan命令</h4>
+<p>第一步，我们需要在我们的项目目录下执行<strong><span style="color:#FF0000">autoscan</span></strong>命令。这个命令主要用于扫描工作目录，并且生成<strong><span style="color:#FF0000">configure.scan文件</span></strong>。并且configure.scan需要重命令成<strong><span style="color:#FF0000">configure.ac</span></strong><span style="color:#FF0000"><span style="color:#000000">，然后编辑这个配置，我们才能继续执行后面的命令。</span></span></p>
+<p><span style="color:#FF0000"><span style="color:#000000"></span></span></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_9_1133723"  code_snippet_id="601884" snippet_file_name="blog_20150210_9_1133723" name="code" class="plain">[admin@localhost test_c2]$ autoscan
+[admin@localhost test_c2]$ ls
+autoscan.log  configure.scan  get.c  get.h  main.c  sum.c  sum.h  val.c  val.h
+[admin@localhost test_c2]$ mv configure.scan configure.ac
+[admin@localhost test_c2]$ ls
+autoscan.log  configure.ac  get.c  get.h  main.c  sum.c  sum.h  val.c  val.h</pre>
+<p>我们需要编辑configure.ac文件，首先我们打开configure.ac文件：</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_11_6077176"  code_snippet_id="601884" snippet_file_name="blog_20150210_11_6077176" name="code" class="plain">#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
+AC_CONFIG_SRCDIR([main.c])
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
+AC_CONFIG_SRCDIR([main.c])
+AC_CONFIG_HEADERS([config.h])
+
+# Checks for programs.
+AC_PROG_CC
+
+# Checks for libraries.
+
+# Checks for header files.
+AC_CHECK_HEADERS([stdlib.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+
+AC_OUTPUT</pre>我们修改成：
+<p></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_12_8288253"  code_snippet_id="601884" snippet_file_name="blog_20150210_12_8288253" name="code" class="plain">#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
+AC_CONFIG_SRCDIR([main.c])
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT(hello,1.0,test@qq.com)     
+AM_INIT_AUTOMAKE(hello,1.0)
+AC_CONFIG_SRCDIR([main.c])
+AC_CONFIG_HEADERS([config.h])
+
+# Checks for programs.
+AC_PROG_CC
+
+# Checks for libraries.
+
+# Checks for header files.
+AC_CHECK_HEADERS([stdlib.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT</pre>
+<p>configure.ac标签说明：</p>
+<p><br>
+<table border="1" cellpadding="0" cellspacing="1" style="border:1px solid rgb(192,192,192); border-collapse:collapse">
+<tbody>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">标签</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">说明</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">AC_PREREQ</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">声明autoconf要求的版本号</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">AC_INIT</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">定义软件名称、版本号、联系方式</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">AM_INIT_AUTOMAKE</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">必须要的，参数为软件名称和版本号</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">AC_CONFIG_SCRDIR</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">宏用来侦测所指定的源码文件是否存在, 来确定源码目录的有效性.。此处为当前目录下main.c。</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">AC_CONFIG_HEADER</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">宏用于生成config.h文件，以便 autoheader 命令使用。</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">AC_PROG_CC</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">指定编译器，默认GCC</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">AC_CONFIG_FILES</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">生成相应的Makefile文件，不同文件夹下的Makefile通过空&#26684;分隔。例如：<span style="color:#FF0000">AC_CONFIG_FILES([Makefile, src/Makefile])&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">AC_OUTPUT</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:3px auto">用来设定 configure 所要产生的文件，如果是makefile，configure 会把它检查出来的结果带入makefile.in文件产生合适的makefile。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+<p></p>
+<h4>3. Aclocal命令</h4>
+<p>第二步，执行<strong><span style="color:#FF0000">aclocal</span></strong>命令。扫描 configure.ac 文件生成 aclocal.m4文件, 该文件主要处理本地的宏定义，它根据已经安装的宏、用户定义宏和 acinclude.m4 文件中的宏将 configure.ac 文件需要的宏集中定义到文件 aclocal.m4 中。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_13_5608065"  code_snippet_id="601884" snippet_file_name="blog_20150210_13_5608065" name="code" class="plain">[admin@localhost test_c2]$ aclocal
+[admin@localhost test_c2]$ ls
+aclocal.m4  autom4te.cache  autoscan.log  configure.ac  get.c  get.h  main.c  sum.c  sum.h  val.c  val.h</pre>
+<p></p>
+<p><br>
+</p>
+<h4>4. Autoconf命令</h4>
+<p>第三步，执行<strong><span style="color:#FF0000">autoconf</span></strong>命令。这个命令将 configure.ac 文件中的宏展开，生成 configure 脚本。这个过程可能要用到aclocal.m4中定义的宏。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_14_883805"  code_snippet_id="601884" snippet_file_name="blog_20150210_14_883805" name="code" class="plain">[admin@localhost test_c2]$ autoconf
+[admin@localhost test_c2]$ ls
+aclocal.m4  autom4te.cache  autoscan.log  configure  configure.ac  get.c  get.h  main.c  sum.c  sum.h  val.c  val.h
+[admin@localhost test_c2]$ </pre><br>
+<p></p>
+<h4>5. Autoheader命令</h4>
+<p>第四步，执行<span style="color:#FF0000"><strong>autoheader</strong></span>命令。该命令生成 config.h.in 文件。该命令通常会从 &quot;acconfig.h” 文件中复制用户附加的符号定义。该例子中没有附加的符号定义, 所以不需要创建 &quot;acconfig.h” 文件。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_15_6715952"  code_snippet_id="601884" snippet_file_name="blog_20150210_15_6715952" name="code" class="plain">[admin@localhost test_c2]$ autoheader
+[admin@localhost test_c2]$ ls
+aclocal.m4  autom4te.cache  autoscan.log  config.h.in  configure  configure.ac  get.c  get.h  main.c  sum.c  sum.h  val.c  val.h
+[admin@localhost test_c2]$ </pre><br>
+<p></p>
+<h4>6. 创建Makefile.am文件</h4>
+<p>第五步，创建<strong><span style="color:#FF0000">Makefile.am</span></strong>文件。Automake工具会根据 configure.in 中的参量把 Makefile.am 转换成 Makefile.in 文件。最终通过Makefile.in生成Makefile文件，所以<span style="color:#FF0000">Makefile.am这个文件非常重要，定义了一些生成Makefile的规则</span></p>
+<p>Makefile.am：</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_16_2327457"  code_snippet_id="601884" snippet_file_name="blog_20150210_16_2327457" name="code" class="plain">AUTOMARK_OPTIONS = foreign
+bin_PROGRAMS = hello  
+hello_SOURCES = main.c val.h val.c get.h get.c sum.h sum.c</pre>
+<p></p>
+<p>1. AUTOMAKE_OPTIONS：由于GNU对自己发布的软件有严&#26684;的规范, 比如必须附带许可证声明文件COPYING等，否则automake执行时会报错. automake提供了3中软件等级:foreign, gnu和gnits, 供用户选择。默认级别是gnu. 在本例中， 使用了foreign等级, 它只检测必须的文件。</p>
+<p>2. bin_PROGRAMS = hello ：生成的可执行文件名称，生成多个可执行文件，可以用空&#26684;隔开。</p>
+<p>3. hello_<span>SOURCES</span>：生成可执行文件hello需要依赖的源文件。其中hello_为可执行文件的名称。</p>
+<p>具体Makefile.am后面我们会有一个章节专门讲这块内容。</p>
+<p><br>
+</p>
+<h4>7. Automake命令</h4>
+<p>第六步，执行<span style="color:#FF0000"><strong>automake </strong></span><span><span><span style="color:#FF0000"><strong>--add-missing</strong></span>命令。该命令生成 Makefile.in 文件。使用选项 &quot;--add-missing&quot; 可以让 Automake 自动添加一些必需的脚本文件。如果发现一些文件不存在，可以通过手工 touch命令创建。<br>
+</span></span></p>
+<p><span><span></span></span></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_17_8060544"  code_snippet_id="601884" snippet_file_name="blog_20150210_17_8060544" name="code" class="plain">[admin@localhost test_c2]$ automake --add-missing
+configure.ac:6: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
+configure.ac:6: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+configure.ac:6: installing &#39;./install-sh&#39;
+configure.ac:6: installing &#39;./missing&#39;
+Makefile.am: installing &#39;./INSTALL&#39;
+Makefile.am: error: required file &#39;./NEWS&#39; not found
+Makefile.am: error: required file &#39;./README&#39; not found
+Makefile.am: error: required file &#39;./AUTHORS&#39; not found
+Makefile.am: error: required file &#39;./ChangeLog&#39; not found
+Makefile.am: installing &#39;./COPYING&#39; using GNU General Public License v3 file
+Makefile.am:     Consider adding the COPYING file to the version control system
+Makefile.am:     for your code, to avoid questions about which license your project uses
+Makefile.am: installing &#39;./depcomp&#39;
+[admin@localhost test_c2]$ touch NEWS 
+[admin@localhost test_c2]$ touch README  
+[admin@localhost test_c2]$ touch AUTHORS
+[admin@localhost test_c2]$ touch ChangeLog 
+[admin@localhost test_c2]$ automake --add-missing
+configure.ac:6: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
+configure.ac:6: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+[admin@localhost test_c2]$ ls
+aclocal.m4  autom4te.cache  ChangeLog    configure     COPYING  get.c  INSTALL     main.c       Makefile.in  NEWS    sum.c  val.c
+AUTHORS     autoscan.log    config.h.in  configure.ac  depcomp  get.h  install-sh  Makefile.am  missing      README  sum.h  val.h</pre><br>
+<h4>8. configure命令</h4>
+<p>第七步，估计大家都对<strong><span style="color:#FF0000"> ./congigure</span></strong>这个命令很熟悉吧。大部分linux软件安装都先需要执行./congigure，然后执行make和make install命令。</p>
+<p>./congigure主要把 Makefile.in 变成最终的 Makefile 文件。configure会把一些配置参数配置到Makefile文件里面。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_18_1039075"  code_snippet_id="601884" snippet_file_name="blog_20150210_18_1039075" name="code" class="plain">./configure
+#具体命令省了
+#可以看到生成了Makefile命令
+[admin@localhost test_c2]$ ls
+aclocal.m4  autom4te.cache  ChangeLog  config.h.in  config.status  configure.ac  depcomp  get.h    
+install-sh  Makefile     Makefile.in  NEWS    
+stamp-h1  sum.h  val.h
+AUTHORS     autoscan.log    config.h   config.log   configure      COPYING       get.c    INSTALL  main.c     
+ Makefile.am  missing      
+README  sum.c     val.c</pre><br>
+<h4>9. make命令</h4>
+<p>第八步，执行make命令，执行make命令后，就生成了可执行文件<span style="color:#FF0000"><strong>hello</strong></span>。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_20_2570092"  code_snippet_id="601884" snippet_file_name="blog_20150210_20_2570092" name="code" class="plain">[admin@localhost test_c2]$ make
+make  all-am
+make[1]: 进入目录“/home/admin/test_c2”
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT main.o -MD -MP -MF .deps/main.Tpo -c -o main.o main.c
+mv -f .deps/main.Tpo .deps/main.Po
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT val.o -MD -MP -MF .deps/val.Tpo -c -o val.o val.c
+mv -f .deps/val.Tpo .deps/val.Po
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT get.o -MD -MP -MF .deps/get.Tpo -c -o get.o get.c
+mv -f .deps/get.Tpo .deps/get.Po
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT sum.o -MD -MP -MF .deps/sum.Tpo -c -o sum.o sum.c
+mv -f .deps/sum.Tpo .deps/sum.Po
+gcc  -g -O2   -o hello main.o val.o get.o sum.o  
+make[1]: 离开目录“/home/admin/test_c2”
+[admin@localhost test_c2]$ ls
+aclocal.m4  autom4te.cache  ChangeLog  config.h.in  config.status  configure.ac  depcomp  get.h  
+hello    install-sh  main.o    Makefile.am  missing  README    sum.c  sum.o  val.h
+AUTHORS     autoscan.log    config.h   config.log   configure      COPYING       get.c    
+get.o  INSTALL  main.c      Makefile  Makefile.in  NEWS     stamp-h1  sum.h  val.c  val.o
+[admin@localhost test_c2]$ ./hello 
+This is Value==
+X:10 
+This is SUM Method!=========HDH
+This is Main
+Z:30
+This is get
+Z:400</pre>
+<p><br>
+</p>
+<p></p>
+<h3>c源文件不同目录下Autotools的使用</h3>
+<p></p>
+<p>如果你的入口文件main.c和依赖的文件不是在同一个目录中的，使用Autotools来管理项目的时候会稍微复杂一下。</p>
+<p>在不同的目录下，项目会生成*.a文件的静态连接（静态连接相当于将多个.o目标文件合成一个）。最外层的main.c会通过静态连接方式来实现连接。</p>
+<h4>1. 源代码例子</h4>
+<p>这个例子中会加入libevent和pthread，让例子稍显复杂，这样可以详细的介绍不同目录下的Autotools的使用。</p>
+<p>我们创建两个目录：</p>
+<p>include/&nbsp; ：放置.h头文件</p>
+<p>src/ ：放置.c 源文件</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_21_1316182"  code_snippet_id="601884" snippet_file_name="blog_20150210_21_1316182" name="code" class="plain">[admin@localhost test_c3]$ ls
+include  main.c  src</pre>
+<p></p>
+<p>入口文件main.c：</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_22_3527259"  code_snippet_id="601884" snippet_file_name="blog_20150210_22_3527259" name="code" class="cpp">#include &quot;include/common.h&quot;
+
+//入口主函数  
+int main() {
+    puts(&quot;当前线程sleep 2秒&quot;);
+    sleep(2);
+    int x = 10;
+    int y = 20;
+    int z = sum(&amp;x, &amp;y);
+    puts(&quot;This is Main&quot;);
+    printf(&quot;Z:%d\n&quot;, z);
+    x = 20;
+    z = get(&amp;x, &amp;y);
+    printf(&quot;Z:%d\n&quot;, z);
+    return 1;
+}</pre>common.h文件：
+<p></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_23_7690183"  code_snippet_id="601884" snippet_file_name="blog_20150210_23_7690183" name="code" class="cpp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;event2/event.h&gt;
+#include &lt;event2/bufferevent.h&gt;
+#include &lt;pthread.h&gt;</pre>
+<p></p>
+<p>get.h：</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_24_9344853"  code_snippet_id="601884" snippet_file_name="blog_20150210_24_9344853" name="code" class="cpp">int get(int *x, int *y);</pre>sum.h
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_25_5700389"  code_snippet_id="601884" snippet_file_name="blog_20150210_25_5700389" name="code" class="cpp">int sum(int *x, int *y);</pre>val.h
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_26_3767008"  code_snippet_id="601884" snippet_file_name="blog_20150210_26_3767008" name="code" class="cpp">#include &quot;common.h&quot;
+int val(int *x);</pre>
+<p></p>
+<p>get.c</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_27_961576"  code_snippet_id="601884" snippet_file_name="blog_20150210_27_961576" name="code" class="cpp">#include &quot;../include/get.h&quot;
+
+int get(int *x, int *y) {
+        puts(&quot;This is get&quot;);
+        return (*x) * (*y);
+}</pre>sum.c
+<p></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_28_3205673"  code_snippet_id="601884" snippet_file_name="blog_20150210_28_3205673" name="code" class="cpp">#include &quot;../include/sum.h&quot;
+#include &quot;../include/val.h&quot;
+
+int sum(int *x, int *y) {
+        val(x);
+        puts(&quot;This is SUM Method!=========HDH&quot;);
+        return *x + *y;
+}</pre>val.c
+<p></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_29_2908495"  code_snippet_id="601884" snippet_file_name="blog_20150210_29_2908495" name="code" class="cpp">#include &quot;../include/val.h&quot;
+
+int val(int *x) {
+        //引入libevent的方法
+        struct event_base *base; //定义一个event_base
+        base = event_base_new(); //初始化一个event_base
+        const char *x =  event_base_get_method(base); //查看用了哪个IO多路复用模型，linux一下用epoll  
+        printf(&quot;METHOD:%s\n&quot;, x);
+        event_base_free(base);  //销毁libevent
+
+        puts(&quot;This is Value==&quot;);
+        printf(&quot;X:%d \n&quot;, *x);
+        return 0;
+}</pre>
+<p><br>
+</p>
+<h4>2. 创建Makefile.am文件</h4>
+<p>在项目根目录下先创建<strong><span style="color:#FF0000">Makefile.am</span></strong>文件。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_30_5558373"  code_snippet_id="601884" snippet_file_name="blog_20150210_30_5558373" name="code" class="plain">AUTOMAKE_OPTIONS=foreign #软件等级
+SUBDIRS=src  #先扫描子目录
+bin_PROGRAMS=hello #软件生成后的可执行文件名称
+hello_SOURCES=main.c #当前目录源文件
+hello_LDADD=src/libpro.a #静态连接方式 连接src下生成的libpro.a文件
+LIBS = -l pthread -l event #因为我们项目中用到了libevent和pthread，这个是动态连接</pre>在src/目录下创建Makefile.am文件。
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_31_4737807"  code_snippet_id="601884" snippet_file_name="blog_20150210_31_4737807" name="code" class="plain">noinst_LIBRARIES=libpro.a  #生成的静态库文件名称，noinst加上之后是只编译，不安装到系统中。
+libpro_a_SOURCES=sum.c get.c val.c #这个静态库文件需要用到的依赖
+include_HEADERS=../include/common.h ../include/sum.h ../include/get.h ../include/val.h #导入需要依赖的头文件
+</pre>
+<p><strong>说明：</strong>src/目录下面不加<span style="color:#FF0000"><strong>include_HEADERS</strong></span>也是可以运行的，但是在使用make dist打包命令后，并不会将include/文件夹打包进去，所以还是需要加上include_HEADERS。</p>
+<p><br>
+</p>
+<h4>3. 执行Autoscan命令</h4>
+<p>第一步，我们需要在我们的项目目录下执行<strong><span style="color:#FF0000">autoscan</span></strong>命令。这个命令主要用于扫描工作目录，并且生成<strong><span style="color:#FF0000">configure.scan文件</span></strong>。并且configure.scan需要重命令成<strong><span style="color:#FF0000">configure.ac</span></strong><span style="color:#FF0000"><span style="color:#000000">，然后编辑这个配置，我们才能继续执行后面的命令。</span></span></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_32_7103345"  code_snippet_id="601884" snippet_file_name="blog_20150210_32_7103345" name="code" class="plain">[admin@localhost test_c3]$ autoscan
+[admin@localhost test_c3]$ ls
+autoscan.log  configure.scan  include  main.c  Makefile.am  src</pre>
+<p></p>
+<p>修改configure.ac文件，主要添加<strong><span style="color:#FF0000">AC_PROG_RANLIB（生成静态库）；AC_PROG_LIBTOOL （用来生成动态库）</span></strong></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_33_3458881"  code_snippet_id="601884" snippet_file_name="blog_20150210_33_3458881" name="code" class="plain">#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_CONFIG_SRCDIR([main.c])
+AC_INIT(hello,1.0,abc@126.com)
+AM_INIT_AUTOMAKE(hello,1.0)
+AC_PROG_RANLIB
+AC_CONFIG_HEADERS([config.h])
+
+# Checks for programs.
+AC_PROG_CC
+
+# Checks for libraries.
+
+# Checks for header files.
+AC_CHECK_HEADERS([stdlib.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+
+AC_CONFIG_FILES([Makefile
+                 src/Makefile])
+AC_OUTPUT
+</pre>
+<p></p>
+<p><br>
+</p>
+<h4>4. Aclocal命令</h4>
+第二步，执行<strong><span style="color:#FF0000">aclocal</span></strong>命令。扫描 configure.ac 文件生成 aclocal.m4文件, 该文件主要处理本地的宏定义，它根据已经安装的宏、用户定义宏和 acinclude.m4 文件中的宏将 configure.ac 文件需要的宏集中定义到文件 aclocal.m4 中。
+<p></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_34_7621805"  code_snippet_id="601884" snippet_file_name="blog_20150210_34_7621805" name="code" class="plain">[admin@localhost test_c3]$ aclocal
+[admin@localhost test_c3]$ ls
+aclocal.m4  autom4te.cache  autoscan.log  configure.ac  include  main.c  Makefile.am  src</pre><br>
+<p></p>
+<h4>5. Autoconf命令</h4>
+<p>第三步，执行<strong><span style="color:#FF0000">autoconf</span></strong>命令。这个命令将 configure.ac 文件中的宏展开，生成 configure 脚本。这个过程可能要用到aclocal.m4中定义的宏。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_35_2341138"  code_snippet_id="601884" snippet_file_name="blog_20150210_35_2341138" name="code" class="plain">[admin@localhost test_c3]$ autoconf
+[admin@localhost test_c3]$ ls
+aclocal.m4      autoscan.log  configure.ac  main.c       src
+autom4te.cache  configure     include       Makefile.am</pre><br>
+<p></p>
+<h4>6. Autoheader命令</h4>
+<p>第四步，执行<span style="color:#FF0000"><strong>autoheader</strong></span>命令。该命令生成 config.h.in 文件。该命令通常会从 &quot;acconfig.h” 文件中复制用户附加的符号定义。该例子中没有附加的符号定义, 所以不需要创建 &quot;acconfig.h” 文件。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_36_4028827"  code_snippet_id="601884" snippet_file_name="blog_20150210_36_4028827" name="code" class="plain">[admin@localhost test_c3]$ autoheader
+[admin@localhost test_c3]$ ls
+aclocal.m4      autoscan.log  configure     include  Makefile.am
+autom4te.cache  config.h.in   configure.ac  main.c   src</pre><br>
+<p></p>
+<h4>7. Automake命令</h4>
+<p>第五步，执行<span style="color:#FF0000"><strong>automake </strong></span><span><span><span style="color:#FF0000"><strong>--add-missing</strong></span>命令。该命令生成 Makefile.in 文件。使用选项 &quot;--add-missing&quot; 可以让 Automake 自动添加一些必需的脚本文件。如果发现一些文件不存在，可以通过手工 touch命令创建。</span></span></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_37_700007"  code_snippet_id="601884" snippet_file_name="blog_20150210_37_700007" name="code" class="plain">[admin@localhost test_c3]$ touch NEWS
+[admin@localhost test_c3]$ touch README
+[admin@localhost test_c3]$ touch AUTHORS
+[admin@localhost test_c3]$ touch ChangeLog
+[admin@localhost test_c3]$ automake --add-missing
+configure.ac:7: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
+configure.ac:7: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+[admin@localhost test_c3]$ ls
+aclocal.m4      autoscan.log  configure     include     Makefile.am  NEWS
+AUTHORS         ChangeLog     configure.ac  install-sh  Makefile.in  README
+autom4te.cache  config.h.in   depcomp       main.c      missing      src</pre><br>
+<p></p>
+<h4>8. configure命令</h4>
+<p>第六步，执行<strong><span style="color:#FF0000">./configure</span></strong>命令。./congigure主要把 Makefile.in 变成最终的 Makefile 文件。configure会把一些配置参数配置到Makefile文件里面。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_38_2397291"  code_snippet_id="601884" snippet_file_name="blog_20150210_38_2397291" name="code" class="plain">[admin@localhost test_c3]$ ./configure 
+#命令省了
+[admin@localhost test_c3]$ ls
+aclocal.m4      ChangeLog    config.status  hello       main.o       missing  stamp-h1
+AUTHORS         config.h     configure      include     Makefile     NEWS
+autom4te.cache  config.h.in  configure.ac   install-sh  Makefile.am  README
+autoscan.log    config.log   depcomp        main.c      Makefile.in  src</pre>
+<p></p>
+<p><br>
+</p>
+<h4><strong>9. make命令</strong></h4>
+<p>第七步，执行<strong><span style="color:#FF0000">make</span></strong>命令。make执行后，会生成<strong><span style="color:#FF0000">hello</span></strong>的可执行文件。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_39_4924012"  code_snippet_id="601884" snippet_file_name="blog_20150210_39_4924012" name="code" class="plain">[admin@localhost test_c3]$ make
+make  all-recursive
+make[1]: 进入目录“/home/admin/test_c3”
+Making all in src
+make[2]: 进入目录“/home/admin/test_c3/src”
+gcc -DHAVE_CONFIG_H -I. -I..     -g -O2 -MT sum.o -MD -MP -MF .deps/sum.Tpo -c -o sum.o sum.c
+mv -f .deps/sum.Tpo .deps/sum.Po
+gcc -DHAVE_CONFIG_H -I. -I..     -g -O2 -MT val.o -MD -MP -MF .deps/val.Tpo -c -o val.o val.c
+mv -f .deps/val.Tpo .deps/val.Po
+rm -f libpro.a
+ar cru libpro.a sum.o get.o val.o 
+ranlib libpro.a
+make[2]: 离开目录“/home/admin/test_c3/src”
+make[2]: 进入目录“/home/admin/test_c3”
+gcc -DHAVE_CONFIG_H -I.     -g -O2 -MT main.o -MD -MP -MF .deps/main.Tpo -c -o main.o main.c
+mv -f .deps/main.Tpo .deps/main.Po
+gcc  -g -O2   -o hello main.o src/libpro.a  -l pthread -l event 
+make[2]: 离开目录“/home/admin/test_c3”
+make[1]: 离开目录“/home/admin/test_c3”
+[admin@localhost test_c3]$ ./hello 
+当前线程sleep 2秒
+METHOD:epoll
+This is Value==
+X:10 
+This is SUM Method!=========HDH
+This is Main
+Z:30
+This is get
+Z:400</pre>
+<p><br>
+</p>
+<h3>Autotools运行流程</h3>
+<h4>流程总结：</h4>
+<p>1. 执行<strong><span style="color:#FF0000">autoscan</span></strong>命令。这个命令主要用于扫描工作目录，并且生成<strong><span style="color:#FF0000">configure.scan文件</span></strong>。</p>
+<p>2. 修改configure.scan为<strong><span style="color:#FF0000">configure.ac</span></strong><span style="color:#FF0000"><span style="color:#000000">文件，并且修改配置内容</span></span>。</p>
+<p>3. 执行<strong><span style="color:#FF0000">aclocal</span></strong>命令。扫描 configure.ac 文件生成 aclocal.m4文件。</p>
+<p>4. 执行<strong><span style="color:#FF0000">autoconf</span></strong>命令。这个命令将 configure.ac 文件中的宏展开，生成 configure 脚本。</p>
+<p>5. 执行<span style="color:#FF0000"><strong>autoheader</strong></span>命令。该命令生成 config.h.in 文件。</p>
+<p>6. 新增<span style="color:#FF0000">Makefile.am</span>文件，修改配置内容<br>
+</p>
+<p>7. 执行<span style="color:#FF0000"><strong>automake </strong></span><span><span><span style="color:#FF0000"><strong>--add-missing</strong></span>命令。该命令生成 Makefile.in 文件。</span></span></p>
+<p><span><span>8. 执行<strong><span style="color:#FF0000"> ./congigure</span></strong>命令。将Makefile.in命令生成Makefile文件。</span></span></p>
+<p><span><span>9. 执行<strong><span style="color:#FF0000">make</span></strong>命令。生成可执行文件。</span></span></p>
+<p><span><span><br>
+</span></span></p>
+<h4><span><span>流程图：</span></span></h4>
+<p><span><span><img src="http://img.blog.csdn.net/20150210221649323?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaW5pdHBocA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></span></p>
+<p><br>
+</p>
+<p></p>
+<p><br>
+</p>
+<p></p>
+<h3>Make命令详解</h3>
+<p></p>
+<p>1. make命令：编译文件。make命令主要通过Makefile文件生成可执行文件。</p>
+<p>2. make clean命令。清楚编译的文件，包括目标文件*.o和可执行文件</p>
+<p>3.&nbsp; <span style="font-family:monospace; font-size:12px"><span style="white-space:pre-wrap"><span style="font-family:Verdana,Arial,Helvetica,sans-serif; font-size:12px; white-space:normal">make install 命令把目标文件安装到系统中。默认安装到/usr/local/bin目录下面。</span></span></span></p>
+<p><span style="font-family:monospace; font-size:12px"><span style="white-space:pre-wrap"><span style="font-family:Verdana,Arial,Helvetica,sans-serif; font-size:12px; white-space:normal">4. make uninstall 命令，把目标文件从系统中卸载。</span></span></span></p>
+<p><span style="font-family:monospace; font-size:12px"><span style="white-space:pre-wrap"><span style="font-family:Verdana,Arial,Helvetica,sans-serif; font-size:12px; white-space:normal">5. make dist 命令，打包发布。</span></span></span></p>
+<p><strong><span style="font-family:monospace; font-size:12px; color:#006600"><span style="white-space:pre-wrap"><span style="font-family:Verdana,Arial,Helvetica,sans-serif; font-size:12px; white-space:normal">如何使用发布的文件：</span></span></span></strong></p>
+<p>1. 下载到“hello-1.0.tar.gz”压缩文档</p>
+<p>2. 使用“ tar -zxvf hello-1.0.tar.gz ”命令解压</p>
+<p>3. 使用 “./configure” 命令，主要是生成Makefile命令，已经一些配置初始化。</p>
+<p>4. 使用 “make” 命令编译源代码文件生成软件包。</p>
+<p>5. 使用“make install ”命令来安装编译后的软件包到系统中。</p>
+<p><br>
+</p>
+<h3>Makefile.am解读</h3>
+<h4>1. 可执行文件类型</h4>
+<p>可执行文件类型主要是只最终生成的可执行的文件。例如我们上面<strong>“c源文件同一目录下Autotools的使用</strong>”中的例子。</p>
+<p>
+<table border="1" cellpadding="0" cellspacing="1" style="border:1px solid rgb(192,192,192); border-collapse:collapse">
+<tbody>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">书写&#26684;式</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">说明</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">bin_PROGRAMS</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">生成的可执行文件名称。如果生成的可执行文件名称为多个，则可以通过空&#26684;的方式分隔。<br>
+<strong><span style="color:#FF0000">bin_PROGRAMS</span></strong>：当运行make install命令的时候，可执行文件会默认安装到linux系统的<strong><span style="color:#FF0000">/usr/local/bin</span></strong>目录下面<br>
+<strong><span style="color:#FF0000">noinst_PROGRAMS</span></strong>：如果make install的时候不想被安装，可以使用noinst_PROGRAMS命令。<br>
+例子：bin_PROGRAMS=hello</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">hello_SOURCES</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">编译成可执行文件所依赖的.c源文件。多个源文件之间用空&#26684;分隔。hello为可执行文件名称。</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">hello_LDADD</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">编译成可执行文件过程中，连接所需的库文件，包括<strong><span style="color:#FF0000">*.so</span></strong>的动态库文件和<span style="color:#FF0000"><strong>.a</strong></span>的静态库文件。</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">hello_LDFLAGS</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">连接的时候所需库文件的标识</p>
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_39_8960232"  code_snippet_id="601884" snippet_file_name="blog_20150210_39_8960232" name="code" class="plain">bin_PROGRAMS=hello #软件生成后的可执行文件名称为hello
+hello_SOURCES=main.c #当前目录源文件，如果当前目录有多个源文件，通过空格进行分隔
+hello_LDADD=src/libpro.a #连接的时候所需的库文件
+hello_LDFLAGS=    #连接的时候所需库文件的标识
+LIBS= -l pthread -l event #&lt;strong&gt;&lt;span style=&quot;color:#FF0000;&quot;&gt;第三方的库&lt;/span&gt;&lt;/strong&gt;
+</pre>
+<p><br>
+</p>
+<h4>2. 静态库文件类型</h4>
+<p>静态库文件类型，一般会将c源码放在不同的文件夹中，并且每个文件夹中都会有各自的Makefile.am文件，并且会被编译成静态链接库 *.a&#26684;式的文件。</p>
+<p>如果对静态库和动态库还没有一个概念，可以看我的<a target="_blank" target="_blank" href="http://blog.csdn.net/initphp/article/details/43816387">《Linux c 开发 - 静态库和动态库》</a></p>
+<p>注意：<strong><span style="color:#FF0000">静态库使用中，需要对configure.ac中加入<span>AC_PROG_RANLIB<span class="comment"></span></span></span></strong><br>
+</p>
+<p>
+<table border="1" cellpadding="0" cellspacing="1" style="border:1px solid rgb(192,192,192); border-collapse:collapse">
+<tbody>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">书写&#26684;式</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">说明</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">noinst_LIBRARIES</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">生成静态库（*.a）或者动态库(*.so)的名称。<br>
+库文件一般以lib*.a或者lib*.so来命名。<br>
+<strong><span style="color:#FF0000">noinst_LIBRARIES</span></strong>:当运行make install的时候，库文件不会被安装到linux默认的/usr/local/lib目录下。<br>
+<strong><span style="color:#FF0000">lib_LIBRARIES</span></strong>:当运行make intsall的时候，则会被安装到<span style="color:#FF0000"><strong>/usr/local/lib</strong></span>目录下。<br>
+下面的例子：noinst_LIBRARIES=libpro.a</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">libpro_a_SOURCES</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">c的源文件，libpro_a即上面的livpro.a。多个文件用空&#26684;分开。</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">libpro_a_LDADD</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">加载所需的库文件。</p>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">libpro_a_LDFLAGS</p>
+</td>
+<td style="border:1px solid rgb(192,192,192); border-collapse:collapse; padding:3px; word-break:normal!important">
+<p style="margin:2px auto">编译的时候的连接标识。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_40_2807513"  code_snippet_id="601884" snippet_file_name="blog_20150210_40_2807513" name="code" class="plain">noinst_LIBRARIES=libpro.a  #生成的静态库文件名称，noinst加上之后是只编译，不安装到系统中。
+libpro_a_SOURCES=sum.c get.c val.c #这个静态库文件需要用到的源文件。
+libpro_a_LDADD = #加载库文件
+libpro_a_LDFLAGS= #连接的时候所需库文件的标识</pre>
+<p></p>
+<pre></pre>
+<pre></pre>
+<pre></pre>
+<pre></pre>
+<p></p>
+<h4>3. 头文件</h4>
+<p>我们一般需要导入一些*.h的头文件，如果你在Makefile.am中没有标识需要导入的头文件，可能在make dist打包的时候出现问题，头文件可能不会被打进包里面。</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_41_7842490"  code_snippet_id="601884" snippet_file_name="blog_20150210_41_7842490" name="code" class="plain">include_HEADERS=../include/common.h ../include/sum.h ../include/get.h ../include/val.h  #可以将头文件引入</pre>
+<p>make install，头文件默认会被安装到linux系统<strong><span style="color:#FF0000">/usr/local/include</span></strong><br>
+</p>
+<h4>4. 数据文件</h4>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_42_4754433"  code_snippet_id="601884" snippet_file_name="blog_20150210_42_4754433" name="code" class="plain">data_DATA = data1 data2</pre>
+<p><br>
+</p>
+<h4>5. 常用变量</h4>
+<p><img src="http://img.blog.csdn.net/20150612134145217?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaW5pdHBocA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150210_43_4729169"  code_snippet_id="601884" snippet_file_name="blog_20150210_43_4729169" name="code" class="plain">AUTOMAKE_OPTIONS=foreign #软件等级
+SUBDIRS=src  #先扫描子目录，多个目录用空格隔开
+LIBS = -l pthread -l event #因为我们项目中用到了libevent和pthread，这个是动态连接，在编译的时候会自动加上 -l pthread -l event
+EXTRA_DIST = conf   #打包一些配置文件 
+</pre>
+<h4>6. 安装目录</h4>
+<p>我们知道，默认情况下，执行make install命令，则会将文件安装到/usr/local/bin&nbsp;&nbsp; /usr/local/include&nbsp; /usr/local/lib目录下面。<br>
+</p>
+<p>我们可以通过命令<strong><span style="color:#FF0000">./configure --prefix=</span></strong> 生成Makefile文件的时候，配置make install命令执行的时候的文件安装路径。</p>
+<p>下面这个例子，我们在执行make install的时候，程序会被安装到/home/test目录下面。<br>
+</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150215_44_6690449"  code_snippet_id="601884" snippet_file_name="blog_20150215_44_6690449" name="code" class="plain"> ./configure --prefix=/home/test</pre>
+<p></p>
+<p>执行下面一系列命令：</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150215_45_2805222"  code_snippet_id="601884" snippet_file_name="blog_20150215_45_2805222" name="code" class="plain">./configure --prefix=/home/test
+make
+sudo make install</pre>我们可以进入/home/test目录下看到相应的bin文件已经生成：
+<p></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150215_46_6968146"  code_snippet_id="601884" snippet_file_name="blog_20150215_46_6968146" name="code" class="plain">[admin@localhost test]$ ls
+bin  include lib</pre>
+<p><br>
+</p>
+<p>下面这些变量是已经定义好的安装路径的变量。</p>
+<p>用户也可以修改这些变量。例如将bindir修改成$(prefix)/bin2<br>
+</p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150612_47_6873345"  code_snippet_id="601884" snippet_file_name="blog_20150612_47_6873345" name="code" class="cpp">bindir = $(prefix)/bin。
+
+libdir = $(prefix)/lib。
+
+datadir=$(prefix)/share。
+
+sysconfdir=$(prefix)/etc。
+
+includedir=$(prefix)/include。</pre><br>
+<p>假如我们有自定义的文件夹，我们需要将这个文件夹下的内容安装到安装目录，</p>
+<p>则需要配置一个自定义的文件夹目录<span style="color:#FF0000">confdir</span></p>
+<p></p>
+<p></p>
+<pre code_snippet_id="601884" snippet_file_name="blog_20150612_48_3504228"  code_snippet_id="601884" snippet_file_name="blog_20150612_48_3504228" name="code" class="cpp">confdir=${prefix}/conf   #conf为名称  dir为每个文件夹变量必须带上
+conf_DATA=conf/*     #这个是将conf/目录下的内容安装到confdir目录下
+EXTRA_DIST=conf      #在make dist打包的时候 也要将扩展文件夹打包进去
+</pre><br>
+confdir为需要创建的文件夹目录。
+<p></p>
+<p>conf_DATA为需要拷贝的文件内容到${prefix}/conf目录中去<br>
+</p>
+<p></p>
+<p></p>
+<p><br>
+</p>
+<p></p>
+<p><br>
+</p>
+<p><br>
+</p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.12-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+        <div id="digg" ArticleId="43705765" >
+            <dl id="btnDigg" class="digg digg_disable"  onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>1</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable"  onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" >&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" >&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='/initphp/article/details/43448223';">上一篇</span><a href="/initphp/article/details/43448223" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">环境安装系列 - Linux下 Redis的安装和使用</a></li>
+                <li class="next_article"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='/initphp/article/details/43764831';">下一篇</span><a href="/initphp/article/details/43764831" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">数据结构和算法系列  - geohash算法原理及实现方式</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article"  style="display:none">
+                <h4>我的同类文章</h4>
+                <div class="similar_c"style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span  style="cursor:pointer"  onclick="GetCategoryArticles('2609039','initphp','foot','43705765');">Linux c 开发系列<em>（17）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141"  style="max-height:195px;">
+                        <a href="http://blog.csdn.net" style="display:none">http://blog.csdn.net</a>
+                        <ul class="similar_list fl">                          
+                        </ul>
+
+                        <ul class="similar_list fr">                           
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+    <script  type="text/javascript">
+        $(function () {
+            GetCategoryArticles('2609039', 'initphp','foot','43705765');
+        });
+    </script>
+      
+</div>
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/initphp/svc/GetSuggestContent/43705765",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="http://static.blog.csdn.net/css/replace.css"/>
+<div id="relate" data-mod="popu_218"  class="tracking-ad">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c">
+        </div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived" > 
+    <div class="embody embody_b" id="libkeyparent"  style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="http://csdnimg.cn/jobreco/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "43705765",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    </div>  
+
+    
+     <div id="res"  data-mod="popu_36"  class="tracking-ad" style="width: 42%;float: left;margin-right: 30px;"></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'Linux c 开发 - Autotools使用详细解读' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+    <div id="ad_cen">        
+<!-- 广告位开始 -->
+<ins data-revive-zoneid="71" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+<!-- 广告位结束 -->    </div>  
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '43705765';
+    var commentscount = 3;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="display:none"></div>
+  <script  language="javascript" type='text/javascript'>     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/initphp/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="http://ads.csdn.net/js/async_new.js"></script>      
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/initphp" target="_blank">
+    <img src="http://avatar.csdn.net/C/9/0/1_initphp.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/initphp" class="user_name" target="_blank">initphp</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=initphp','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                         <div class="ico_expert" title="CSDN博客准专家"  onclick="javascript:location='http://blog.csdn.net/experts/rule.html'" style=" cursor:pointer;width:54px;height:60px;background:url('http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/bokezhunzhuanjiamiddle.png') no-repeat" ></div>
+                <div id="bms_box">
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/zhuanlandaren.png" onmouseover="m_over_m(this,2)" onmouseout="m_out_m()" alt="6" >
+                                            </a>
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="2" >
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>613131次</span></li>
+    <li>积分：<span>8938</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog6.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：8938 </div>
+        </span>  </li>
+    <li>排名：<span>第1295名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>256篇</span></li>
+    <li>转载：<span>147篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>167条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/initphp/article/category/6081681" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Nginx源码分析</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/3107757" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Memcached源码分析</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/2609039" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Linux c 开发系列</a><span>(18)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/5942619" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Linux细节</a><span>(13)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/2332145" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Java深入系列</a><span>(25)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/1161961" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">数据结构和算法系列</a><span>(13)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/1171958" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">PHP设计模式系列</a><span>(13)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/1439903" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">安卓开发笔记系列</a><span>(44)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/1230072" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Java学习笔记系列</a><span>(47)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/1161953" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">国产InitPHP框架系列</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/2609095" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">PHP相关系列</a><span>(52)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/2609107" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">服务器数据库系列</a><span>(38)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/2609089" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">转载和积累系列</a><span>(90)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/2609115" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">个人总结感想系列</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/2755407" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">环境安装系列</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="/initphp/article/category/6173586" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">性能优化排查系列</a><span>(4)</span>
+                </li>
+</ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>博客专栏</span></ul>
+    <ul class="panel_body" id="sp_column">
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/memcache-read.html" target="_blank"><img src="http://img.blog.csdn.net/20160222095603298" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/memcache-read.html" target="_blank">Memcache 源码阅读</a>
+    <p>文章：8篇</p>
+    <span>阅读：7916</span>
+    </td>
+    </tr></table>
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/nginx-read.html" target="_blank"><img src="http://img.blog.csdn.net/20160216111827076" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/nginx-read.html" target="_blank">Nginx源码阅读</a>
+    <p>文章：8篇</p>
+    <span>阅读：3153</span>
+    </td>
+    </tr></table>
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/mylinuxc.html" target="_blank"><img src="http://img.blog.csdn.net/20151123180203020" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/mylinuxc.html" target="_blank">Linux c 开发系列</a>
+    <p>文章：18篇</p>
+    <span>阅读：15209</span>
+    </td>
+    </tr></table>
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/myjava.html" target="_blank"><img src="http://img.blog.csdn.net/20151123175939802" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/myjava.html" target="_blank">Java深入</a>
+    <p>文章：24篇</p>
+    <span>阅读：103889</span>
+    </td>
+    </tr></table>
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/initphp.html" target="_blank"><img src="http://img.blog.csdn.net/20151123175654708" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/initphp.html" target="_blank">InitPHP框架</a>
+    <p>文章：5篇</p>
+    <span>阅读：18658</span>
+    </td>
+    </tr></table>
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/phpshejimoshi.html" target="_blank"><img src="http://img.blog.csdn.net/20151123175433583" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/phpshejimoshi.html" target="_blank">PHP设计模式</a>
+    <p>文章：13篇</p>
+    <span>阅读：23517</span>
+    </td>
+    </tr></table>
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/androidgo.html" target="_blank"><img src="http://img.blog.csdn.net/20151123175433395" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/androidgo.html" target="_blank">安卓开发</a>
+    <p>文章：44篇</p>
+    <span>阅读：79087</span>
+    </td>
+    </tr></table>
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/javago.html" target="_blank"><img src="http://img.blog.csdn.net/20151123175254927" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/javago.html" target="_blank">Java学习笔记</a>
+    <p>文章：51篇</p>
+    <span>阅读：119377</span>
+    </td>
+    </tr></table>
+    </ul>
+</div>
+
+<div id="custom_column_21335834" class="panel">
+<ul class="panel_head"><span>友情链接</span></ul>
+<ul class="panel_body">
+
+<ul>
+<li><a href="http://initphp.com">InitPHP官方</a> </li><li><a href="http://www.github.com/zhuli">我的Git</a> </li><li><a href="http://blog.csdn.net/manoel/article/list/3">安卓教程</a> </li><li><a href="http://blog.csdn.net/wuxinzaiyu">wuxinzaiyu</a></li><li><a href="http://android.toolib.net/reference/packages.html">安卓文档</a></li><li><a href="http://www.cnblogs.com/over140/category/277077.html">安卓中文API</a> </li><li><a href="http://leandre.cn/" target="_blank">新浪小牛博客</a></li><li><a href="http://blog.woodbunny.com" target="_blank">木头兔子博客</a></li><li><a href="http://www.cnblogs.com/liuriqi" target="_blank">日琪的Blog</a></li><li><a href="http://www.baikeyang.com" target="_blank">小白的博客</a></li></ul>
+
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/initphp/article/month/2016/03">2016年03月</a><span>(1)</span></li><li><a href="/initphp/article/month/2016/02">2016年02月</a><span>(3)</span></li><li><a href="/initphp/article/month/2016/01">2016年01月</a><span>(7)</span></li><li><a href="/initphp/article/month/2015/12">2015年12月</a><span>(1)</span></li><li><a href="/initphp/article/month/2015/11">2015年11月</a><span>(1)</span></li><li><a href="/initphp/article/month/2015/10">2015年10月</a><span>(1)</span></li><li><a href="/initphp/article/month/2015/07">2015年07月</a><span>(2)</span></li><li><a href="/initphp/article/month/2015/06">2015年06月</a><span>(4)</span></li><li><a href="/initphp/article/month/2015/05">2015年05月</a><span>(3)</span></li><li><a href="/initphp/article/month/2015/04">2015年04月</a><span>(8)</span></li><li><a href="/initphp/article/month/2015/03">2015年03月</a><span>(8)</span></li><li><a href="/initphp/article/month/2015/02">2015年02月</a><span>(5)</span></li><li><a href="/initphp/article/month/2015/01">2015年01月</a><span>(1)</span></li><li><a href="/initphp/article/month/2014/12">2014年12月</a><span>(7)</span></li><li><a href="/initphp/article/month/2014/11">2014年11月</a><span>(4)</span></li><li><a href="/initphp/article/month/2014/10">2014年10月</a><span>(7)</span></li><li><a href="/initphp/article/month/2014/09">2014年09月</a><span>(8)</span></li><li><a href="/initphp/article/month/2014/08">2014年08月</a><span>(5)</span></li><li><a href="/initphp/article/month/2014/07">2014年07月</a><span>(8)</span></li><li><a href="/initphp/article/month/2014/06">2014年06月</a><span>(5)</span></li><li><a href="/initphp/article/month/2014/05">2014年05月</a><span>(8)</span></li><li><a href="/initphp/article/month/2014/04">2014年04月</a><span>(2)</span></li><li><a href="/initphp/article/month/2014/03">2014年03月</a><span>(1)</span></li><li><a href="/initphp/article/month/2014/02">2014年02月</a><span>(2)</span></li><li><a href="/initphp/article/month/2014/01">2014年01月</a><span>(9)</span></li><li><a href="/initphp/article/month/2013/12">2013年12月</a><span>(12)</span></li><li><a href="/initphp/article/month/2013/10">2013年10月</a><span>(3)</span></li><li><a href="/initphp/article/month/2013/09">2013年09月</a><span>(12)</span></li><li><a href="/initphp/article/month/2013/08">2013年08月</a><span>(13)</span></li><li><a href="/initphp/article/month/2013/07">2013年07月</a><span>(20)</span></li><li><a href="/initphp/article/month/2013/06">2013年06月</a><span>(19)</span></li><li><a href="/initphp/article/month/2013/05">2013年05月</a><span>(4)</span></li><li><a href="/initphp/article/month/2013/04">2013年04月</a><span>(10)</span></li><li><a href="/initphp/article/month/2013/03">2013年03月</a><span>(4)</span></li><li><a href="/initphp/article/month/2013/02">2013年02月</a><span>(4)</span></li><li><a href="/initphp/article/month/2013/01">2013年01月</a><span>(6)</span></li><li><a href="/initphp/article/month/2012/12">2012年12月</a><span>(21)</span></li><li><a href="/initphp/article/month/2012/11">2012年11月</a><span>(19)</span></li><li><a href="/initphp/article/month/2012/10">2012年10月</a><span>(22)</span></li><li><a href="/initphp/article/month/2012/09">2012年09月</a><span>(16)</span></li><li><a href="/initphp/article/month/2012/08">2012年08月</a><span>(13)</span></li><li><a href="/initphp/article/month/2012/07">2012年07月</a><span>(33)</span></li><li><a href="/initphp/article/month/2012/06">2012年06月</a><span>(61)</span></li>
+</div>
+</ul>
+</div>
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/initphp/article/details/9222731" title="Java深入 - Json">Java深入 - Json</a><span>(20888)</span>
+</li>
+<li>
+<a href="/initphp/article/details/40891821" title="Java深入 - logback的配置和使用">Java深入 - logback的配置和使用</a><span>(14195)</span>
+</li>
+<li>
+<a href="/initphp/article/details/30487407" title="Java深入 - Java 内存分配和回收机制">Java深入 - Java 内存分配和回收机制</a><span>(12087)</span>
+</li>
+<li>
+<a href="/initphp/article/details/39028155" title="Java深入 - Spring 异常处理HandlerExceptionResolver">Java深入 - Spring 异常处理HandlerExceptionResolver</a><span>(10641)</span>
+</li>
+<li>
+<a href="/initphp/article/details/8834844" title="Java学习笔记38：通过Spring Bean 注入static变量，来设计一套适合测试，开发，生产环境的配置项">Java学习笔记38：通过Spring Bean 注入static变量，来设计一套适合测试，开发，生产环境的配置项</a><span>(10009)</span>
+</li>
+<li>
+<a href="/initphp/article/details/10415523" title="安卓开发31：异步加载图片框架ImageLoader的使用">安卓开发31：异步加载图片框架ImageLoader的使用</a><span>(9303)</span>
+</li>
+<li>
+<a href="/initphp/article/details/17396581" title="转载和积累系列 - OpenWrt常用命令">转载和积累系列 - OpenWrt常用命令</a><span>(9266)</span>
+</li>
+<li>
+<a href="/initphp/article/details/37041975" title="Java深入 - 深入 Java自定义注解">Java深入 - 深入 Java自定义注解</a><span>(8210)</span>
+</li>
+<li>
+<a href="/initphp/article/details/38171219" title="Java深入 - servlet和Spring的DispatcherServlet详解">Java深入 - servlet和Spring的DispatcherServlet详解</a><span>(7859)</span>
+</li>
+<li>
+<a href="/initphp/article/details/17527639" title="转载和积累系列 - luci框架-LUA的一个web框架使用">转载和积累系列 - luci框架-LUA的一个web框架使用</a><span>(7217)</span>
+</li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+ </div>   
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/cnick/cnick.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=1308429"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/JavaScript1.js"></script>
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnId="header_notice_num" wrapId="note1" count="5" subCount="5" type="text/javascript" src="http://c.csdnimg.cn/public/common/toolbar/js/toolbar.js"></script>     <!--new top-->
+   
+    <link href="http://c.csdnimg.cn/comm_ask/css/ask_float_block.css" type="text/css" rel="stylesheet" />
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/wmd.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/showdown.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/prettify.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/apps/ask_float_block.js'></script>
+   
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+</body>
+</html>   
+ 
