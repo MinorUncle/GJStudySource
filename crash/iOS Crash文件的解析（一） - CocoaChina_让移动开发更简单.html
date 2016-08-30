@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+
+    <title>iOS Crash文件的解析（一） - CocoaChina_让移动开发更简单</title>
+    <meta name="keywords" content="iOS开发,应用管理,Crash文件,进程调试iPhone开发,iOS开发,iPad开发,Mac开发,苹果开发中文站,iPhone开发中文站,CocoaChina首页, Mac OS开发, Cocoa介绍,移动互联网,触控科技,Cocoa,Apple,developer,iOS,iPhone,iPad,iMac,iPod Touch,iPhone5,iPhone4S,iPad3,招聘,iPhone程序员,Objective-c,iPhone应用外包,ios6,ios面试,Cocos2d-x,cocos2d,iTunes,App Store,苹果开发">
+    <meta name="description" content="CocoaChina前身是全球成立最早规模最大的苹果开发中文站，现致力为所有移动开发者提供资讯服务、问答服务、代码下载、工具库及人才招聘服务">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-tc-cerfication" content="3300a939a1098c27e94457b75a0bb8c1">
+    <script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/ga.js" async="" type="text/javascript"></script><script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/hm.js"></script><script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/ga.js" async="" type="text/javascript"></script><script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/analytics.js" async=""></script><script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/ca-pub-1180518835303646.js"></script><script type="text/javascript">
+        function gotoMobilePage() {
+            var sUserAgent = navigator.userAgent.toLowerCase();
+            var agent_iphone = /iphone/i;
+            var agent_android = /android/i;
+            //var agent_ipad = /ipad/i;
+            var agent_ipod = /ipod/i;
+            var agent_wphone = /windows phone/i;
+            if(agent_iphone.test(sUserAgent) || agent_android.test(sUserAgent) || agent_ipod.test(sUserAgent) || agent_wphone.test(sUserAgent)){
+                var re = /\/\w+\/\d+\/(\d+)\.html/, 
+                    result = re.exec(window.location.pathname);
+                if ( result )
+                {
+                    window.location.href = "http://www.cocoachina.com/cms/wap.php?action=article&id=" + result[1];
+                } else {
+                    window.location.href = "http://m.cocoachina.com/";
+                }
+            }
+        }
+        gotoMobilePage(); 
+    </script>
+    <link rel="stylesheet" href="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/global.css" media="all">
+    <link rel="stylesheet" href="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/index.css" media="all">
+    <link href="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/module.css" rel="stylesheet">
+    <link href="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/style.css" rel="stylesheet">
+    <link href="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/navheader.css" rel="stylesheet">
+    <script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/navbar.js"></script>
+    <script type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/abase.js"></script><script type="text/javascript" charset="gbk" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/prebat.js"></script>
+    <script type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/k.js"></script>
+    
+<script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/share.js"></script><link href="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/share_style1_32.css" rel="stylesheet"></head>
+<body>
+
+    <div class="nav-header">
+            <div class="nav-header-top">
+                <div class="nav-logo nav-fl"><a href="http://www.cocoachina.com/"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/logo.png"></a></div>
+                <div class="nav-list nav-fl">
+                    <ul>
+                        <li><a href="http://www.cocoachina.com/news/">资讯</a></li>
+                        <li><a href="http://www.cocoachina.com/bbs/">论坛</a></li>
+                        <li><a target="_blank" href="http://code.cocoachina.com/" title="CODE">代码</a></li>
+                        <li><a href="http://tools.cocoachina.com/" title="工具" target="_blank">工具</a></li>
+                        <li><a target="_blank" href="http://job.cocoachina.com/" title="JOB">招聘</a></li>
+                        <li><a target="_blank" href="http://cvp.cocos.com/" title="CVP">CVP</a></li>
+                        <li><a target="_blank" href="http://waikuai.cocoachina.com/" title="waikuai">外快</a></li>
+                        <li><a target="_blank" href="http://blog.cocoachina.com/" title="blog">博客</a><span class="new-item-flag">new</span></li>
+                    </ul>
+                </div>
+                <div class="nav-search nav-fl">
+                    <div class="nav-search-flag" style="display:block"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/search-icon.png"></div>
+                    <div class="nav-search-form" style="display:none">
+                        <form action="/cms/plus/search.php" name="formsearch" method="post" target="_blank">
+                            <input name="kwtype" value="0" type="hidden">
+                            <input name="searchtype" value="titlekeyword" type="hidden">
+                            <input name="keyword" placeholder="站内搜索" type="text">
+                            <input type="button">
+                        </form>
+                    </div>
+                </div>
+                <div class="nav-user nav-fr">
+                    <!-- #region 未登录时显示此区域 -->
+                    <div class="nav-user-login" style="display:block">
+                        <a href="http://www.cocoachina.com/bbs/login.php">登录</a>|
+                        <a href="http://www.cocoachina.com/bbs/register.php">注册</a>
+                    </div>
+                    <!-- #endregion -->
+                    <!-- #region 已登录时显示此区域 -->
+                    <div class="nav-user-name" style="display:none">
+                        <div><alert></alert><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/user.png">Guest</div>
+                        <ul>
+                            <li><a href="#"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/i-man.png">我的主页</a></li>
+                            <li><alert></alert><a href="#"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/i-mail.png">我的消息</a></li>
+                            <li><a href="#"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/i-setting.png">账户设置</a></li>
+                            <li><a href="http://www.cocoachina.com/ios/20150122/index-offline.html"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/i-logout.png">退出</a></li>
+                        </ul>
+                    </div>
+                    <!-- #endregion -->
+                </div>
+                <div class="nav-clear"></div>
+            </div>
+        <div class="nav-header-bottom">
+            <ul>
+                <li><a class="light" id="ios" href="http://www.cocoachina.com/ios/" title="ios">iOS开发</a></li>
+                <li><a id="swift" href="http://www.cocoachina.com/swift/" title="swift">Swift</a></li>
+                <li><a id="app_store" href="http://www.cocoachina.com/appstore/" title="appstore">App Store研究</a></li>
+                <li><a id="design" href="http://www.cocoachina.com/design/" title="design">产品设计</a></li>
+                <li><a id="review" href="http://www.cocoachina.com/review/" title="review">应用</a></li>
+                <li><a id="review" href="http://www.cocoachina.com/vr/" title="review">VR</a></li>
+                <li><a id="game" href="http://www.cocoachina.com/game/" title="game">游戏开发</a></li>
+                <li><a id="apple" href="http://www.cocoachina.com/apple/" title="apple">苹果相关</a></li>
+                <!-- <li><a id="cocos" href="/cocos/" title="cocos">Cocos引擎</a></li>-->
+                <!--<li><a id="webapp" href="/webapp/" title="HTML5">HTML5</a></li>-->
+                <li><a id="android" href="http://www.cocoachina.com/android/" title="android">安卓相关</a></li>
+                <li><a id="market" href="http://www.cocoachina.com/market/" title="market">营销推广</a></li>
+                <li><a id="industry" href="http://www.cocoachina.com/industry/" title="industry">业界动态</a></li>
+                <li><a id="programmer" href="http://www.cocoachina.com/programmer/" title="programmer">程序人生</a></li>
+            </ul>
+        </div>
+    </div>
+<script language="javascript">
+    function IsPC() {
+        var userAgentInfo = navigator.userAgent;
+        var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPod");
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+        }
+        return flag;
+    }
+    if (!IsPC()){
+           window.location.href = "http://www.cocoachina.com/cms/wap.php?action=article&id=10991";
+    }
+
+</script>
+<!--middle-->
+<div class="middle clearfix">
+    <div class="m-wrap">
+        <div class="m-ad2" style="margin-top:12px;">
+            <div class="ad2-l">
+                <script async="" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/adsbygoogle.js"></script>
+                <!-- CC首页底部左侧72890 -->
+                <ins data-adsbygoogle-status="done" class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-1180518835303646" data-ad-slot="8012423965"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="90" width="728"></iframe></ins></ins></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="ad2-r">
+                <script async="" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/adsbygoogle.js"></script>
+                <!-- CC资讯页25090 -->
+                <ins data-adsbygoogle-status="done" class="adsbygoogle" style="display:inline-block;width:250px;height:90px" data-ad-client="ca-pub-1180518835303646" data-ad-slot="9489157162"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:250px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:250px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" frameborder="0" height="90" width="250"></iframe></ins></ins></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        <!--left-->
+        <div class="detail-left float-l">
+            <p class="crumbs"><a href="http://www.cocoachina.com/" title="首页">首页</a> &gt;<a href="http://www.cocoachina.com/ios" title="iOS开发"><span id="type_name">iOS开发</span></a></p>
+            <div class="detail-main">
+                <h2>iOS Crash文件的解析（一）</h2>
+                <div class="p-ico clearfix">
+                    <div>
+                        <span class="ml0">2015-01-22 11:45</span>
+                        <span>编辑：
+                        <a href="" id="field_author" target="_blank">z_zombie</a></span>
+                        <span>分类：<a href="http://www.cocoachina.com/ios/" target="_blank">iOS开发</a></span>
+                        <span id="source">来源：<a href="http://www.cnblogs.com/smileEvday/p/Crash1.html" target="_blank">一片枫叶的博客</a></span>
+
+                        <div class="float-r">
+                            <span id="artical_comment_cnt"><i></i>0</span>
+                            <span><i class="view"></i><script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/count.html" language="javascript"></script>8140</span>
+                    </div>
+                    </div>
+                </div>
+                <div class="p-ico clearfix">
+                    <p class="related float-l"><a href="http://www.cocoachina.com/cms/tags.php?/iOS%E5%BC%80%E5%8F%91/" target="_blank">iOS开发</a><a href="http://www.cocoachina.com/cms/tags.php?/%E5%BA%94%E7%94%A8%E7%AE%A1%E7%90%86/" target="_blank">应用管理</a><a href="http://www.cocoachina.com/cms/tags.php?/Crash%E6%96%87%E4%BB%B6/" target="_blank">Crash文件</a><a href="http://www.cocoachina.com/cms/tags.php?/%E8%BF%9B%E7%A8%8B%E8%B0%83%E8%AF%95/" target="_blank">进程调试</a></p>
+                    <input id="article_id" value="10991" type="hidden">
+                </div>
+                <div class="adsbox clearfix">
+                    <div class="float-l">
+                        <div class="float-l"><b>招聘信息：</b></div>
+                        <ul class="float-l" id="invitelist" style="margin-top: -26px;"><li><a href="http://job.cocoachina.com/job/show?id=67770" target="_blank">高级Cocos2d-x游戏开发工程师（培训讲师）</a></li><li><a href="http://job.cocoachina.com/job/show?id=67462" target="_blank">iOS手机软件开发工程师</a></li><li><a href="http://job.cocoachina.com/job/show?id=67639" target="_blank">iOS工程师</a></li><li><a href="http://job.cocoachina.com/job/show?id=67500" target="_blank">Web后端高级开发工程师</a></li><li><a href="http://job.cocoachina.com/job/show?id=67499" target="_blank">iOS软件工程师</a></li><li><a href="http://job.cocoachina.com/job/show?id=67498" target="_blank">java高级软件工程师</a></li><li><a href="http://job.cocoachina.com/job/show?id=67819" target="_blank">高级iOS开发工程师</a></li><li><a href="http://job.cocoachina.com/job/show?id=67573" target="_blank">高级PHP开发工程师</a></li><li><a href="http://job.cocoachina.com/job/show?id=67779" target="_blank">iOS高级研发工程师</a></li><li><a href="http://job.cocoachina.com/job/show?id=67534" target="_blank">iOS开发工程师</a></li><li><a href="http://job.cocoachina.com/job/show?id=67768" target="_blank">高级iOS手机应用软件开发工程师（培训讲师）</a></li></ul>
+                    </div>
+                    <div class="float-r">
+                        <a href="javascript:void(0)" class="prev"></a>
+                        <a href="javascript:void(0)" class="next"></a>
+                    </div>
+                </div>
+                <div id="detailbody" class="field_body">
+                    <p>发程序的过程中不管我们已经如何小心，总是会在不经意间遇到程序闪退。脑补一下当你在一群人面前自信的拿
+着你的App做功能预演的时候，流畅的操作被无情地Crash打断。联想起老罗在发布Smartisan 
+OS的时候说了，他准备了10个手机，如果一台有问题，就换一台，如果10台后挂了他就不做手机了。好了不闲扯了，今天就跟大家一起聊聊iOS 
+Crash文件的组成以及常用的分析工具。</p><p>有一个WWDC 2010的视频推荐大家抽空看看，视频名称“Understanding Crash Reports on iPhone OS”，该视频详细讲解了Crash文件的结构。当然如果你没时间看的话，不妨阅读以下这篇文章。</p><p><span style="color: rgb(0, 176, 80);"><strong>一、Crash文件结构</strong></span></p><p>当程序运行Crash的时候，系统会把运行的最后时刻的运行信息记录下来，存储到一个文件中，也就是我们所说的Crash文件。iOS的Crash日志通常由以下6各部分组成。<br></p><p><strong>1、Process Information(进程信息)</strong></p><p style="text-align:center"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/1421898355186263.png" title="1421898355186263.png" alt="230718553901251.png" style="width: 744px; height: 112px;"></p><p><strong>Incident Idnetifier</strong>-崩溃报告的唯一标识符，不同的Crash<br></p><p><strong>CrashReporter Key</strong>-设备标识相对应的唯一键值(并非真正的设备的UDID，苹果为了保护用户隐私iOS6以后已经无法获取)。通常同一个设备上同一版本的App发生Crash时，该值都是一样的。</p><p><strong>Hardware Model</strong>-代表发生Crash的设备类型，上图中的“iPad4,4”代表iPad Air</p><p><strong>Process</strong>-代表Crash的进程名称，通常都是我们的App的名字, []里面是当时进程的ID</p><p><strong>Path-</strong>可执行程序在手机上的存储位置，注意路径时到XXX.app/XXX，XXX.app其实是作为一个Bundle的，真正的可执行文件其实是Bundle里面的XXX，感兴趣的可以自己查一下相关资料，有机会我后面也会介绍到</p><p><strong>Identifier-</strong>你的App的Indentifier，通常为“com.xxx.yyy”，xxx代表你们公司的域名，yyy代表某一个App</p><p><strong>Version-</strong>当前App的版本号，由Info.plist中的两个字段组成，CFBundleShortVersionString and CFBundleVersion</p><p><strong>Code Type-</strong>当前App的CPU架构</p><p><strong>Parent Process-</strong>当前进程的父进程，由于iOS中App通常都是单进程的，一般父进程都是launchd</p><p><strong>2、Basic Information<br></strong></p><p style="text-align:center"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/1421898468773154.png" title="1421898468773154.png" alt="052025393435295.png" style="width: 532px; height: 63px;"></p><p><strong>Date/Time-</strong>Crash发生的时间，可读的字符串</p><p><strong>OS Version-</strong>系统版本，（）内的数字代表的时Bulid号</p><p><strong>Report Version-</strong>Crash日志的格式，目前基本上都是104，不同的version里面包含的字段可能有不同</p><p><strong>3、Exception（非常重要）<br></strong></p><p style="text-align:center"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/1421898497410665.png" title="1421898497410665.png" alt="052029230317758.png" style="width: 602px; height: 67px;"></p><p><strong>Exception Type-</strong>异常类型</p><p><strong>Exception Subtype-</strong>异常子类型</p><p><strong>Crashed Thread-</strong>发生异常的线程号</p><p><strong>4、Thread Backtrace<br></strong></p><p style="text-align:center"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/1421898549917466.png" title="1421898549917466.png" alt="052034366876268.png" style="width: 840px; height: 176px;"></p><p>发
+生Crash的线程的Crash调用栈，从上到下分别代表调用顺序，最上面的一个表示抛出异常的位置，依次往下可以看到API的调用顺序。上图的信息表明
+本次Crash出现xxxViewController的323行，出错的函数调用为orderCountLoadFailed。</p><p><strong>5、Thread State<br></strong></p><p style="text-align:center"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/1421898612176999.png" title="1421898612176999.png" alt="052036460005028.png" style="width: 649px; height: 91px;"></p><p>Crash时发生时刻，线程的状态，通常我们根据Crash栈即可获取到相关信息，这部分一般不用关心。</p><p><strong>6、Binary Images<br></strong></p><p style="text-align:center"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/1421898651953431.png" title="1421898651953431.png" alt="052038193591674.png" style="width: 785px; height: 138px;"></p><p>Crash时刻App加载的所有的库，其中第一行是Crash发生时我们App可执行文件的信息，可以看出为armv7，可执行文件的包得uuid位c0f……cd65，解析Crash的时候dsym文件的uuid必须和这个一样才能完成Crash的符号化解析。</p><p><span style="color: rgb(0, 176, 80);"><strong>二、常见的Crash类型</strong></span></p><p><strong>1、Watchdog timeout</strong></p><p>Exception Code：0x8badf00d， 不太直观，可以读成“eat bad food”，意思是don‘t block main thread</p><p>紧接着下面会有一段描述：</p><div><div id="highlighter_205469" class="syntaxhighlighter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">Application&nbsp;Specific&nbsp;Information：</code></div><div class="line number2 index1 alt1"><code class="js plain">com.xxx.yyy　　&nbsp;failed&nbsp;to&nbsp;resume&nbsp;</code><code class="js keyword">in</code>&nbsp;<code class="js plain">time</code></div></div></td></tr></tbody></table></div></div><p>对于此类Crash，我们应该去审视自己App初始化时做的事情是否正确，是否在主线程请求了网络，或者其他耗时的事情卡住了正常初始化流程。</p><p>通
+常系统允许一个App从启动到可以相应用户事件的时间最多为5S，如果超过了5S，App就会被系统终止掉。在
+Launch，resume，suspend，quit时都会有相应的时间要求。在Highlight 
+Thread里面我们可以看到被终止时调用到的位置，xxxAppDelegate加上行号。</p><p>PS. 在连接Xcode调试时为了便于调试，系统会暂时禁用掉Watchdog，所以此类问题的发现需要使用正常的启动模式。</p><p><strong>2、User force-quit</strong></p><div><div id="highlighter_245112" class="syntaxhighlighter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">Exception&nbsp;Codes:&nbsp;0xdeadfa11,&nbsp;deadfall</code></div></div></td></tr></tbody></table></div></div><p>这个强制退出跟我们平时所说的kill掉后台任务操作还不太一样，通常在程序bug造成系统无法响应时可以采用长按电源键，当屏幕出现关机确认画面时按下Home键即可关闭当前程序。</p><p><strong>3、Low Memory termination</strong></p><p>跟一般的Crash结构不太一样，通常有Free pages，Wired Pages，Purgeable pages，largest process 组成，同事会列出当前时刻系统运行所有进程的信息。</p><p>关于Memory warning可以参看我之前写的一篇文章IOS 内存警告 <a href="http://www.cnblogs.com/smileEvday/archive/2012/03/07/MemoryWarning.html" target="_self">Memory warning level</a>。</p><p>App在运行过程中，系统内存紧张时通常会先发警告，同时把后台挂起的程序终止掉，最终如果还是内存不够的话就会终止掉当前前台的进程。</p><p>当接受到内存警告的事后，我们应该释放尽可能多的内存，Crash其实也可以看做是对App的一种保护。</p><p><strong>4、Crash due to bugs</strong></p><p>因
+为程序bug导致的Crash通常千奇百怪，很难一概而论。大部分情况通过Crash日志就可以定位出问题，当然也不排除部分疑难杂症看半天都不值问题出
+在哪儿。这个就只能看功底了，一点点找，总是能发现蛛丝马迹。是在看不出来时还可以求助于Google大神，总有人遇到和你一样的Bug</p><p><span style="color: rgb(0, 176, 80);"><strong>三、常见的Exception Type &amp; Exception Code</strong></span></p><p><strong>1、Exception Type</strong></p><p><span style="color: rgb(0, 176, 80);">1）EXC_BAD_ACCESS</span></p><p>此类型的Excpetion是我们最长碰到的Crash，通常用于访问了不改访问的内存导致。一般EXC_BAD_ACCESS后面的"()"还会带有补充信息。</p><p><strong>SIGSEGV:</strong> 通常由于重复释放对象导致，这种类型在切换了ARC以后应该已经很少见到了。</p><p><strong>SIGABRT: </strong>&nbsp;收到Abort信号退出，通常Foundation库中的容器为了保护状态正常会做一些检测，例如插入nil到数组中等会遇到此类错误。</p><p><strong>SEGV:</strong>（Segmentation &nbsp;Violation），代表无效内存地址，比如空指针，未初始化指针，栈溢出等；</p><p><strong>SIGBUS：</strong>总线错误，与 SIGSEGV 不同的是，SIGSEGV 访问的是无效地址，而 SIGBUS 访问的是有效地址，但总线访问异常(如地址对齐问题)</p><p><strong>SIGILL：</strong>尝试执行非法的指令，可能不被识别或者没有权限</p><p><span style="color: rgb(0, 176, 80);">2）EXC_BAD_INSTRUCTION</span></p><p>此类异常通常由于线程执行非法指令导致</p><p><span style="color: rgb(0, 176, 80);">3）EXC_ARITHMETIC</span></p><p>除零错误会抛出此类异常</p><p><strong>2、Exception Code</strong></p><p><strong>0xbaaaaaad&nbsp;</strong>此种类型的log意味着该Crash log并非一个真正的Crash，它仅仅只是包含了整个系统某一时刻的运行状态。通常可以通过同时按Home键和音量键，可能由于用户不小心触发</p><p><strong>0xbad22222</strong>当VOIP程序在后台太过频繁的激活时，系统可能会终止此类程序</p><p><strong>0x8badf00d</strong>这个前面已经介绍了，程序启动或者恢复时间过长被watch dog终止</p><p><strong>0xc00010ff</strong>程序执行大量耗费CPU和GPU的运算，导致设备过热，触发系统过热保护被系统终止</p><p><strong>0xdead10cc</strong>程序退到后台时还占用系统资源，如通讯录被系统终止</p><p><strong>0xdeadfa11</strong>前面也提到过，程序无响应用户强制关闭</p><p><span style="color: rgb(0, 176, 80);"><strong>四、获取Crash的途径</strong></span></p><p><strong>1、本机</strong></p><p>通过xCode连接测试机器，直接在Device中即可读取到该机器上发生的所有Crash log。</p><p><strong>2、itunes connect</strong></p><p>通过itunes connect后台获取到用户上报的Crash日志。</p><p><strong>3、第三方的Crash收集系统</strong></p><p>有很多优秀的第三方Crash收集系统大大的方便了我们收集Crash，甚至还带了符号化Crash日志的功能。比较常用的有Crashlytics，Flurry等。</p><p><span style="color: rgb(0, 176, 80);"><strong>五、附录</strong></span></p><p><strong>Apple官方文档</strong></p><p><a href="https://developer.apple.com/library/ios/technotes/tn2151/_index.html#//apple_ref/doc/uid/DTS40008184-CH1-INTRODUCTION" target="_self">Understanding and Analyzing iOS Application Crash Reports</a></p><p><a href="https://developer.apple.com/library/mac/technotes/tn2004/tn2123.html#LISTCRASHLOGEXCEPTION" target="_self">Technical Note TN2123 CrashReporter</a></p><p><a href="https://developer.apple.com/library/ios/qa/qa1592/_index.html" target="_self">https://developer.apple.com/library/ios/qa/qa1592/_index.html</a></p><p><strong>WWDC视频</strong></p><p><a href="https://developer.apple.com/videos/wwdc/2010/?id=317" target="_self">Understanding Crash Reports on iPhone OS</a></p><p>Crash日志记录的时候是将Crash发生时刻，函数的调用栈，以及线程等信息写入文件。一般都是直接写的16进制地址，如果不经过符号化的话，基本上很难获取到有用信息，下一篇我们将聊一聊Crash日志的符号化，通俗点讲就是让Crash日志变成我们可读的格式。</p>
+                </div>
+                <div id="page" style="padding:0"></div>
+
+                <div class="wx_article">
+                    <div class="article_weixin">
+                        <img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/article_weixin.jpg" alt="搜索CocoaChina微信公众号：CocoaChina" height="131" width="131">
+                        <div class="article_scan">微信扫一扫</div>
+                        <div class="article_txt"><span style="color:#999999">订阅每日移动开发及APP推广热点资讯<br>公众号：</span>CocoaChina</div>
+                    </div>
+                </div>
+
+               <div class="clearfix tgbox">
+                    <a href="http://www.cocoachina.com/deliver.php" class="tg float-l" target="_blank">我要投稿</a>&nbsp;&nbsp;
+                    <a style="margin-left:10px" href="javascript:void(0)" onclick="add_favors(10991,'iOS Crash文件的解析（一）')" class="tg float-l">收藏文章</a>
+                    <div class="share float-r">分享到：
+                        <div data-bd-bind="1472535620122" class="bdsharebuttonbox" id="sharediv"><a href="#" class="bds_more" data-cmd="more"></a> <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a> <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+                    </div>
+                </div>
+
+
+                <a class="zanbox" href="javascript:void(0)" id="zanbox" onclick="postDigg('good',10991)" title="哎呦，不错噢，赞一个">
+                    <strong id="newdigg">
+                     <script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/count_002.html" language="javascript"></script>15
+                    </strong>
+                </a>
+            </div>
+
+            <div class="article-prev">上一篇：<a href="http://www.cocoachina.com/ios/20150122/10987.html">浅谈iOS中MVVM的架构设计与团队协作</a> </div>
+            <div class="article-next">下一篇：<a href="http://www.cocoachina.com/ios/20150122/10992.html">UIButton setBackgroundColor:ForState</a> </div>
+
+            <!--相关资讯-->
+            <div class="part-wrap clearfix">
+                <h3>相关资讯</h3>
+                <ul class="info-list clearfix">
+                    <li>
+                        <a href="http://www.cocoachina.com/ios/20160330/15826.html" target="_blank" title="矢量图形的一个巨大优势就是它可以被渲染在任意分辨率的屏幕上，同时保持绝对的平滑的且不失真。这就是为什么PostScript和TrueType字体在任意放大倍数下都如此清晰的原因。因为智能手机和电脑显示">如何在iOS上创建矢量图形</a>
+                     </li>
+<li>
+                        <a href="http://www.cocoachina.com/ios/20160330/15819.html" target="_blank" title="想知道cell到底有多高？直接问Cell本人就好了。直接法，就是把数据布局到Cell上，然后拿到Cell最底部控件的MaxY值。
+">iOS开发--处理不等高TableViewCell的小花招</a>
+                     </li>
+<li>
+                        <a href="http://www.cocoachina.com/ios/20160328/15800.html" target="_blank" title="最近一段时间，我帮一些朋友开始学习iOS开发，他们要求我列出一些入门iOS开发所需要了解的内容清单。这对于一篇博文来说似乎是一个很好的主题。没有费很多精力，我整理了一个清单，介绍了在成">小白如何晋级入门级iOS开发者</a>
+                     </li>
+<li>
+                        <a href="http://www.cocoachina.com/ios/20160324/15768.html" target="_blank" title="有筒子在面试的时候，遇到这样一个问题：“你知道成员变量的本质是什么吗？”，筒子立马懵逼了，成员变量的本质？成员变量就是成员变量啊，平时只管用，还有什么更深层的含义？本文着重介绍">iOS runtime实战应用：成员变量和属性</a>
+                     </li>
+<li>
+                        <a href="http://www.cocoachina.com/ios/20160328/15758.html" target="_blank" title="UIImagePickerController是iOS中自带的系统相册选择器, 使用起来非常简便. 而在没有3D Touch的设备中, 在系统相册中长按一个照片, 会导致crash. 这看起来像是iOS系统的一个bug. 原因在于:触发3D Touch操作后, PUPh">解决3D Touch导致系统相册崩溃的问题</a>
+                     </li>
+<li>
+                        <a href="http://www.cocoachina.com/ios/20160324/15727.html" target="_blank" title="在开发过程中，我们不仅要去看别人的代码，也要让别人看我们的代码。那么，有一个良好的编码习惯将会非常重要。下面将会罗列使用Objective-C来开发iOS的编码建议。">iOS开发编码建议与编程经验（持续更新中）</a>
+                     </li>
+<li>
+                        <a href="http://www.cocoachina.com/ios/20160321/15726.html" target="_blank" title="对于调试的技能，基本上是可以迁移的，也就是说你以前在其他平台上掌握的很多调试技巧，很多也是可以用在iOS开发中。不同语言、不同IDE、不同平台的调试，有同性也有个性。今天我们就来学习一"> iOS开发调试技巧总结（持续更新中）</a>
+                     </li>
+<li>
+                        <a href="http://www.cocoachina.com/ios/20160329/15719.html" target="_blank" title="CoreAnimation作为iOS最重要的框架之一，CALayer的重要性毋庸置疑，本文将从上图的demo讲起，我会分成常规用法跟自己思考实现的用法来实现，以此来更加深入的学习layer。ps：本文不包括CALayer的属性讲解">iOS开发-CALayer的探究应用</a>
+                     </li>
+<li>
+                        <a href="http://www.cocoachina.com/ios/20160316/15674.html" target="_blank" title="前不久在微博上看到一篇文章，《UNRECOGNIZED SELECTOR SENT TO INSTANCE 问题快速定位的方法》 其中讲了iOS unrecognized selector sent to instance问题的快速定位方法，方法是不错的，但是实际测试发现文中的方法并非">Unrecognized Selector Sent to Instance问题</a>
+                     </li>
+<li>
+                        <a href="http://www.cocoachina.com/ios/20160307/15585.html" target="_blank" title=" 本篇主要回顾一下－－iOS函数式编程 &amp;&amp; 响应式编程概念 ,如何一步步实现函数式编程的过程，对阅读Masonry &amp;&amp; SnapKit源码有一定的帮助。">深入浅出－iOS函数式编程的实现 &amp;&amp; 响应式编程概念</a>
+                     </li>
+
+                </ul>
+            </div>
+            <div class="clearfix" style="margin-top:20px;">
+                <script async="" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/adsbygoogle.js"></script>
+                <!-- CC评论框 -->
+                <ins data-adsbygoogle-status="done" class="adsbygoogle" style="display:inline-block;width:750px;height:90px" data-ad-client="ca-pub-1180518835303646" data-ad-slot="8242010366"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:750px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:750px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;" frameborder="0" height="90" width="750"></iframe></ins></ins></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <!-- 评论模块start -->
+            
+            <div class="clearfix" id="commnet_list_holder" style="margin-bottom:50px;">
+                <div class="glab-comment-form">
+                    <div class="dcbt">我来说两句</div>
+                    <div class="user-head">
+                        <img id="user_face_url" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/none.gif" alt="" height="43" width="43">
+                    </div>
+                    <div class="form-region">
+                        <textarea name="comment" id="main_comment_content" cols="30" rows="10" placeholder="你怎么看？快来评论一下吧！"></textarea>
+                        <a class="submitform" id="main_comment_bt">发表评论</a>
+                        <div class="unlogin-mask">
+                            <div>您还没有登录！请<a href="http://www.cocoachina.com/bbs/login.php">登录</a>或<a href="http://www.cocoachina.com/bbs/register.php">注册</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="glab-comment-callback-msg" class="glab-comment-info"></div>
+                <div class="glab-comment-title">所有评论（<span>0</span>）</div>
+                <div class="glab-commentlist" id="commentlist">
+                    <a style="display: none;" id="refresh_comment_btn" href="javascript:;" onclick="$('#morecomment').trigger('click')">刷新评论</a>
+                </div>
+                <div class="glab-comment-more" id="morecomment" style="display:none">
+                    更多评论
+                </div>
+            </div>
+            
+            <!-- 评论模块end -->
+
+
+        </div>
+        <!--./left-->
+        <!--侧边栏-->
+        <div class="clearfix newslist">
+            <div class="rightSide detail-right float-r">
+                <!--两周热门资讯推荐-->
+                <div>
+                    <div class="part-wrap clearfix">
+                        <h3>热门资讯</h3>
+                        <ul class="related-hot">
+                            <li class="clearfix"><a href="http://www.cocoachina.com/ios/20160317/15696.html" class="float-l pic" target="_blank" title="你真的了解iOS代理设计模式吗？"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/6658712eef991034426688f1a6b45d3a.jpg" style="max-height:60px" alt="你真的了解iOS代理设计模式吗？"></a><div style="margin-left:86px"><p class="related-intro"><a href="http://www.cocoachina.com/ios/20160317/15696.html" target="_blank" title="你真的了解iOS代理设计模式吗？">你真的了解iOS代理设计模式吗？</a></p><p class="hits">点击量<span>29627</span></p></div></li><li class="clearfix"><a href="http://www.cocoachina.com/ios/20160329/15803.html" class="float-l pic" target="_blank" title="我是如何检测内存泄露的"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/403dd0ff234e9a3526de653fede9e0ee.jpg" style="max-height:60px" alt="我是如何检测内存泄露的"></a><div style="margin-left:86px"><p class="related-intro"><a href="http://www.cocoachina.com/ios/20160329/15803.html" target="_blank" title="我是如何检测内存泄露的">我是如何检测内存泄露的</a></p><p class="hits">点击量<span>16272</span></p></div></li><li class="clearfix"><a href="http://www.cocoachina.com/ios/20160323/15770.html" class="float-l pic" target="_blank" title="iOS面试必看，最全梳理"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/e7f45a5c07f10421afc2af89a5803246.jpg" style="max-height:60px" alt="iOS面试必看，最全梳理"></a><div style="margin-left:86px"><p class="related-intro"><a href="http://www.cocoachina.com/ios/20160323/15770.html" target="_blank" title="iOS面试必看，最全梳理">iOS面试必看，最全梳理</a></p><p class="hits">点击量<span>10875</span></p></div></li><li class="clearfix"><a href="http://www.cocoachina.com/ios/20160324/15727.html" class="float-l pic" target="_blank" title="iOS开发编码建议与编程经验（持续更新中）"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/e14c39277f17187e72a1c389a5ad3edb.jpg" style="max-height:60px" alt="iOS开发编码建议与编程经验（持续更新中）"></a><div style="margin-left:86px"><p class="related-intro"><a href="http://www.cocoachina.com/ios/20160324/15727.html" target="_blank" title="iOS开发编码建议与编程经验（持续更新中）">iOS开发编码建议与编程经验（持续更新中）</a></p><p class="hits">点击量<span>8664</span></p></div></li><li class="clearfix"><a href="http://www.cocoachina.com/swift/20160318/15712.html" class="float-l pic" target="_blank" title="Hello，服务端 Swift"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/b99fb8e7a2fc1f7d454db5aef116c188.jpg" style="max-height:60px" alt="Hello，服务端 Swift"></a><div style="margin-left:86px"><p class="related-intro"><a href="http://www.cocoachina.com/swift/20160318/15712.html" target="_blank" title="Hello，服务端 Swift">Hello，服务端 Swift</a></p><p class="hits">点击量<span>8017</span></p></div></li><li class="clearfix"><a href="http://www.cocoachina.com/ios/20160321/15698.html" class="float-l pic" target="_blank" title="移动端地图技术分享"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/b4fb9976075cd1893ab0efc17134ede8.jpg" style="max-height:60px" alt="移动端地图技术分享"></a><div style="margin-left:86px"><p class="related-intro"><a href="http://www.cocoachina.com/ios/20160321/15698.html" target="_blank" title="移动端地图技术分享">移动端地图技术分享</a></p><p class="hits">点击量<span>7488</span></p></div></li><li class="clearfix"><a href="http://www.cocoachina.com/ios/20160318/15716.html" class="float-l pic" target="_blank" title="iOS 9学习系列： ReplayKit框架入门"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/f776e6c33d770b93fd8030cfba8dbfc5.jpg" style="max-height:60px" alt="iOS 9学习系列： ReplayKit框架入门"></a><div style="margin-left:86px"><p class="related-intro"><a href="http://www.cocoachina.com/ios/20160318/15716.html" target="_blank" title="iOS 9学习系列： ReplayKit框架入门">iOS 9学习系列： ReplayKit框架入门</a></p><p class="hits">点击量<span>7063</span></p></div></li><li class="clearfix"><a href="http://www.cocoachina.com/ios/20160322/15766.html" class="float-l pic" target="_blank" title="苹果发布Xcode 7.3，Swift更新至2.2版本"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/42dea27c3f5ddabb56257da9a693ea40.jpg" style="max-height:60px" alt="苹果发布Xcode 7.3，Swift更新至2.2版本"></a><div style="margin-left:86px"><p class="related-intro"><a href="http://www.cocoachina.com/ios/20160322/15766.html" target="_blank" title="苹果发布Xcode 7.3，Swift更新至2.2版本">苹果发布Xcode 7.3，Swift更新至2.2版本</a></p><p class="hits">点击量<span>6588</span></p></div></li><li class="clearfix"><a href="http://www.cocoachina.com/ios/20160321/15726.html" class="float-l pic" target="_blank" title=" iOS开发调试技巧总结（持续更新中）"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/e496f77dc6dec9e0b830512e002906dc.jpg" style="max-height:60px" alt=" iOS开发调试技巧总结（持续更新中）"></a><div style="margin-left:86px"><p class="related-intro"><a href="http://www.cocoachina.com/ios/20160321/15726.html" target="_blank" title=" iOS开发调试技巧总结（持续更新中）"> iOS开发调试技巧总结（持续更新中）</a></p><p class="hits">点击量<span>6497</span></p></div></li><li class="clearfix noborder-b"><a href="http://www.cocoachina.com/ios/20160328/15800.html" class="float-l pic" target="_blank" title="小白如何晋级入门级iOS开发者"><img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/7a02d45a6d03b67666d7d3c74f3acda9.jpg" style="max-height:60px" alt="小白如何晋级入门级iOS开发者"></a><div style="margin-left:86px"><p class="related-intro"><a href="http://www.cocoachina.com/ios/20160328/15800.html" target="_blank" title="小白如何晋级入门级iOS开发者">小白如何晋级入门级iOS开发者</a></p><p class="hits">点击量<span>5716</span></p></div></li>
+                        </ul>
+                    </div>
+               </div>
+               <!--./两周热门资讯推荐-->
+               <!--综合评论-->
+                <div class="part-wrap clearfix" style="margin-top: 15px;">
+                    <h3>综合评论</h3>
+                    <ul class="related-comment clearfix" id="all_comments_holder"><li class=""><span class="hide_comment">阿花又强推了两篇</span><br><p><span>心亦逸风</span><span>评论了</span><a target="_blank" title="iOS邮箱模糊匹配功能集成" href="http://www.cocoachina.com/ios/20160830/17418.html"><span>iOS邮箱模糊匹配功能集成...</span></a></p></li><li class=""><span class="hide_comment">看了还是非常有帮助的</span><br><p><span>zi631224</span><span>评论了</span><a target="_blank" title="iOS 开发中你是否遇到这些经验问题（二）" href="http://www.cocoachina.com/ios/20160823/17408.html"><span>iOS 开发中你是否遇到这些经验问题（二）...</span></a></p></li><li class=""><span class="hide_comment">点击下载没反应,不跳github<br></span><br><p><span>哈南的路</span><span>评论了</span><a target="_blank" title="iOS邮箱模糊匹配功能集成" href="http://www.cocoachina.com/ios/20160830/17418.html"><span>iOS邮箱模糊匹配功能集成...</span></a></p></li><li class=""><span class="hide_comment">源代码下载不了啊</span><br><p><span>哈南的路</span><span>评论了</span><a target="_blank" title="iOS邮箱模糊匹配功能集成" href="http://www.cocoachina.com/ios/20160830/17418.html"><span>iOS邮箱模糊匹配功能集成...</span></a></p></li><li class=""><span class="hide_comment">笑而不语,呵呵~~~~~~</span><br><p><span>AncientMing</span><span>评论了</span><a target="_blank" title="手游送审过程中，除了不能出现英文之外还有哪些奇葩事" href="http://www.cocoachina.com/game/20160707/16961.html"><span>手游送审过程中，除了不能出现英文之外还有哪些奇葩事...</span></a></p></li><li class=""><span class="hide_comment">不是针对你,而是被大多数程序媛坑的.</span><br><p><span>AncientMing</span><span>评论了</span><a target="_blank" title="科技界“程序媛”的尴尬" href="http://www.cocoachina.com/programmer/20150413/11536.html"><span>科技界“程序媛”的尴尬...</span></a></p></li><li class=""><span class="hide_comment">最近还好么？阿花</span><br><p><span>playforfun</span><span>评论了</span><a target="_blank" title="拯救CocoaChina，向我投稿！" href="http://www.cocoachina.com/industry/20160829/17427.html"><span>拯救CocoaChina，向我投稿！...</span></a></p></li><li class=""><span class="hide_comment">啊啊啊啊啊，我说怎么没更新了。。。</span><br><p><span>playforfun</span><span>评论了</span><a target="_blank" title="拯救CocoaChina，向我投稿！" href="http://www.cocoachina.com/industry/20160829/17427.html"><span>拯救CocoaChina，向我投稿！...</span></a></p></li><li class=""><span class="hide_comment">可以的,学习了~</span><br><p><span>AncientMing</span><span>评论了</span><a target="_blank" title="为什么整个互联网行业都缺CTO" href="http://www.cocoachina.com/programmer/20150413/11540.html"><span>为什么整个互联网行业都缺CTO...</span></a></p></li><li class="noborder-b"><span class="hide_comment">全局修改局部变量快捷键:<br><br>command&nbsp;+&nbsp;control&nbsp;+&nbsp;e</span><br><p><span>tikeyc</span><span>评论了</span><a target="_blank" title="Xcode 常用快捷键" href="http://www.cocoachina.com/ios/20160822/17393.html"><span>Xcode 常用快捷键</span></a></p></li></ul>
+                </div>
+                <!--./综合评论-->
+                <!--相关帖子-->
+                <div class="part-wrap clearfix" style="margin:15px 0 15px 0;">
+                    <h3>相关帖子</h3>
+                    <ul class="related-comment clearfix">
+                        <script charset="gb2312" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/new.html"></script><li><a href="http://www.cocoachina.com/bbs/read.php?tid=1693264" target="_blank">给实时的视频录制，添加美颜效果 怎么解决？</a></li><li><a href="http://www.cocoachina.com/bbs/read.php?tid=1693263" target="_blank">不是能发帖吗？到底哪里论坛维护了？</a></li><li><a href="http://www.cocoachina.com/bbs/read.php?tid=1693259" target="_blank">我擦，不能新添加版本了</a></li><li><a href="http://www.cocoachina.com/bbs/read.php?tid=1693257" target="_blank">关于二倍图三杯吐</a></li><li><a href="http://www.cocoachina.com/bbs/read.php?tid=1693254" target="_blank">上传代码到github上,,github创建远程仓库成功了，但是代码无法提交。</a></li><li><a href="http://www.cocoachina.com/bbs/read.php?tid=1693253" target="_blank">求助！MIDI解析？？画乐谱？？懵逼！！！</a></li><li><a href="http://www.cocoachina.com/bbs/read.php?tid=1693252" target="_blank">苹果现在不光整顿标题、副标题，现在连关键词都开始审了</a></li><li><a href="http://www.cocoachina.com/bbs/read.php?tid=1693250" target="_blank">父类写了代理方法，子类写了代理方法，在设置属性时，子类父类都要设置一个叫delegate的属性，冲突了！</a></li><li class="clearfix noborder-b"><a href="http://www.cocoachina.com/bbs/read.php?tid=1693249" target="_blank">为什么微博清除缓存时音乐会停掉？</a></li>
+                    </ul>
+                </div>
+                <!--./相关帖子-->
+                <iframe class="share_self" scrolling="no" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/index.html" frameborder="0" height="550" width="230"></iframe>
+                <script async="" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/adsbygoogle.js"></script>
+                <!-- CC列表页面230x230 -->
+                <ins data-adsbygoogle-status="done" class="adsbygoogle" style="display:inline-block;width:230px;height:230px" data-ad-client="ca-pub-1180518835303646" data-ad-slot="6765277166"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:230px;margin:0;padding:0;position:relative;visibility:visible;width:230px;background-color:transparent"><ins id="aswift_3_anchor" style="display:block;border:none;height:230px;margin:0;padding:0;position:relative;visibility:visible;width:230px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;" frameborder="0" height="230" width="230"></iframe></ins></ins></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        <!--./侧边栏-->
+    </div>
+
+    <div id="coco-store" style="display:none">
+        <div class="storebox">
+            <h5>提示</h5>
+            <h3>已经收藏该篇文章</h3>
+            <p class="p1"><a href="http://www.cocoachina.com/bbs/u.php?action=favor&amp;tag=1" target="_blank">去我的收藏夹</a></p>
+            <p class="p2"><a href="http://www.cocoachina.com/bbs/login.php">请登录</a></p>
+        </div>
+    </div> <!--收藏提示-->
+</div>
+
+<script type="text/javascript">
+
+function postDigg(ftype,aid)
+{
+    var taget_obj = document.getElementById('newdigg');
+    var saveid = GetCookie('diggid');
+    if(saveid != null)
+    {
+        var saveids = saveid.split(',');
+        var hasid = false;
+        saveid = '';
+        j = 1;
+        for(i=saveids.length-1;i>=0;i--)
+        {
+            if(saveids[i]==aid && hasid) continue;
+            else {
+                if(saveids[i]==aid && !hasid) hasid = true;
+                saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+                j++;
+                if(j==20 && hasid) break;
+                if(j==19 && !hasid) break;
+            }
+        }
+        if(hasid) { alert("您已经顶过该帖，请不要重复顶帖 ！"); return; }
+        else saveid += ','+aid;
+        SetCookie('diggid',saveid,1);
+    }
+    else
+    {
+        SetCookie('diggid',aid,1);
+    }
+    myajax = new DedeAjax(taget_obj,false,false,'','','');
+    var url = "/cms/plus/digg_ajax.php?action="+ftype+"&id="+aid;
+    myajax.SendGet2(url);
+    DedeXHTTP = null;
+    $('#zanbox').addClass('zanbox-selected');
+}
+function getDigg(aid)
+{
+    var taget_obj = document.getElementById('newdigg');
+    myajax = new DedeAjax(taget_obj,false,false,'','','');
+    myajax.SendGet2("/cms/plus/digg_ajax.php?id="+aid);
+    DedeXHTTP = null;
+}
+
+
+//显示对应的导航：
+$(function(){
+    var article_id = $('#article_id').val();
+    var saveid = GetCookie('diggid');
+
+    if(saveid != null)
+    {
+        var saveids = saveid.split(',');
+        var hasid = false;
+        saveid = '';
+        j = 1;
+        for(i=saveids.length-1;i>=0;i--)
+        {
+            if(saveids[i]==article_id && hasid) continue;
+            else {
+                if(saveids[i]==article_id && !hasid) hasid = true;
+                saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+                j++;
+                if(j==20 && hasid) break;
+                if(j==19 && !hasid) break;
+            }
+        }
+
+        if(hasid)
+        {
+            $('#zanbox').addClass('zanbox-selected');
+        }
+
+    }
+
+});
+
+window.onload = function() {
+
+    $('#sharediv').removeClass('bdshare-button-style1-32');
+    $('#sharediv').attr('class','bdsharebuttonbox');
+};
+</script>
+<script type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/shCore.js"></script>
+    <script type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/brush.js"></script>
+    <link type="text/css" rel="stylesheet" href="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/shCoreDefault.css">
+    <script type="text/javascript">
+    //SyntaxHighlighter.config.clipboardSwf = '/js/scripts/clipboard.swf';
+
+    SyntaxHighlighter.all();</script>
+
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"iOS Crash文件的解析（一） - 来自CocoaChina苹果开发中文站@CocoaChina","bdMini":"2","bdMiniList":false,"bdPic":"http://api.cocoachina.com/uploads/150122/74ed4b3c90f4b68e0a1cad463d2eece8.jpg","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api//js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<!--./cont-->
+
+<!-- 回复评论框模板 -->
+<script type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/comment.js"></script>
+<script type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/mustache.js"></script>
+<!-- 回复评论框模板 -->
+<script id="reply_comment_template" type="x-tmpl-mustache">
+    <div id="sub-reply-comment" class="reply-comment">
+        <textarea name="subcomment" id="sub-reply-txt" cols="30" rows="10" placeholder="你怎么看？快来评论一下吧！"></textarea>
+        <input type="hidden" id="sub-reply-id" value="{{commentid}}" />
+        <input type="hidden" id="sub-reply-userid" value="{{parentuserid}}" />
+        <input type="hidden" id="sub-reply-username" value="{{parentusername}}" />
+        <a type="button" id="sub_comment_bt" class="submitbt">提交</a>
+        <div class="clearfloat"></div>
+        <div class="unlogin-mask">
+            <div>您还没有登录！请<a href="/bbs/login.php">登录</a>或<a href="/bbs/register.php">注册</a></div>
+        </div>
+    </div>
+</script>
+
+<!-- 评论模板 -->
+<script id="main_comment_template" type="x-tmpl-mustache">
+    <div class="glab-comment" rel-data-id="{{comment_id}}" rel-user-id="{{user_id}}" rel-user-name="{{user_name}}" rel-layer="1">
+        <div class="comment-left">
+            <a href="/bbs/u.php?action=feed&uid={{user_id}}" target="_blank"><img src="{{user_icon_url}}" height="43" width="43" alt=""></a>
+        </div>
+        <div class="comment-right">
+            <div class="comment-author"><a href="/bbs/u.php?action=feed&uid={{user_id}}" target="_blank">{{user_name}}</a><span class="puptime">{{create_time}}</span></div>
+            <div class="comment-content">{{&content}}</div>
+            <div class="comment-buttons">
+                <span class="ding">                    
+                    <img src="http://cdn.cocimg.com/cms/templets/images/zan-default.png" height="14" width="14" alt="" class="default" style="{{#has_supported}} display:none; {{/has_supported}}">
+                    <img src="http://cdn.cocimg.com/cms/templets/images/zan-active.png" height="14" width="14" alt="" class="actived" style="{{^has_supported}} display:none; {{/has_supported}}">
+                    <span class="zancnt">{{support}}</span>
+                </span>
+                <span class="cai">
+                    <img src="http://cdn.cocimg.com/cms/templets/images/cai-default.png" height="14" width="14" alt="" class="default" style="{{#has_reported}} display:none; {{/has_reported}}">
+                    <img src="http://cdn.cocimg.com/cms/templets/images/cai-active.png" height="14" width="14" alt="" class="actived" style="{{^has_reported}} display:none; {{/has_reported}}">
+                    <span class="zancnt">{{report}}</span>
+                </span>
+                <span class="replybt">回复</span>
+            </div>
+        </div>
+            {{#sub}}
+                <div class="glab-comment glab-sub-comment" rel-data-id="{{comment_id}}" rel-user-id="{{user_id}}" rel-user-name="{{user_name}}" rel-layer="2">
+                    <div class="comment-left">
+                        <a href="/bbs/u.php?action=feed&uid={{user_id}}" target="_blank"><img src="{{user_icon_url}}" height="43" width="43" alt=""></a>
+                    </div>
+                    <div class="comment-right">
+                        <div class="comment-author"><a href="/bbs/u.php?action=feed&uid={{user_id}}" target="_blank">{{user_name}}</a><span class="puptime">{{create_time}}</span></div>
+                        <div class="comment-content"><a href="/bbs/u.php?action=feed&uid={{parent_user_id}}" target="_blank">回复：{{parent}}</a>{{&content}}</div>
+                        <div class="comment-buttons">
+                            <span class="ding">
+                                <img src="http://cdn.cocimg.com/cms/templets/images/zan-default.png" height="14" width="14" alt="" class="default" style="{{#has_supported}} display:none; {{/has_supported}}">
+                                <img src="http://cdn.cocimg.com/cms/templets/images/zan-active.png" height="14" width="14" alt="" class="actived" style="{{^has_supported}} display:none; {{/has_supported}}">
+                                <span class="zancnt">{{support}}</span>
+                            </span>
+                            <span class="cai">
+                                <img src="http://cdn.cocimg.com/cms/templets/images/cai-default.png" height="14" width="14" alt="" class="default" style="{{#has_reported}} display:none; {{/has_reported}}">
+                                <img src="http://cdn.cocimg.com/cms/templets/images/cai-active.png" height="14" width="14" alt="" class="actived" style="{{^has_reported}} display:none; {{/has_reported}}">
+                                <span class="zancnt">{{report}}</span>
+                            </span>
+                            <span class="replybt">回复</span>
+                        </div>          
+                    </div>
+                </div>
+            {{/sub}}         
+    </div>  
+</script>
+
+
+<script id="sub_comment_template" type="x-tmpl-mustache">
+    <div class="glab-comment glab-sub-comment" rel-data-id="{{comment_id}}" rel-user-id="{{user_id}}" rel-user-name="{{user_name}}" rel-layer="2">
+        <div class="comment-left">
+            <a href="/bbs/u.php?action=feed&uid={{user_id}}" target="_blank"><img src="{{user_icon_url}}" height="43" width="43" alt=""></a>
+        </div>
+        <div class="comment-right">
+            <div class="comment-author"><a href="/bbs/u.php?action=feed&uid={{user_id}}" target="_blank">{{user_name}}</a><span class="puptime">{{create_time}}</span></div>
+            <div class="comment-content"><a href="/bbs/u.php?action=feed&uid={{parent_user_id}}" target="_blank">回复：{{parent}}</a>{{&content}}</div>
+            <div class="comment-buttons">
+                <span class="ding">
+                    <img src="http://cdn.cocimg.com/cms/templets/images/zan-default.png" height="14" width="14" alt="" class="default" style="{{#has_supported}} display:none; {{/has_supported}}">
+                    <img src="http://cdn.cocimg.com/cms/templets/images/zan-active.png" height="14" width="14" alt="" class="actived" style="{{^has_supported}} display:none; {{/has_supported}}">
+                    <span class="zancnt">{{support}}</span>
+                </span>
+                <span class="cai">
+                    <img src="http://cdn.cocimg.com/cms/templets/images/cai-default.png" height="14" width="14" alt="" class="default" style="{{#has_reported}} display:none; {{/has_reported}}">
+                    <img src="http://cdn.cocimg.com/cms/templets/images/cai-active.png" height="14" width="14" alt="" class="actived" style="{{^has_reported}} display:none; {{/has_reported}}">
+                    <span class="zancnt">{{report}}</span>
+                </span>
+                <span class="replybt">回复</span>
+            </div>          
+        </div>
+    </div>
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68948817-1', 'auto', {'name': 'newTracker'});
+  ga('newTracker.send', 'pageview');
+
+</script>
+    
+<!--右侧浮动-->
+    <div style="position: fixed; top: inherit; bottom: 10px;" class="r-bar">
+        <img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/coco_weixin.png" class="weixin">
+    	<a href="http://weibo.com/cocoachina" target="_blank" title="" class="weibo">sina</a>
+        <a href="javascript:void(0);" target="_blank" title="" class="feedback">weixin</a>
+        <a href="mailto:support@cocoachina.com" title="" class="kefu">mail</a>
+        <a style="display: inline;" href="javascript:;" title="回到顶部" class="returntop">回到顶部</a>
+    </div>
+
+<script language="javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/bbsauth_plus2015.html" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+    if (typeof(_user_info_html) != 'undefined' && _user_info_html)
+    {
+        $('.nav-user-login').hide();
+        $('.nav-user-name').html(_user_info_html).show();
+    }
+
+	var type = $('#type_name').html();
+	if(type)
+	{	
+		switch( type )
+		{
+			case 'iOS开发':
+				$('#ios').addClass('light');
+				break;
+			case 'AppStore研究':
+				$('#app_store').addClass('light');
+				break;
+			case 'Mac开发':
+				$('#mac').addClass('light');
+				break;
+			case '产品设计':
+				$('#design').addClass('light');
+				break;
+			case 'Cocos引擎':
+				$('#cocos').addClass('light');
+				break;
+			case 'WebApp':
+				$('#webapp').addClass('light');
+				break;
+			case 'Swift':
+				$('#swift').addClass('light');
+				break;
+			case '游戏开发':
+				$('#game').addClass('light');
+				break;
+			case '苹果相关':
+				$('#apple').addClass('light');
+				break;
+			case '营销推广':
+				$('#market').addClass('light');
+				break;		
+			case '业界动态':
+				$('#industry').addClass('light');
+				break;	
+			case '程序人生':
+				$('#programmer').addClass('light');
+				break;																																
+				
+		}
+	}
+});
+</script>
+<!--./cont-->
+<script type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/index.js"></script>
+<script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/jquery_002.js" type="text/javascript"></script>
+<script language="javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/bbsauth_new2015.html" type="text/javascript"></script>
+<script src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/script.js" type="text/javascript"></script>
+<script type="text/javascript">
+			jQuery(function()
+			{
+				//更改文章来源
+				var source = $('#source a').html();								
+				if( source == '未知' )
+					jQuery('#source a').html('CocoaChina');
+				if( jQuery('#source a').attr('href')=='')
+					jQuery('#source').html('来源：'+source);
+				
+				//获取用户登录的id
+//                var content = jQuery('.t-lid').attr("href");
+//                var uid = 0;
+//                if( content )
+//                {
+//                    content = content.split('=');
+//                    uid = content[1];
+//                }
+//                var timestamp = new Date().getTime();	
+//                var uid2 = parseInt(uid);
+//                if(uid2==uid && uid2!=0){
+//                    uid = uid<<2;			
+//                    uid = uid+''+timestamp;
+//                }else{
+//                    uid = "";
+//                }
+//                var oIframe=document.getElementById("comiframe");
+//                if(oIframe){
+//                    var oUrl=window.location.href;
+//                    oUrl = encodeURIComponent(oUrl);
+//
+//                    oIframe.src="/comment.php?url="+oUrl+"&uid="+uid;
+//                }
+
+				
+			});
+		</script>
+<!--footer-->
+<div class="footer clearfix">
+    <div class="footer-b">
+        <div>
+            <a href="http://www.cocoachina.com/aboutus/index.html" target="_blank">关于我们</a>
+            <a href="http://www.cocoachina.com/contactus/index.html" target="_blank">商务合作</a>
+            <a href="mailto:support@cocoachina.com" target="_blank">联系我们</a>
+            <a href="http://www.cocoachina.com/corps" target="_blank">合作伙伴</a>
+        </div>
+        <p class="footer-b-p">北京触控科技有限公司版权所有</p>
+        <p>
+            ©2016 Chukong Technologies,Inc.
+            <i>
+                <a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备 11006519号 　京ICP证 100954号</a> 京公网安备11010502020289 
+                <a href="http://182.131.21.137/ccnt-apply/admin/business/preview/business-preview%21lookUrlRFID.action?main_id=A580B24B1AE846CE9DA949026D63939F" target="_blank">
+                    <img src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/jingwen.png" style="margin: -10px auto -14px -10px;">
+                    京网文[2012]0426-138号
+                </a>
+            </i>
+        </p>
+    </div>
+</div>
+<!--./footer-->
+<script language="javascript" type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/dedeajax2-min.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?88399e4c4cf744609c4fc8c3a8935691";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-16940817-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  
+ 
+function search_check()
+{
+	var search_keyword = $('#search_keyword').val();
+
+	if( search_keyword.length < 2 )
+	{
+		alert("搜索关键字不能少于2个字节，请重新输入。");
+	}
+	else
+	{
+		$('#searchform').submit();
+	}
+}
+
+</script>
+<ins id="ac_js86_116313" style="display: none;"></ins><script type="text/javascript">
+_acK({aid:116313,format:0,mode:1,gid:1,serverbaseurl:"afp.csbew.com/"});
+</script><script type="text/javascript">
+ac_as_id = 116313;
+window.afp_cur_query="pv=1&sp=116313,1,0,0,0,1,1,22&ec=UTF-8&re=1920,1080&jsv=7&cb=5260368144&seq=1&fs=9";ac_format = 0;
+ac_mode = 1;
+window.__trans__116313 = true;
+ac_group_id = 1;
+ac_server_base_url = "afpeng.csbew.com/";
+</script>
+<script type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/k_002.js"></script><script type="text/javascript" src="iOS%20Crash%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89%20-%20CocoaChina_%E8%AE%A9%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%9B%B4%E7%AE%80%E5%8D%95_files/ex.js" id="ac_js86_$5945355285"></script>
+
+
+
+<div style="display: none;" id="cboxOverlay"></div><div style="display: none;" class="" id="colorbox"><div id="cboxWrapper"><div><div style="float: left;" id="cboxTopLeft"></div><div style="float: left;" id="cboxTopCenter"></div><div style="float: left;" id="cboxTopRight"></div></div><div style="clear: left;"><div style="float: left;" id="cboxMiddleLeft"></div><div style="float: left;" id="cboxContent"><div style="width: 0px; height: 0px; overflow: hidden; float: left;" id="cboxLoadedContent"></div><div style="float: left;" id="cboxLoadingOverlay"></div><div style="float: left;" id="cboxLoadingGraphic"></div><div style="float: left;" id="cboxTitle"></div><div style="float: left;" id="cboxCurrent"></div><div style="float: left;" id="cboxNext"></div><div style="float: left;" id="cboxPrevious"></div><div style="float: left;" id="cboxSlideshow"></div><div style="float: left;" id="cboxClose"></div></div><div style="float: left;" id="cboxMiddleRight"></div></div><div style="clear: left;"><div style="float: left;" id="cboxBottomLeft"></div><div style="float: left;" id="cboxBottomCenter"></div><div style="float: left;" id="cboxBottomRight"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div></body></html>
