@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" style=""><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/1255494d3a.js" type="text/javascript"></script><script src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/nr-974.js"></script><script src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"1255494d3a","applicationID":"15702971","transactionName":"e1daR0JWVV9RER9ZWkxdRxxDUVZE","queueTime":0,"applicationTime":225,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(u(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(2),u=t(3),c=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var s=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit"],p="api-",l=p+"ixn-";a(s,function(t,e){f[e]=o(p+e,!0,"api")}),f.addPageAction=o(p+"addPageAction",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var d=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{c.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){d[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],2:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],3:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?u(t,a,i):i()}function n(n,r,o){t&&t(n,r,o);for(var i=e(o),a=l(n),u=a.length,c=0;c<u;c++)a[c].apply(i,r);var s=f[m[n]];return s&&s.push([w,n,r,i]),i}function p(t,e){g[t]=l(t).concat(e)}function l(t){return g[t]||[]}function d(t){return s[t]=s[t]||o(n)}function v(t,e){c(t,function(t,n){e=e||"feature",m[n]=e,e in f||(f[e]=[])})}var g={},m={},w={on:p,emit:n,get:d,listeners:l,context:e,buffer:v};return w}function i(){return new r}var a="nr@context",u=t("gos"),c=t(2),f={},s={},p=e.exports=o();p.backlog=f},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!h++){var t=y.info=NREUM.info,e=s.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){c(m,function(e,n){t[e]||(t[e]=n)});var n="https"===g.split(":")[0]||t.sslForHttp;y.proto=n?"https://":"http://",u("mark",["onload",a()],null,"api");var r=s.createElement("script");r.src=y.proto+t.agent,e.parentNode.insertBefore(r,e)}}}function o(){"complete"===s.readyState&&i()}function i(){u("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var u=t("handle"),c=t(2),f=window,s=f.document,p="addEventListener",l="attachEvent",d=f.XMLHttpRequest,v=d&&d.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:d,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},t(1);var g=""+location,m={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-974.min.js"},w=d&&v&&v[p]&&!/CriOS/.test(navigator.userAgent),y=e.exports={offset:a(),origin:g,features:{},xhrWrappable:w};s[p]?(s[p]("DOMContentLoaded",i,!1),f[p]("load",r,!1)):(s[l]("onreadystatechange",o),f[l]("onload",r)),u("mark",["firstbyte",a()],null,"api");var h=0},{}]},{},["loader"]);</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="description" content="本来一直想给大家普及一下lldb的使用，因为身边有很多朋友虽然开发了很久，但是还是不会使用调试器，还傻傻的打一个log,重启程序再看这个值。说，是不是你，中招没。这一篇也是为了帮这些朋友认识一下调试器的强大。整篇介绍的例子都是基于我的贴图demo的。1.首先介绍下如何避免重启程序打一个l...">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/f888db82fc27">
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/652302">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="久违的的LLDB篇一，让lldb提升你的效率" property="twitter:title">
+  <meta content="本来一直想给大家普及一下lldb的使用，因为身边有很多朋友虽然开发了很久，但是还是不会使用调试器，还傻傻的打一个log,重启程序再看这个值。说，是不是你，中招没。这一篇也是为了帮这些朋友认识一下调试器的强大。整篇介绍的例子都是基于我的贴图demo的。1.首先介绍下如何避免重启程序打一个l..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/f888db82fc27" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="久违的的LLDB篇一，让lldb提升你的效率">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/f888db82fc27">
+  <meta property="og:description" content="本来一直想给大家普及一下lldb的使用，因为身边有很多朋友虽然开发了很久，但是还是不会使用调试器，还傻傻的打一个log,重启程序再看这个值。说，是不是你，中招没。这一篇也是为了帮这些朋友认识一下...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/652302">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/652302">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+  <title>久违的的LLDB篇一，让lldb提升你的效率 - 简书</title>
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="VBlM9jAXqS71cqB21nnByRg3LTCn8nQ8JJe/DK/QMLOmT2HMN7g+oyqEaNgMs3RHSh0kOqhBmtXThSPO7gguVg==">
+  <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="stylesheet" media="all" href="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/base-28859e35d389885d08837bc971ff742c.css">
+
+    <link rel="stylesheet" media="all" href="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/reading-note-cc35f3caf1b79498ea4800b856bcf8a6.css">
+  <link rel="stylesheet" media="all" href="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/base-read-mode-64acccf6966299cfa3d580140a2582fe.css">
+  <script src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/modernizr-613ea63b5aa2f0e2a1946e9c28c8eedb.js"></script>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if IE 8]><link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/scaffolding/for_ie-7f1c477ffedc13c11315103e8787dc6c.css" /><![endif]-->
+  <!--[if lt IE 9]><link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/scaffolding/for_ie-7f1c477ffedc13c11315103e8787dc6c.css" /><![endif]-->
+  <link href="http://baijii-common.b0.upaiyun.com/icons/favicon.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/57-b426758a1fcfb30486f20fd073c3b8ec.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/72-feca4b183b9d29fd188665785dc7a7f1.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/76-ba757f1ad3421192ce7192170393d2b0.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/114-8dae53b3bcea3f06bb139e329d1edab3.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/120-fa315ee0177dba4c55d4f66d4129b47f.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/152-052f5799bec8fb3aa624bdc72ef5bd1d.png" sizes="152x152">
+
+<style type="text/css"></style></head>
+
+<body class="post output zh cn mac mozilla reader-day-mode reader-font2" data-js-module="note-show" data-locale="zh-CN">
+  
+  <div style="" class="navbar navbar-jianshu shrink">
+  <div class="dropdown">
+    <a class="dropdown-toggle logo" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="javascript:void(0)">
+      简
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a href="http://www.jianshu.com/"><i class="fa fa-home"></i> 首页</a></li>
+      <li><a href="http://www.jianshu.com/collections"><i class="fa fa-th"></i> 专题</a></li>
+      <li><a href="http://www.jianshu.com/user_invitations"><i class="fa fa-money"></i> 发钱啦</a></li>
+    </ul>
+  </div>
+</div>
+<div class="navbar-user">
+    <a class="login" data-signup-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_up">
+      <i class="fa fa-user"></i> 注册
+</a>    <a class="login" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+      <i class="fa fa-sign-in"></i> 登录
+</a>    <a class="daytime set-view-mode pull-right" href="javascript:void(0)"><i class="fa fa-moon-o"></i></a>
+</div>
+<div class="navbar navbar-jianshu expanded">
+  <div class="dropdown">
+      <a class="active logo" role="button" data-original-title="个人主页" data-container="div.expanded" href="http://www.jianshu.com/">
+        <b>简</b><i class="fa fa-home"></i><span class="title">首页</span>
+</a>      <a data-toggle="tooltip" data-placement="right" data-original-title="专题" data-container="div.expanded" href="http://www.jianshu.com/collections">
+        <i class="fa fa-th"></i><span class="title">专题</span>
+</a>    <a class="ad-selector" href="http://www.jianshu.com/apps">
+      <i class="fa fa-mobile"></i><span class="title">下载手机应用</span>
+</a>    <div class="ad-container ">
+      <div class="ad-pop">
+        <img class="ad-logo" src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/114-8dae53b3bcea3f06bb139e329d1edab3.png" alt="114">
+        <p class="ad-title">简书</p>
+        <p class="ad-subtitle">交流故事，沟通想法</p>
+        <img class="ad-qrcode" src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/download-app-qrcode-053849fa25f9b44573ef8dd3c118a20f.png" alt="Download app qrcode">
+        <div>
+          <a class="ad-link" href="https://itunes.apple.com/cn/app/jian-shu/id888237539?ls=1&amp;mt=8">iOS</a>·
+          <a class="ad-link" href="http://downloads.jianshu.io/apps/haruki/JianShu-1.11.1.apk">Android</a>
+        </div>
+      </div> 
+    </div>
+  </div>
+  <div class="nav-user">
+      <a href="#view-mode-modal" data-toggle="modal"><i class="fa fa-font"></i><span class="title">显示模式</span></a>
+
+      <a class="signin" data-signin-link="true" data-toggle="modal" data-placement="right" data-original-title="登录" data-container="div.expanded" href="http://www.jianshu.com/sign_in">
+        <i class="fa fa-sign-in"></i><span class="title">登录</span>
+</a>    </div>
+  </div>
+
+  
+    <div class="fixed-btn">
+    <a class="go-top" href="#"> <i class="fa fa-angle-up"></i></a>
+    <a class="qrcode" data-target="#bottom-qrcode" data-toggle="modal" href="javascript:void(0)"><i class="fa fa-qrcode"></i></a>
+    <a data-original-title="写篇文章" class="writer" href="http://www.jianshu.com/writer#/" data-toggle="tooltip" data-placement="left" title=""><i class="fa fa-pencil"></i></a>
+    <!-- qrcode modal -->
+    <div id="bottom-qrcode" class="modal panel-modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <h4>下载简书移动应用</h4>
+      <div class="panel-body"><img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/download-app-qrcode-053849fa25f9b44573ef8dd3c118a20f.png" alt="Download app qrcode"></div>
+    </div>
+  </div>
+
+
+  <div class="imagebubble-container imagebubble-mode-off" id="show-note-container">
+    
+<div class="post-bg" id="flag">
+  <div style="top: -1px;" class="wrap-btn">
+    <!-- Notebook and collections button upper left -->
+      <div class="article-related pull-left">
+          <a class="collection-menu-btn" data-toggle="modal" data-target="#collection-menu" href="javascript:void(null);">
+            <i class="fa fa-th"></i>
+</a>          <a class="notebooks-menu-btn" data-toggle="modal" data-target="#notebooks-menu" href="javascript:void(null);"><i class="fa fa-list-ul"></i></a>
+        <div class="related-avatar-group activities"></div>
+      </div>
+    <!-- ******* -->
+
+      <a class="login" data-signup-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_up">
+    <i class="fa fa-user"></i> 注册
+</a>  <a class="login" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+    <i class="fa fa-sign-in"></i> 登录
+</a>
+
+    <!-- Buttons upper right -->
+    <!-- ******* -->
+  </div>
+
+  <div class="container">
+    <!-- Article activities for width under 768px -->
+    <div class="related-avatar-group activities"></div>
+      <div class="article">
+        <div class="preview">
+          <div class="author-info">
+              <div class="btn btn-small btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-plus"></i>  <span>添加关注</span></a>
+  </div>
+
+            <a class="avatar" href="http://www.jianshu.com/users/8d704c0faf00">
+              <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/4a3ab37b2f5a.jpg" alt="100">
+</a>            <span class="label">
+                作者
+            </span>
+            <a class="author-name blue-link" href="http://www.jianshu.com/users/8d704c0faf00">
+              <span>kissGod</span>
+</a>              <span data-toggle="tooltip" data-original-title="最后编辑于 2015.02.12 13:40">2015.02.12 13:40*</span>
+            <div>
+              <span>写了14224字</span>，<span>被1896人关注</span>，<span>获得了960个喜欢</span>
+            </div>
+          </div>
+          <h1 class="title">久违的的LLDB篇一，让lldb提升你的效率</h1>
+          <div class="meta-top">
+            <span class="wordage">字数1238</span>
+            <span class="views-count">阅读13605</span>
+            <span class="comments-count">评论8</span>
+            <span class="likes-count">喜欢69</span>
+          </div>
+
+          <!-- Collection/Bookmark/Share for width under 768px -->
+          <div class="article-share"><a class="bookmark" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"> <i class="fa fa-bookmark-o"></i><span>收藏文章</span></a><span> <a href="javascript:void(null)" data-toggle="dropdown"><i class="fa fa-share-square-o"></i> 分享</a> <ul class="dropdown-menu arrow-top"> <li> <a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=1881139527',u=z||d.location,p=['&amp;url=',e(u),'&amp;title=',e(t||d.title),'&amp;source=',e(r),'&amp;sourceUrl=',e(l),'&amp;content=',c||'gb2312','&amp;pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','http://cwb.assets.jianshu.io/notes/images/652302/weibo/image_4111162287f2.jpg',%20'%E6%8E%A8%E8%8D%90%20kissGod%20%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%8A%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%E3%80%8B%EF%BC%88%20%E5%88%86%E4%BA%AB%E8%87%AA%20@%E7%AE%80%E4%B9%A6%20%EF%BC%89','http://www.jianshu.com/p/f888db82fc27','%E9%A1%B5%E9%9D%A2%E7%BC%96%E7%A0%81gb2312|utf-8%E9%BB%98%E8%AE%A4gb2312'));"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/weibo.png"> </a> </li> <li> <a href="javascript:void(function(){var%20d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='http://www.douban.com/recommend/?url='+e('http://www.jianshu.com/p/f888db82fc27')+'&amp;title='+e('%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87')+'&amp;sel='+e(s)+'&amp;v=1',x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r+'&amp;r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/douban.png"> </a> </li> <li> <a href="javascript:void(function(){var%20d=document,e=encodeURIComponent,r='http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url='+e('http://www.jianshu.com/p/f888db82fc27')+'&amp;title='+e('%E6%8E%A8%E8%8D%90%20kissGod%20%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%8A%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%E3%80%8B%EF%BC%88%20%E5%88%86%E4%BA%AB%E8%87%AA%20@jianshuio%20%EF%BC%89'),x=function(){if(!window.open(r,'tweibo','toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/tweibo.png"> </a> </li> <li> <a href="javascript:void(function(){var%20d=document,e=encodeURIComponent,r='http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+e('http://www.jianshu.com/p/f888db82fc27')+'&amp;title='+e('%E6%8E%A8%E8%8D%90%20kissGod%20%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%8A%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%E3%80%8B'),x=function(){if(!window.open(r,'qzone','toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/qzone.png"> </a> </li> <li> <a href="javascript:void(function(){var%20d=document,e=encodeURIComponent,r='https://twitter.com/share?url='+e('http://www.jianshu.com/p/f888db82fc27')+'&amp;text='+e('%E6%8E%A8%E8%8D%90%20kissGod%20%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%8A%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%E3%80%8B%EF%BC%88%20%E5%88%86%E4%BA%AB%E8%87%AA%20@jianshucom%20%EF%BC%89')+'&amp;related='+e('jianshucom'),x=function(){if(!window.open(r,'twitter','toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/twitter.png"> </a> </li> <li> <a href="javascript:void(function(){var%20d=document,e=encodeURIComponent,r='https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/f888db82fc27',x=function(){if(!window.open(r,'facebook','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/facebook.png"> </a> </li> <li> <a href="javascript:void(function(){var%20d=document,e=encodeURIComponent,r='https://plus.google.com/share?url='+e('http://www.jianshu.com/p/f888db82fc27'),x=function(){if(!window.open(r,'google_plus','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/google_plus.png"> </a> </li> <li> <a href=""> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/renren.png"> </a> </li> </ul></span></div>
+          <!-- -->
+
+          <div class="show-content"><p>本来一直想给大家普及一下lldb的使用，因为身边有很多朋友虽然开发了很久，但是还是不会使用调试器，还傻傻的打一个log,重启程序再看这个值。说，是不是你，中招没。这一篇也是为了帮这些朋友认识一下调试器的强大。整篇介绍的例子都是基于我的贴图demo的。</p>
+<h3>1.首先介绍下如何避免重启程序打一个log</h3>
+<p>如图下：</p><div widget="ImageBubble" class="image-package imagebubble">
+<img data-original-src="http://m2.img.srcdd.com/farm4/d/2015/0212/11/C27AE564FFD6FE8FC899F68DED134DD7_ORIG_1733_926.gif" src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/C27AE564FFD6FE8FC899F68DED134DD7_ORIG_1733_926.gif" alt="lldbLog"><br><div class="image-caption">lldbLog</div>
+</div>
+<ul>
+<li>1.首先注释以前那该死的log背景被点击了，然后我加一个优美的断点。</li>
+<li>2.然后右键点击断点编辑断点，首先选择Action,logMessage，再点击+,选择DebugerCommander，然后这里面的命令和右下角的lldb命令是完全一样的，这个命令你随意打。</li>
+<li>3.最重要的一步，一点要选择automaticlly continue after evalating value，这个可以使得程序不会中断继续执行。</li>
+</ul>
+<p>好吧，大家以后就可以告别这个该死的log,以后大家的consle就不出现那些乱七八糟的log,而且还找不到了.我现在就是每次看到项目里一堆
+log就特别烦……（ps:这个……是shift+6打出来的哦）,所以只要你想在输出某一个值或者一句话看一个函数，是否调用，完全不需要多余的重新运
+行一次程序。</p>
+<h3>2基本的lldb命令的介绍</h3>
+<p>  大家一般知道的lldb命令一般是p,和po,其实我研究了一阵子最实用的也就这两个lldb命令，但是大家一般都不知道用在什么场合。</p>
+<ul>
+<li>p命令的介绍，首先p是打印非对象的值，它是 e 
+--的缩写。如果使用它打印对象的话，那么它会打印出对象的地址，如果打印非对象它一般会打印出基本变量类型的值。当然用它也可以申明一个变量譬如 p 
+int $a = 10; （注lldb使用$在变量前来声明为lldb内的命名空间的）</li>
+<li>po 命令，po 命令是我们最常用的命令因为在ios开发中，我们时刻面临着对象（ps:但是我没有对象，欢迎介绍），所以我们在绝大部分时候都会使用po。首先po这个命令会打印出对象的description描述。</li>
+</ul>
+<p>好吧，macDown语法还是没有完全搞明白，所以篇幅不是太好看（这个完全没想这么早出这篇博客）</p>
+<p>下面还是使用一副图片来描述具体的过程吧。</p><div widget="ImageBubble" class="image-package imagebubble">
+<img class="imagebubble-image" data-original-src="http://m3.img.srcdd.com/farm4/d/2015/0212/13/E505902B1D8D75A1B63C5611BF482417_ORIG_1490_964.gif" src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/E505902B1D8D75A1B63C5611BF482417_ORIG_1490_964.gif" alt="po的使用"><br><div class="image-caption">po的使用</div>
+</div><p> </p>
+<ul>
+<li>1.首先我在背景蒙层下了个断点，程序中断之后，我首先通过po 命令打出了【po self.view】然后打出了当前的self.view的描述。</li>
+<li>2.然后我通过self.view的description描述，然后找到手势NSArry的地址我打印出了当前view上面有那些手势。</li>
+<li>然后找到当前pinch的手势，然后通过p 命令，将其强转成UIPinchGesture,因为lldb有时无法确定其具体的类型，需要强转，但是这个强转不是必须的，需要你们自己根据情况来决定。</li>
+<li>当我们使用p 命令打印一个对象时，lldb内部会默认使用一个$加数字来记录这个对象。</li>
+<li>这个$会一直存在，当这个对象还没销毁的时候，所以我们随时可以通过这个变量来打印以前的值。我是通过【$61 view】找出pinch 作用的view.我们也可以使用p 命令得到一个这个view在lldb的记录。 </li>
+</ul>
+<p> 注意在使用lldb内部的变量$来记录变量的时候，绝大部分的时候都没有语法提示，所以你需要自己能准确的打印出方法的名字。我这里一般，都是在当前编辑器中去打好方法，然后再拷贝到lldb处。 </p>
+<p>在使用lldb命令的时候，并非所有的命令都很常用，你可以通过在lldb中 打印 help 
+查看所有的lldb命令，譬如breakpoint命令，这种命令完全可以通过Xcode UI界面加断点，当然所有的xcode ui 
+界面加断点本质也是通过lldb的命令的，这个一般用户都不会太常用。</p>
+<div widget="ImageBubble" class="image-package imagebubble">
+<img class="imagebubble-image" data-original-src="http://m2.img.srcdd.com/farm4/d/2015/0212/13/2D9F83BA11E4F162D239E1742B7A4E3D_B500_900_500_634.png" src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/2D9F83BA11E4F162D239E1742B7A4E3D_B500_900_500_634.jpg" alt="help命令"><br><div class="image-caption">help命令</div>
+</div>
+<p>今天就先介绍到这里，下一篇博客我会介绍给大家如何使用开源的facebook的<a href="https://github.com/facebook/chisel" target="_blank">chisel</a>,从安装到以及在什么场景下使用什么命令，和常用的chisel命令有哪些。因为这个MarkDown还没弄太熟悉，所以重头戏在下一章。（ps:主要是markDown还没用熟，我自己看着都不爽，所以下次会带来更好的版本，和更详细的介绍）
+ </p>
+</div>
+        </div>
+      </div>
+
+      <div class="visitor_edit">
+        <!-- further readings -->
+        <div id="further-readings" data-user-slug="" data-user-nickname="">
+          <div id="further-reading-line" class="hide further-reading-line"></div>
+          <ul id="further-readings-list" class="reading-list unstyled"></ul>
+          <div id="further-reading-new" class="reading-edit">
+              <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+                <i class="fa fa-plus-circle"></i> 推荐拓展阅读
+</a>            <div id="further-reading-form"></div>
+          </div>
+        </div>
+        <div class="pull-right">
+          <!-- copyright -->
+          <div data-original-title="转载请联系作者获得授权，并标注“简书作者”。" class="author-copyright pull-right" data-toggle="tooltip" data-html="true" title="">
+            <a><i class="fa fa-copyright"></i> 著作权归作者所有</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reward / Support Author -->
+        <div class="support-author">
+          <p>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</p>
+            <a class="btn btn-pay" data-toggle="modal" href="#pay-modal">¥ 打赏支持</a>
+          <div class="avatar-list"></div>
+        </div>
+
+      <!-- article meta bottom -->
+      <div class="meta-bottom clearfix">
+        <!--  Like Button -->
+        <div class="like ">
+            <div class="like-button">
+              <a id="like-note" class="like-content" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+                <i class="fa fa-heart-o"></i>  喜欢
+</a></div>          <span data-original-title="查看所有喜欢的用户" id="likes-count" data-toggle="tooltip" data-placement="right" title="">69</span>        </div>
+        <!--  share group -->
+        <div class="share-group pull-right">
+          <a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=1881139527',u=z||d.location,p=['&amp;url=',e(u),'&amp;title=',e(t||d.title),'&amp;source=',e(r),'&amp;sourceUrl=',e(l),'&amp;content=',c||'gb2312','&amp;pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','http://cwb.assets.jianshu.io/notes/images/652302/weibo/image_4111162287f2.jpg',%20'%E6%8E%A8%E8%8D%90%20kissGod%20%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%8A%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%E3%80%8B%EF%BC%88%20%E5%88%86%E4%BA%AB%E8%87%AA%20@%E7%AE%80%E4%B9%A6%20%EF%BC%89','http://www.jianshu.com/p/f888db82fc27','%E9%A1%B5%E9%9D%A2%E7%BC%96%E7%A0%81gb2312|utf-8%E9%BB%98%E8%AE%A4gb2312'));" data-name="weibo">
+            <i class="fa fa-weibo"></i><span>分享到微博</span>
+          </a>
+          <a data-toggle="modal" href="#share-weixin-modal" data-name="weixin">
+            <i class="fa fa-weixin"></i><span>分享到微信</span>
+          </a>
+          <div class="more">
+            <a href="javascript:void(0)" data-toggle="dropdown">更多分享<i class="fa fa-caret-down"></i></a>
+            <ul class="dropdown-menu arrow-top">
+                <li><a href="http://cwb.assets.jianshu.io/notes/images/652302/weibo/image_4111162287f2.jpg" target="_blank" data-name="changweibo"><i class="fa fa-arrow-circle-o-down"></i> 下载长微博图片</a></li>
+                <li>
+                  <a data-name="tweibo" href="javascript:void(function(){var%20d=document,e=encodeURIComponent,r='http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url='+e('http://www.jianshu.com/p/f888db82fc27')+'&amp;title='+e('%E6%8E%A8%E8%8D%90%20kissGod%20%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%8A%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%E3%80%8B%EF%BC%88%20%E5%88%86%E4%BA%AB%E8%87%AA%20@jianshuio%20%EF%BC%89'),x=function(){if(!window.open(r,'tweibo','toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/tweibo.png" alt="Tweibo"> 分享到腾讯微博
+</a>                </li>
+                <li>
+                  <a data-name="qzone" href="javascript:void(function(){var%20d=document,e=encodeURIComponent,r='http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+e('http://www.jianshu.com/p/f888db82fc27')+'&amp;title='+e('%E6%8E%A8%E8%8D%90%20kissGod%20%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%8A%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%E3%80%8B'),x=function(){if(!window.open(r,'qzone','toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/qzone.png" alt="Qzone"> 分享到QQ空间
+</a>                </li>
+                <li>
+                  <a data-name="twitter" href="javascript:void(function(){var%20d=document,e=encodeURIComponent,r='https://twitter.com/share?url='+e('http://www.jianshu.com/p/f888db82fc27')+'&amp;text='+e('%E6%8E%A8%E8%8D%90%20kissGod%20%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%8A%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%E3%80%8B%EF%BC%88%20%E5%88%86%E4%BA%AB%E8%87%AA%20@jianshucom%20%EF%BC%89')+'&amp;related='+e('jianshucom'),x=function(){if(!window.open(r,'twitter','toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/twitter.png" alt="Twitter"> 分享到Twitter
+</a>                </li>
+                <li>
+                  <a data-name="facebook" href="javascript:void(function(){var%20d=document,e=encodeURIComponent,r='https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/f888db82fc27',x=function(){if(!window.open(r,'facebook','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/facebook.png" alt="Facebook"> 分享到Facebook
+</a>                </li>
+                <li>
+                  <a data-name="google_plus" href="javascript:void(function(){var%20d=document,e=encodeURIComponent,r='https://plus.google.com/share?url='+e('http://www.jianshu.com/p/f888db82fc27'),x=function(){if(!window.open(r,'google_plus','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/google_plus.png" alt="Google plus"> 分享到Google+
+</a>                </li>
+                <li>
+                  <a data-name="douban" href="javascript:void(function(){var%20d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='http://www.douban.com/recommend/?url='+e('http://www.jianshu.com/p/f888db82fc27')+'&amp;title='+e('%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87')+'&amp;sel='+e(s)+'&amp;v=1',x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r+'&amp;r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+                    <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/douban.png" alt="Douban"> 分享到豆瓣
+</a>                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modals -->
+      <div id="share-weixin-modal" class="modal hide fade share-weixin-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div title="http://www.jianshu.com/p/f888db82fc27?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weixin" class="modal-body">
+    <h5>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</h5>
+  <canvas style="display: none;" height="170" width="170"></canvas><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAYAAAA9dtSCAAAHjElEQVR4nO2ZQbYrKQxDs/9Npyc9SuoDsmSoerk6p0aALYtLJnm9Xq/3jq9TXX07592Vu5PH7Oxm7/cLSBWgAiqgAur9QE1KCagT8k64lF5qLWcmR8k8Uj4AFVCHtVUfSQEqoC7XVn0kBaiAulxb9ZGUBKpzyUlQlV5OIK4v56tmN5vJeYxqH8VH4SygAupaHrM+ig9AFQWo63nM+ig+AFUUoK7nMeuj+PhJUJ3aTi2lV7KPo+QMgAqogAqogAqowhDVPoDqCVDFIRzt8qE+oNTn+uiaSc0WUAEVULsaJQWogBpTOvzqxai+FI9dfVUfzkyOkrVmtQFV2AuofbVmtQFV2AuofbVmtQFV2AuofbVmtV9qCCmYFIiV9VNnkzM9NY/mD1ATZ5MzPTUPQL3pxXTN9NQ8APWmF9M101PzaP2+ut9AKvSps6qvrrOu5+oPhptPp27pDFAB9VO3dAaogPqpWzoDVED91EsxORpKBUQJT6nt+HD23vVT7lC9F3XdEaACavle1HVHgAqo5XtR1x0NQU1esnNWvYxdZ5OApDw7fd1anXkBqnEWUDXfgFrsA6iaABVQY56dvm6tVlCTRhXTyUB2+VBqdZ515MCk+nDuEFABFVCHjQAVUAc+pj6dIZW9gAqoIx9Tn8pQytBqLcVHslaXTs7rzFe976Tny085rBRXazlDOLW6BKiACqjCece36gtQARVQHWPOEKOzSe0Md5cv9UchtTc5U6E2oAIqoAJqgy9AFRtXTQIqoMq1R40UY3LjJmA6fex6uK52PbZOfWU0WlSK2UYANSZAHRSzjQBqTD8HqhN0EoAumFzPo/Oz2s7ZXXCdZOCrVlvhG0AJqJ4AFVCts4AKqIAq9N0KaqqxOrQyUFKnLlnd3wWE6zPVV/UBqE0CVEC1BKiez1Rf1QegNglQbwRq1XQnmE5t91JTM3bmoXhO93JqAerifJV1QM35BtTF+SrrgJrzDaiL81XWATXn+5UyFjZVvvTk2WQeSWA6oa/u3fAIAPVfZ5N5ACqgWrVGZ5N5AKqZrdNYGaIKz0otaWDDh5KHU9vNq+r5c92Vw8DXVx0CUAFV7QWoTeGptVKeARVQAfWpoDrAVAPoDNfp43pOPj4ny9Rj6zyr1gJUo6/jA1C1WoBq9HV8AKpWC1CNvo4PQNVqWaCmPnWI5KXumE/1vTPbXRmofS/WAbV7PkAFVEAFVEAF1IeAqkDgBKKGZQ58BIJTZx0loXd7AyqgtvUFVGFAtTag5voCqjCgWhtQc32joA4XDVCTZ3eB6vpw8qjuVZV8mJ13DKiACqi7hhgJUMd6LKiOcSdMp9Zov+PbvZiq59ne5IPp8qzOofYCVC0sQDXOA+piXUDVBKjiEMpQgPpHQV0tvFJ8F+QjH8reXfO5Gfxa38veirGuQVwB6t/qe9lbMdY1iCtA/Vt9L3srxroGcQWof6vvZe8uYzvV5dldVzyeOpu8N0BVhwLUcjaOAFUdClDL2TgCVHUoQC1n42gbqJ0mT9Wa1V5dU2u7vpIPzAIk9LDtH4Wp80UBKqACKqACqmPMUSr4tK9RX2W/2yuZTwou9wGZeQDqqkdlv9sLUAG17FHZ7/YCVEAte1T2u70A9aNetFjRdDIA51LdeRUfjq9ktsrZ5AxyLbnCojFABVRAFWopvdx5FR+OL0B1iwHqsg/HF6AaSl96CjYHrs7PycOFYFXunY7W5HzuMhSgAiqgAmpJgCoaV86qfaqeAFXbH8gnM3Ay3J2AjPo6vpLamaXjy+09+QC1I/ikABVQ24JPClABtS34pAD1A9S7XHInmLtqq5fsnHX2jtaTWbozASqgAmp1KEDVzjp7fwLUU2CaA5drdT6Q6t6Zb2Wvm13yni72A+pqLUAFVEAt7p35VvYCKqACqrH3/X6P/+t3A6vKuZhOyJW+J/WERy/P4AzcJUD1BKiAutz3pAAVUJf7ntTPgaoUc42t9klDkJzBuQinr+LDgVg5m5wBUN+ACqiAurwXUMczAOobUB8J6k4jlummS07O6EDu+ogCsqnWdH21MKACamctQG3qo9Zye/88qKkw1cbVvW5tZ4bO71Tfu/q4+AAVUO/nA1AB9RE+ABVQH+Hj65tS0aRUmLNajid13ZnX8eVIAdWp7foC1EEddd2Z1/HlCFBVI4Ba9uUIUFUjgFr25egxoDrAOHApgXRe1KiP82DUGZT5On1U+6g/IIVsAfVffQAVUKOBpASo9T6AKobrCFDrfbaCmlQyzK4HMuulzrQrj10zuT8Q4ccHqIAKqIDakMeumQD1DahOHrtmegyoDhDKkGotJ1zHV+cDch6bMsPOGZ2ZLs4AqhAWoAIqoALq0NcZUMNDHAdi1qdzBseH4ss562YNqIC67Ms5C6iAavlQfDlnARVQLR+KL+fsY0FV+nQG0gVu+qJGtUfrSd+nzv7/ASqgrvk+dRZQJ7UcASqgAiqg5uSA6q5XoVfrJn10aecD6RSgAuqRWoXegAqo+2sVegMqoO6vVei9Hq7zjYYeranrJ8McSckn+UBme1Wf1TsP+ALUHQJUQJXOnhKgAqp09pQA1fP1H6016YSphSRtAAAAAElFTkSuQmCC" style="display: block;"></div>
+</div>
+
+      
+      <div id="notebooks-menu" class="panel notebooks-menu arrow-top modal hide fade"><img class="loader-tiny" src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/tiny.gif" alt="Tiny"></div>
+      <div id="collection-menu" class="panel collection-menu arrow-top modal hide fade"><img class="loader-tiny" src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/tiny.gif" alt="Tiny"></div>
+      
+      <div id="likes-modal" class="modal modal_new support_list-modal fullscreen hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>喜欢的用户</h3>
+      </div>
+      <div class="modal-body">
+        <ul class="unstyled users">
+        <li data-user-id="339176"> <a class="avatar" href="http://www.jianshu.com/users/07d93406ec39"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/42a27b4375e7.png"> </a> <a class="blue-link" href="http://www.jianshu.com/users/07d93406ec39">漩渦貓_Lanaya</a> <span class="time">2016.08.20 08:22</span></li><li data-user-id="227002"> <a class="avatar" href="http://www.jianshu.com/users/b88081164fe8"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/02ab5fc6bd57.png"> </a> <a class="blue-link" href="http://www.jianshu.com/users/b88081164fe8">萌面大道</a> <span class="time">2016.08.01 19:53</span></li><li data-user-id="1426761"> <a class="avatar" href="http://www.jianshu.com/users/7a2b85bf361a"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/44b2e8340b0b.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/7a2b85bf361a">游小龙Bruceyou</a> <span class="time">2016.07.18 19:19</span></li><li data-user-id="261649"> <a class="avatar" href="http://www.jianshu.com/users/63772774caa1"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/9ce98f763f71.png"> </a> <a class="blue-link" href="http://www.jianshu.com/users/63772774caa1">iOS程序猿</a> <span class="time">2016.07.02 15:47</span></li><li data-user-id="876012"> <a class="avatar" href="http://www.jianshu.com/users/a637237315f9"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/4177c607b8cf.png"> </a> <a class="blue-link" href="http://www.jianshu.com/users/a637237315f9">自来也大人_IOS</a> <span class="time">2016.07.01 16:54</span></li><li data-user-id="1509512"> <a class="avatar" href="http://www.jianshu.com/users/088a38269748"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/1-cd1d6dd91a96ca16fafcc8896bbc7b32.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/088a38269748">风停了_123</a> <span class="time">2016.06.16 17:59</span></li><li data-user-id="618966"> <a class="avatar" href="http://www.jianshu.com/users/6dbfaae08a0a"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/55bf44afa18b.JPG"> </a> <a class="blue-link" href="http://www.jianshu.com/users/6dbfaae08a0a">SuooL</a> <span class="time">2016.05.23 08:10</span></li><li data-user-id="136678"> <a class="avatar" href="http://www.jianshu.com/users/965ae4feb718"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/fb3212b75dad.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/965ae4feb718">dimsky</a> <span class="time">2016.05.19 00:26</span></li><li data-user-id="1310341"> <a class="avatar" href="http://www.jianshu.com/users/e761f64f233c"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/c6d62078bb00.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/e761f64f233c">dabaoonline</a> <span class="time">2016.05.17 08:45</span></li><li data-user-id="2030166"> <a class="avatar" href="http://www.jianshu.com/users/46c7895389cc"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/69f46e1f9a09.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/46c7895389cc">不羁的微风hw</a> <span class="time">2016.05.14 22:22</span></li><li data-user-id="1499375"> <a class="avatar" href="http://www.jianshu.com/users/c4a0532e8ba7"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/5fab82f1a1e7.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/c4a0532e8ba7">狼凤皇</a> <span class="time">2016.04.10 14:41</span></li><li data-user-id="28059"> <a class="avatar" href="http://www.jianshu.com/users/e67904dfc6f0"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/90f793e4a9b6.png"> </a> <a class="blue-link" href="http://www.jianshu.com/users/e67904dfc6f0">玄书</a> <span class="time">2016.04.06 14:34</span></li><li data-user-id="335690"> <a class="avatar" href="http://www.jianshu.com/users/2cbe413130c7"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/0fec9bce4c0d.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/2cbe413130c7">大圣哥哥</a> <span class="time">2016.03.31 15:39</span></li><li data-user-id="737009"> <a class="avatar" href="http://www.jianshu.com/users/4ba6804ff45f"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/f01bca144ce1.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/4ba6804ff45f">LeonKang</a> <span class="time">2016.03.14 19:11</span></li><li data-user-id="1364396"> <a class="avatar" href="http://www.jianshu.com/users/c2da8a0399cb"> <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/fc97be8debb3.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/c2da8a0399cb">小行为</a> <span class="time">2016.03.13 22:25</span></li><a class="more hidden" data-max-id="14505197" href="javascript:void(null);"><i class="fa fa-ellipsis-h"></i></a></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Comments -->
+    <div id="comments" class="comment-list clearfix">
+        <div class="comment-head clearfix">
+          8条评论
+          <span class="order">
+            （
+            <a data-order="asc" class="active" href="javascript:void(0)">按时间正序</a>·
+            <a data-order="desc" href="javascript:void(0)">按时间倒序</a>·
+            <a data-order="likes_count" href="javascript:void(0)">按喜欢排序</a>
+            ）
+          </span>
+            <a class="goto-comment pull-right" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+              <i class="fa fa-pencil"></i>添加新评论
+</a>        </div>
+        <div id="comment-list">
+
+
+<div class="note-comment clearfix" id="comment-818152">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/357a1eb76523">
+          <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/2db77d0d1118.jpg" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/357a1eb76523">airsola</a>
+        </p>
+        <span class="reply-time">
+          <small>2 楼 · </small>
+          <a href="http://www.jianshu.com/p/f888db82fc27/comments/818152#comment-818152">2015.10.31 10:27</a></span>
+      </div>
+      <p>虽然错别字很多（笑，但是技巧都很实用，赞赞！</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="818152" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="818152" data-nickname="airsola" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-1029547">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/49e0e82e3399">
+          <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/d74c525717bf.jpg" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/49e0e82e3399">Aeron_Xie</a>
+        </p>
+        <span class="reply-time">
+          <small>3 楼 · </small>
+          <a href="http://www.jianshu.com/p/f888db82fc27/comments/1029547#comment-1029547">2015.12.14 00:14</a></span>
+      </div>
+      <p>很不错哈<img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/smile.png" alt=":smile:" title=":smile:" class="emoji" height="20" width="20"></p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="1029547" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="1029547" data-nickname="Aeron_Xie" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-1037219">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/465605bdfead">
+          <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/14-75d944a989bbbd5b92a639698c9b4a3c.jpg" alt="14">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/465605bdfead">1269</a>
+        </p>
+        <span class="reply-time">
+          <small>4 楼 · </small>
+          <a href="http://www.jianshu.com/p/f888db82fc27/comments/1037219#comment-1037219">2015.12.15 09:56</a></span>
+      </div>
+      <p>超强大的快捷键大神，顶！</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="1037219" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="1037219" data-nickname="1269" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-1335852">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/a4404e7067e5">
+          <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/12-07a584b5038a24cbb23b81dc673c18fd.jpg" alt="12">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/a4404e7067e5">MonkeyKingMKY</a>
+        </p>
+        <span class="reply-time">
+          <small>5 楼 · </small>
+          <a href="http://www.jianshu.com/p/f888db82fc27/comments/1335852#comment-1335852">2016.01.28 11:27</a></span>
+      </div>
+      <p>看完，我都不知道 这到底是啥工具....</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="1335852" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="1335852" data-nickname="MonkeyKingMKY" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list ">
+        <div class="child-comment" id="comment-2012590" data-id="2012590">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/4b4fc6d0403d">乱尘</a>：
+      <a href="http://www.jianshu.com/users/a4404e7067e5" class="maleskine-author" target="_blank" data-user-slug="a4404e7067e5">@MonkeyKingMKY</a> 内置的，你直接用就行
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="1335852" data-nickname="乱尘" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/f888db82fc27/comments/2012590#comment-2012590">2016.04.12 10:14</a></span>
+      
+    </div>
+  </div>
+
+      <div data-state="remaining-child-comments"></div>
+        <div class="comment-toolbar clearfix">
+          <span class="pull-right">
+            <a data-id="1335852" class="reply" href="javascript:void(null)"><i class="fa fa-pencil"></i> 添加新回复</a>
+          </span>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-2309434">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/cf43c392a6c8">
+          <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/e8632541a6ff.png" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/cf43c392a6c8">品味_生活</a>
+        </p>
+        <span class="reply-time">
+          <small>6 楼 · </small>
+          <a href="http://www.jianshu.com/p/f888db82fc27/comments/2309434#comment-2309434">2016.05.09 14:38</a></span>
+      </div>
+      <p>第一张图片失效了</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2309434" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="2309434" data-nickname="品味_生活" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-2345064">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/e51a6c5892f1">
+          <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/0b7339038012.jpg" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/e51a6c5892f1">单手两万行无bug</a>
+        </p>
+        <span class="reply-time">
+          <small>7 楼 · </small>
+          <a href="http://www.jianshu.com/p/f888db82fc27/comments/2345064#comment-2345064">2016.05.12 11:28</a></span>
+      </div>
+      <p>图片失效了，能再放一下吗</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2345064" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="2345064" data-nickname="单手两万行无bug" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-2919267">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/55224fb98203">
+          <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/9-ece2d3668ecf525c902de6c8672b6435.jpg" alt="9">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/55224fb98203">xfx_itachi</a>
+        </p>
+        <span class="reply-time">
+          <small>8 楼 · </small>
+          <a href="http://www.jianshu.com/p/f888db82fc27/comments/2919267#comment-2919267">2016.06.28 18:18</a></span>
+      </div>
+      <p>博主换个图片地址吧，这些图都挂了</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2919267" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="2919267" data-nickname="xfx_itachi" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+          <p class="signout-comment">
+    <a class="btn btn-info" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+      登录后发表评论
+</a>  </p>
+
+    </div>
+    <!-- -->
+
+  </div>
+
+  <script type="application/json" data-name="note">
+    {"id":652302,"abbr":"本来一直想给大家普及一下lldb的使用，因为身边有很多朋友虽然开发了很久，但是还是不会使用调试器，还傻傻的打一个log,重启程序再看这个值。说，是不是你，中招没。这一篇也是为了帮这些朋友认识一下调试器的强大。整篇介绍的例子都是基于我的贴图demo的。1.首先介绍下如何避免重启程序打一个l...","slug":"f888db82fc27","url":"http://www.jianshu.com/p/f888db82fc27","image_url":"http://cwb.assets.jianshu.io/notes/images/652302/weibo/image_4111162287f2.jpg","wordage":1238,"has_further_readings":false,"views_count":13605,"likes_count":69,"comments_count":8,"rewards_total_count":0}
+  </script>
+
+  <script type="application/json" data-name="uuid">
+    {"uuid":"d1dc27f6-3649-436c-98ae-caf3cc29911a"}
+  </script>
+
+  <script type="application/json" data-name="author">
+    {"id":136953,"nickname":"kissGod","slug":"8d704c0faf00","public_notes_count":10,"followers_count":1896,"total_likes_count":960,"is_current_user":false,"is_signed_author":false}
+  </script>
+
+
+    <div class="include-collection">
+      <div class="content">
+        <h5>被以下专题收入，发现更多相似内容：</h5>
+        <ul id="all-collections" class="unstyled collections-list">
+            <li>
+              <a class="avatar" href="http://www.jianshu.com/collection/19dbe28002a3"><img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/c4409daa19d59b1950bf3bed66a49495.jpg" alt="180"></a>              <div class="collections-info">
+                <h5>
+                  <a href="http://www.jianshu.com/collection/19dbe28002a3">iOS开发技巧</a>
+                </h5>
+                
+  <div class="btn btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-fw fa-plus"></i>  <span>添加关注</span></a>
+    <span>19.1K</span>
+  </div>
+
+                <p class="description"> 【简介】
+专题内容主要包括OC、swift等涉及到iOS开发进阶的内容。
+swift可以关注下我的另一个专题：
+swift开发...</p>
+                <p>
+                  <a class="blue-link" href="http://www.jianshu.com/collection/19dbe28002a3">1047篇文章</a> · 19194人关注
+                </p>
+              </div>
+            </li>
+            <li>
+              <a class="avatar" href="http://www.jianshu.com/collection/2ffaa203eb6a"><img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/1427906959.png" alt="180"></a>              <div class="collections-info">
+                <h5>
+                  <a href="http://www.jianshu.com/collection/2ffaa203eb6a">iOS 开发 </a>
+                </h5>
+                
+  <div class="btn btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-fw fa-plus"></i>  <span>添加关注</span></a>
+    <span>6.1K</span>
+  </div>
+
+                <p class="description"></p>
+                <p>
+                  <a class="blue-link" href="http://www.jianshu.com/collection/2ffaa203eb6a">6699篇文章</a> · 6120人关注
+                </p>
+              </div>
+            </li>
+            <li>
+              <a class="avatar" href="http://www.jianshu.com/collection/0320b50ec64d"><img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/CollectionImage.png" alt="180"></a>              <div class="collections-info">
+                <h5>
+                  <a href="http://www.jianshu.com/collection/0320b50ec64d">ios技术</a>
+                </h5>
+                
+  <div class="btn btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-fw fa-plus"></i>  <span>添加关注</span></a>
+    <span>1.3K</span>
+  </div>
+
+                <p class="description">ios技术学习（转载）</p>
+                <p>
+                  <a class="blue-link" href="http://www.jianshu.com/collection/0320b50ec64d">65篇文章</a> · 1386人关注
+                </p>
+              </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+  <!-- Modal -->
+    <div class="modal pay-modal text-center hide fade" id="pay-modal">
+  <div class="modal-header clearfix">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <form id="new_reward" class="new_reward" target="_blank" action="/notes/652302/rewards" accept-charset="UTF-8" method="post"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="VBlM9jAXqS71cqB21nnByRg3LTCn8nQ8JJe/DK/QMLOmT2HMN7g+oyqEaNgMs3RHSh0kOqhBmtXThSPO7gguVg==" type="hidden">
+    <div class="modal-body">
+      <a href="http://www.jianshu.com/users/8d704c0faf00">
+        <div class="avatar"><img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/4a3ab37b2f5a.jpg" alt="100"></div>
+</a>      <p><i class="fa fa-quote-left pull-left"></i>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！<i class="fa fa-quote-right pull-right"></i></p>
+      <div class="main-inputs text-left">
+        <div class="control-group">
+          <label for="reward_amount">打赏金额</label><i class="fa fa-yen"></i>
+          <input value="2.00" name="reward[amount_in_yuan]" id="reward_amount_in_yuan" type="text">
+        </div>
+        <div class="control-group message">
+          <textarea placeholder="给Ta留言" name="reward[message]" id="reward_message"></textarea>
+        </div>
+      </div>
+      <div class="choose-pay text-left">
+        <h5>选择支付方式：</h5>
+        <div>
+          <label for="reward_channel_alipay">
+            <div style="position: relative;" class="iradio_minimal checked"><input style="position: absolute; opacity: 0;" value="alipay" checked="checked" name="reward[channel]" id="reward_channel_alipay" type="radio"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+            <span class="alipay-bg"></span>
+</label>
+          
+          <label for="reward_channel_wx_pub_qr">
+            <div style="position: relative;" class="iradio_minimal"><input style="position: absolute; opacity: 0;" value="wx_pub_qr" name="reward[channel]" id="reward_channel_wx_pub_qr" type="radio"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+            微信支付
+</label>        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button name="button" type="submit" class="btn btn-large btn-pay">立即支付</button>
+    </div>
+</form></div>
+
+    <div class="modal success-pay text-center hide fade" id="success-pay">
+  <div class="modal-header clearfix">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div class="modal-body">
+    <h3><i class="icon-ok"></i>打赏成功</h3>
+    <img src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/complete-pay-25426877089eb23bd76d9d0e6aad89c1.png" alt="Complete pay">
+  </div>
+  <div class="modal-footer">
+    
+  </div>
+</div>
+
+</div>
+
+  <div style="z-index: 1000;" class="imagebubble-backmask image-package"><div class="image-caption">lldbLog</div><div class="image-caption">po的使用</div><div class="image-caption">help命令</div><img style="top: 2416.88px; left: 447.483px; width: 500px; height: 634px;" src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/2D9F83BA11E4F162D239E1742B7A4E3D_B500_900_500_634.jpg" class="imagebubble-ghost"><img style="top: 1410.07px; left: 387.5px; width: 620px; height: 401px;" src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/E505902B1D8D75A1B63C5611BF482417_ORIG_1490_964.gif" class="imagebubble-ghost"></div></div>
+  <div id="flash" class="hide"></div>
+  
+  <div id="view-mode-modal" tabindex="-1" class="modal hide read-modal" aria-hidden="false" data-js-module="view-mode-modal">
+    <div class="btn-group change-background" data-toggle="buttons-radio">
+      <a class="btn btn-daytime active" data-mode="day" href="javascript:void(null);">
+        <i class="fa fa-sun-o"></i>
+</a>      <a class="btn btn-nighttime " data-mode="night" href="javascript:void(null);">
+        <i class="fa fa-moon-o"></i>
+</a>    </div>
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+      <a class="btn font " data-font="font1" href="javascript:void(null);">宋体</a>
+      <a class="btn font hei active" data-font="font2" href="javascript:void(null);">黑体</a>
+    </div>
+    <div class="btn-group change-locale" data-toggle="buttons-radio">
+      <a class="btn font active" data-locale="zh-CN" href="javascript:void(null);">简</a>
+      <a class="btn font hei " data-locale="zh-TW" href="javascript:void(null);">繁</a>
+    </div>
+  </div>
+
+  
+
+  <script src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/base-ded41764c207f7ff545c28c670922d25.js"></script>
+  
+  <script src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/reading-base-0028299ec0c770293c0f07e2f338b48f.js"></script>
+  <script src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/note_show-1805bf39f59948b52870922039360dbb.js"></script>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35169517-1']);
+  _gaq.push(['_setCustomVar', 2, 'User Type', 'Visitor', 1 ]);
+  _gaq.push(['_trackPageview']);
+
+  
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<div style="display:none">
+  <script src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/z_stat.php" language="JavaScript"></script><script src="%E4%B9%85%E8%BF%9D%E7%9A%84%E7%9A%84LLDB%E7%AF%87%E4%B8%80%EF%BC%8C%E8%AE%A9lldb%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E6%95%88%E7%8E%87%20-%20%E7%AE%80%E4%B9%A6_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1258679142" target="_blank" title="站长统计">站长统计</a>
+</div>
+
+
+
+</body></html>
