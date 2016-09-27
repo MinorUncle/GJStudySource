@@ -1,0 +1,504 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B30D34F1CDF230800B7AAE8 /* TCPClientDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B30D34E1CDF230800B7AAE8 /* TCPClientDevice.m */; };
+		1B73AFB21CCBA44B003096A3 /* TCPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B73AFB11CCBA44B003096A3 /* TCPClient.m */; };
+		1BDD917A1CB92F8700236F54 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD91791CB92F8700236F54 /* LFCGzipUtility.m */; };
+		1BF288BE1CD79FA500B362F3 /* TCPClientGPRS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF288BD1CD79FA500B362F3 /* TCPClientGPRS.m */; };
+		1BFA82481CB901140075F6FD /* NSData+GZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA82471CB901140075F6FD /* NSData+GZIP.m */; };
+		1BFA824B1CB904030075F6FD /* STZlib.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA824A1CB904030075F6FD /* STZlib.m */; };
+		1BFA824D1CB904630075F6FD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BFA824C1CB904630075F6FD /* libz.tbd */; };
+		C58BFB801B8D988900E80814 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C58BFB7F1B8D988900E80814 /* main.m */; };
+		C58BFB831B8D988900E80814 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C58BFB821B8D988900E80814 /* AppDelegate.m */; };
+		C58BFB861B8D988900E80814 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C58BFB851B8D988900E80814 /* ViewController.mm */; };
+		C58BFB891B8D988900E80814 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C58BFB871B8D988900E80814 /* Main.storyboard */; };
+		C58BFB8B1B8D988900E80814 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58BFB8A1B8D988900E80814 /* Images.xcassets */; };
+		C58BFB8E1B8D988900E80814 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C58BFB8C1B8D988900E80814 /* LaunchScreen.xib */; };
+		C58BFB9A1B8D988900E80814 /* TCPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C58BFB991B8D988900E80814 /* TCPTests.m */; };
+		C58BFBA51B8D991400E80814 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C58BFBA41B8D991400E80814 /* GCDAsyncSocket.m */; };
+		C5B4BA041CAD34CD007C6993 /* NetAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B4BA031CAD34CD007C6993 /* NetAnalysis.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C58BFB941B8D988900E80814 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C58BFB721B8D988800E80814 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C58BFB791B8D988900E80814;
+			remoteInfo = TCP;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1B30D34D1CDF230800B7AAE8 /* TCPClientDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPClientDevice.h; sourceTree = "<group>"; };
+		1B30D34E1CDF230800B7AAE8 /* TCPClientDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPClientDevice.m; sourceTree = "<group>"; };
+		1B73AFB01CCBA44B003096A3 /* TCPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPClient.h; sourceTree = "<group>"; };
+		1B73AFB11CCBA44B003096A3 /* TCPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPClient.m; sourceTree = "<group>"; };
+		1BAF84BA1CD39D2C00ADA946 /* CRC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRC.h; sourceTree = "<group>"; };
+		1BDD91781CB92F8700236F54 /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
+		1BDD91791CB92F8700236F54 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
+		1BF288BC1CD79FA500B362F3 /* TCPClientGPRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPClientGPRS.h; sourceTree = "<group>"; };
+		1BF288BD1CD79FA500B362F3 /* TCPClientGPRS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPClientGPRS.m; sourceTree = "<group>"; };
+		1BFA82461CB901140075F6FD /* NSData+GZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GZIP.h"; sourceTree = "<group>"; };
+		1BFA82471CB901140075F6FD /* NSData+GZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GZIP.m"; sourceTree = "<group>"; };
+		1BFA82491CB904030075F6FD /* STZlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STZlib.h; sourceTree = "<group>"; };
+		1BFA824A1CB904030075F6FD /* STZlib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STZlib.m; sourceTree = "<group>"; };
+		1BFA824C1CB904630075F6FD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		C575F1FF1B8EAC5100DD6B06 /* Struct_Def.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Struct_Def.h; sourceTree = "<group>"; };
+		C58BFB7A1B8D988900E80814 /* TCP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C58BFB7E1B8D988900E80814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C58BFB7F1B8D988900E80814 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C58BFB811B8D988900E80814 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C58BFB821B8D988900E80814 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C58BFB841B8D988900E80814 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C58BFB851B8D988900E80814 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		C58BFB881B8D988900E80814 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C58BFB8A1B8D988900E80814 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C58BFB8D1B8D988900E80814 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C58BFB931B8D988900E80814 /* TCPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C58BFB981B8D988900E80814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C58BFB991B8D988900E80814 /* TCPTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCPTests.m; sourceTree = "<group>"; };
+		C58BFBA31B8D991400E80814 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		C58BFBA41B8D991400E80814 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		C58BFBA61B8DA22600E80814 /* TGProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGProtocol.h; sourceTree = "<group>"; };
+		C5B4BA021CAD34CD007C6993 /* NetAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAnalysis.h; sourceTree = "<group>"; };
+		C5B4BA031CAD34CD007C6993 /* NetAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAnalysis.m; sourceTree = "<group>"; };
+		C5B4BA051CAD351F007C6993 /* Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocol.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C58BFB771B8D988900E80814 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BFA824D1CB904630075F6FD /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C58BFB901B8D988900E80814 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C58BFB711B8D988800E80814 = {
+			isa = PBXGroup;
+			children = (
+				1BFA824C1CB904630075F6FD /* libz.tbd */,
+				C58BFB7C1B8D988900E80814 /* TCP */,
+				C58BFB961B8D988900E80814 /* TCPTests */,
+				C58BFB7B1B8D988900E80814 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C58BFB7B1B8D988900E80814 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C58BFB7A1B8D988900E80814 /* TCP.app */,
+				C58BFB931B8D988900E80814 /* TCPTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C58BFB7C1B8D988900E80814 /* TCP */ = {
+			isa = PBXGroup;
+			children = (
+				1BDD91781CB92F8700236F54 /* LFCGzipUtility.h */,
+				1BDD91791CB92F8700236F54 /* LFCGzipUtility.m */,
+				C58BFB811B8D988900E80814 /* AppDelegate.h */,
+				C58BFB821B8D988900E80814 /* AppDelegate.m */,
+				C58BFB841B8D988900E80814 /* ViewController.h */,
+				C58BFB851B8D988900E80814 /* ViewController.mm */,
+				C5B4BA051CAD351F007C6993 /* Protocol.h */,
+				1B73AFB01CCBA44B003096A3 /* TCPClient.h */,
+				1B73AFB11CCBA44B003096A3 /* TCPClient.m */,
+				1B30D34D1CDF230800B7AAE8 /* TCPClientDevice.h */,
+				1B30D34E1CDF230800B7AAE8 /* TCPClientDevice.m */,
+				1BF288BC1CD79FA500B362F3 /* TCPClientGPRS.h */,
+				1BF288BD1CD79FA500B362F3 /* TCPClientGPRS.m */,
+				C5B4BA021CAD34CD007C6993 /* NetAnalysis.h */,
+				C5B4BA031CAD34CD007C6993 /* NetAnalysis.m */,
+				1BAF84BA1CD39D2C00ADA946 /* CRC.h */,
+				1BFA82461CB901140075F6FD /* NSData+GZIP.h */,
+				1BFA82471CB901140075F6FD /* NSData+GZIP.m */,
+				1BFA82491CB904030075F6FD /* STZlib.h */,
+				1BFA824A1CB904030075F6FD /* STZlib.m */,
+				C575F1FF1B8EAC5100DD6B06 /* Struct_Def.h */,
+				C58BFBA61B8DA22600E80814 /* TGProtocol.h */,
+				C58BFBA31B8D991400E80814 /* GCDAsyncSocket.h */,
+				C58BFBA41B8D991400E80814 /* GCDAsyncSocket.m */,
+				C58BFB871B8D988900E80814 /* Main.storyboard */,
+				C58BFB8A1B8D988900E80814 /* Images.xcassets */,
+				C58BFB8C1B8D988900E80814 /* LaunchScreen.xib */,
+				C58BFB7D1B8D988900E80814 /* Supporting Files */,
+			);
+			path = TCP;
+			sourceTree = "<group>";
+		};
+		C58BFB7D1B8D988900E80814 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C58BFB7E1B8D988900E80814 /* Info.plist */,
+				C58BFB7F1B8D988900E80814 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C58BFB961B8D988900E80814 /* TCPTests */ = {
+			isa = PBXGroup;
+			children = (
+				C58BFB991B8D988900E80814 /* TCPTests.m */,
+				C58BFB971B8D988900E80814 /* Supporting Files */,
+			);
+			path = TCPTests;
+			sourceTree = "<group>";
+		};
+		C58BFB971B8D988900E80814 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C58BFB981B8D988900E80814 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C58BFB791B8D988900E80814 /* TCP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C58BFB9D1B8D988900E80814 /* Build configuration list for PBXNativeTarget "TCP" */;
+			buildPhases = (
+				C58BFB761B8D988900E80814 /* Sources */,
+				C58BFB771B8D988900E80814 /* Frameworks */,
+				C58BFB781B8D988900E80814 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TCP;
+			productName = TCP;
+			productReference = C58BFB7A1B8D988900E80814 /* TCP.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C58BFB921B8D988900E80814 /* TCPTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C58BFBA01B8D988900E80814 /* Build configuration list for PBXNativeTarget "TCPTests" */;
+			buildPhases = (
+				C58BFB8F1B8D988900E80814 /* Sources */,
+				C58BFB901B8D988900E80814 /* Frameworks */,
+				C58BFB911B8D988900E80814 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C58BFB951B8D988900E80814 /* PBXTargetDependency */,
+			);
+			name = TCPTests;
+			productName = TCPTests;
+			productReference = C58BFB931B8D988900E80814 /* TCPTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C58BFB721B8D988800E80814 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = tongguan;
+				TargetAttributes = {
+					C58BFB791B8D988900E80814 = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = XPUHU5984R;
+					};
+					C58BFB921B8D988900E80814 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = C58BFB791B8D988900E80814;
+					};
+				};
+			};
+			buildConfigurationList = C58BFB751B8D988800E80814 /* Build configuration list for PBXProject "TCP" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C58BFB711B8D988800E80814;
+			productRefGroup = C58BFB7B1B8D988900E80814 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C58BFB791B8D988900E80814 /* TCP */,
+				C58BFB921B8D988900E80814 /* TCPTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C58BFB781B8D988900E80814 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C58BFB891B8D988900E80814 /* Main.storyboard in Resources */,
+				C58BFB8E1B8D988900E80814 /* LaunchScreen.xib in Resources */,
+				C58BFB8B1B8D988900E80814 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C58BFB911B8D988900E80814 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C58BFB761B8D988900E80814 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C58BFBA51B8D991400E80814 /* GCDAsyncSocket.m in Sources */,
+				1BFA824B1CB904030075F6FD /* STZlib.m in Sources */,
+				C58BFB861B8D988900E80814 /* ViewController.mm in Sources */,
+				1B30D34F1CDF230800B7AAE8 /* TCPClientDevice.m in Sources */,
+				C58BFB831B8D988900E80814 /* AppDelegate.m in Sources */,
+				1BF288BE1CD79FA500B362F3 /* TCPClientGPRS.m in Sources */,
+				C5B4BA041CAD34CD007C6993 /* NetAnalysis.m in Sources */,
+				1BFA82481CB901140075F6FD /* NSData+GZIP.m in Sources */,
+				1B73AFB21CCBA44B003096A3 /* TCPClient.m in Sources */,
+				1BDD917A1CB92F8700236F54 /* LFCGzipUtility.m in Sources */,
+				C58BFB801B8D988900E80814 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C58BFB8F1B8D988900E80814 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C58BFB9A1B8D988900E80814 /* TCPTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C58BFB951B8D988900E80814 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C58BFB791B8D988900E80814 /* TCP */;
+			targetProxy = C58BFB941B8D988900E80814 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C58BFB871B8D988900E80814 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C58BFB881B8D988900E80814 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C58BFB8C1B8D988900E80814 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C58BFB8D1B8D988900E80814 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C58BFB9B1B8D988900E80814 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C58BFB9C1B8D988900E80814 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C58BFB9E1B8D988900E80814 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TCP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tongguantech.sss;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		C58BFB9F1B8D988900E80814 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TCP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tongguantech.sss;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		C58BFBA11B8D988900E80814 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TCPTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCP.app/TCP";
+			};
+			name = Debug;
+		};
+		C58BFBA21B8D988900E80814 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TCPTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCP.app/TCP";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C58BFB751B8D988800E80814 /* Build configuration list for PBXProject "TCP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C58BFB9B1B8D988900E80814 /* Debug */,
+				C58BFB9C1B8D988900E80814 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C58BFB9D1B8D988900E80814 /* Build configuration list for PBXNativeTarget "TCP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C58BFB9E1B8D988900E80814 /* Debug */,
+				C58BFB9F1B8D988900E80814 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C58BFBA01B8D988900E80814 /* Build configuration list for PBXNativeTarget "TCPTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C58BFBA11B8D988900E80814 /* Debug */,
+				C58BFBA21B8D988900E80814 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C58BFB721B8D988800E80814 /* Project object */;
+}
