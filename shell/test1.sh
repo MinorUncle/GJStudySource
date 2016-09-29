@@ -2,8 +2,8 @@
 
 Pre="OBJS-\$("
 
-configFile="/Users/tongguan/Desktop/ffmpeg-iphone-build-master/scratch/arm64/config.h"
-makeFile="/Users/tongguan/Desktop/ffmpeg-iphone-build-master/ffmpeg-3.0/libavformat/Makefile"
+configFile="/Users/weichengniandashu/develop/ffmpeg_build/scratch/arm64/config.h"
+makeFile="/Users/weichengniandashu/develop/ffmpeg_build/ffmpeg-3.0/libavformat/Makefile"
 
 
 i=0
@@ -19,7 +19,7 @@ done < $configFile
 
 findMatchFlag(){
 i=0
-findMatchFlagFind=0
+local findMatchFlagFind=0
 for key in ${config_key[@]}
 do
     if [ "${key}x" = "${1}x" ];then
@@ -51,20 +51,21 @@ fi
 #fi
 #}
 
-cat $makeFile | while read line
+while read line
 do
     key=0
     match=0
     findMatch=-1
     for word in $line
     do
-        if [ $match -eq 1 -a $word != += ];
+        if [ $match -eq 1 -a $word != "+=" ];
         then
             if [ $findMatch -eq -1 ];then
                 findMatch=`findMatchFlag $key`
             fi
             word=${word%".o"}
             echo  "${key}  ${word}   ${findMatch}"
+            output="$output ${word}:${findMatch}"
         elif [ `echo $word | grep ^${Pre}` ];then
             match=1
             key="${word#$Pre}"
@@ -73,4 +74,6 @@ do
         else continue
         fi
     done
-done
+done < $makeFile
+echo $output
+ruby rubyTest.rb $output

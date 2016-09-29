@@ -1,59 +1,32 @@
 #!/bin/sh
-
-Pre="OBJS-\$("
-
-Header="/Users/weichengniandashu/develop/ffmpeg_build/scratch/armv7/config.h"
-
-function findMatchFlag(){
-find=0
-while read config_line
+par=("1 12" "2 32" "34 we 3" "4 we 23 323 32")
+for line in ${par[@]}
 do
-    let i=0
-    for item in $config_line
-    do
-        let i=i+1
-        if [ $i -eq 2 -a $item = $1 ];then
-        flg="${config_line##*$item}"
-        find=1
-        break;
-        fi
-    done
-    if [ $find -eq 1 ];then
-    echo $flg
-    break
-    fi
-done < $Header
-}
-
-
-while read line
-match=0
+echo $line
 key=0
+match=0
+findMatch=-1
+for word in $line
 do
-    match=0
-    findMatch=-1
-    for word in $line
-    do
-        if [ $match -eq 1 -a $word != += ];
-        then
-if [ $findMatch -eq -1 ];then
-findMatch=1
-        findMatchFlag $key
-fi
-echo $word
-#        echo "key:$key flg:$flg"
-        elif [ `echo $word | grep ^${Pre}` ];then
-            match=1
-            key="${word#$Pre}"
-            key=${key%)}
-            echo $key
-            findMatch=-1
-        else continue
-        fi
-    done
-done < $1
+st="${st} nicai"
+echo "st"
 
-IF_FileName=A0505420040605000000.AVL
-if [ `echo $IF_FileName|grep ^A` ];then
-echo YES
+if [ $match -eq 1 -a $word != "+=" ];
+then
+if [ $findMatch -eq -1 ];then
+findMatch=`findMatchFlag $key`
 fi
+word=${word%".o"}
+echo  "${key}  ${word}   ${findMatch}"
+output="$output ${word}:${findMatch}"
+elif [ `echo $word | grep ^${Pre}` ];then
+match=1
+key="${word#$Pre}"
+key=${key%)}
+findMatch=-1
+else
+continue
+fi
+done
+done
+echo $st
