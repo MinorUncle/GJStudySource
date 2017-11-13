@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>iOS | WebRTC</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="WebRTC is a free, open project that enables web browsers with Real-Time Communications (RTC) capabilities via simple JavaScript APIs. The WebRTC components have been optimized to best serve this purpose.">
+    <meta name="google-site-verification" content="os_oQr3oDyUhcuA1dqzPujLyCrC-mKIMJPVg0Lh8KtY" />
+
+    <link rel="canonical" href="/native-code/ios/">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/assets/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/assets/css/webrtc.css">
+    <link rel="stylesheet" href="/assets/css/monokai.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
+    <script>
+    $(function(){
+    // Offset body padding for TOC link targets
+      setTimeout(function(){
+        var shiftWindow = function() {
+          var hash = "#" + location.hash.replace(/[^A-Za-z0-9_\-]/g, "");
+          if (hash && $(hash).offset()) {
+            var pos = $(hash).offset().top - 60;
+            $(window).scrollTop(pos);
+          }
+        };
+        if (location.hash) shiftWindow();
+        window.addEventListener("hashchange", shiftWindow);
+      },10);
+    })
+    </script>
+
+</head>
+
+<body class="">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img alt="WebRTC logo" src="/assets/images/webrtc-logo-horiz-retro-243x40.png" style="margin-top: -2px;"></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/faq/">FAQ</a></li>
+              <li><a href="/architecture/">Architecture</a></li>
+              <li><a href="/videos/">Videos</a></li>
+              <li><a href="/release-notes/">Release Notes</a></li>
+              <li><a href="/reference-apps/">Reference Apps</a></li>
+              <li class="divider"></li>
+              <li><a href="/license/software/">Software License</a></li>
+              <li><a href="/license/additional-ip-grant/">Additional IP Rights Grant</a></li>
+              <li><a href="/license/ilbc-freeware/">iLBC Freeware</a></li>
+              <li class="divider"></li>
+              <li><a href="/press/">Press Kit</a></li>
+              <li class="divider"></li>
+              <li><a href="/blog/">Blog Archive</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Developer <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/start/">Getting started</a></li>
+              <li><a href="/code-of-conduct/">Code of conduct</a></li>
+              <li><a href="/contributing/">Contributing</a></li>
+              <li><a href="/bugs/">Reporting Bugs</a></li>
+              <li><a href="/troubleshooting/">Troubleshooting</a></li>
+              <li class="divider"></li>
+              <li><a href="/testing/continuous/">Continuous Testing</a></li>
+              <li><a href="/testing/conformance/">Conformance Testing</a></li>
+              <li><a href="/testing/wireshark/">Testing with Wireshark</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Native Code <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/native-code/">Overview</a></li>
+              <li><a href="/native-code/development/">Development</a></li>
+              <li><a href="/native-code/development/prerequisite-sw/">Prerequisites</a></li>
+              <li><a href="/native-code/android/">Android</a></li>
+              <li><a href="/native-code/ios/">iOS</a></li>
+              <li><a href="/native-code/native-apis/">Native APIs</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Web APIs <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/web-apis/">Overview</a></li>
+              <li><a href="/web-apis/development/">Development</a></li>
+              <li><a href="/web-apis/standardization/">Standardization</a></li>
+              <li><a href="/web-apis/chrome/">Chrome</a></li>
+              <li><a href="/web-apis/firefox/">Firefox</a></li>
+              <li><a href="/web-apis/interop/">Interop</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+                <form name="google-search" method="get" action="https://www.google.com/search" class="navbar-form navbar-right" role="search">
+          <div class="form-group has-feedback">
+            <input type="hidden" name="sitesearch" value="https://webrtc.org/">
+            <input type="text" name="q" class="form-control" placeholder="Search" id="inputSuccess2">
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+          </div>
+        </form>
+
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <div class="container-fluid">
+
+    <div class="row breadbar">
+      <div class="col-md-10 col-md-offset-1">
+        <ul class="breadcrumb">
+          
+            <li><a href="/">Home</a></li>
+            
+            
+              
+                
+                  <li><a href="/native-code/">Native code</a>
+                
+              
+                
+                  
+                  
+                    <li class="active">iOS</li>
+                  
+                
+              
+            
+          </ul>
+        </div>
+      </div><!-- /.row -->
+
+      <article class="page-content">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <h2>iOS</h2>
+            <p><a class="btn btn-xs btn-primary toggle-all tocbutton pull-right" href="#">Show Contents</a></p>
+
+<ul id="markdown-toc">
+  <li><a href="#using-cocoapods" id="markdown-toc-using-cocoapods">Using Cocoapods</a></li>
+  <li><a href="#development-environment" id="markdown-toc-development-environment">Development Environment</a></li>
+  <li><a href="#getting-the-code" id="markdown-toc-getting-the-code">Getting the Code</a></li>
+  <li><a href="#generating-project-files" id="markdown-toc-generating-project-files">Generating project files</a>    <ul>
+      <li><a href="#examples" id="markdown-toc-examples">Examples</a></li>
+    </ul>
+  </li>
+  <li><a href="#compiling-with-ninja" id="markdown-toc-compiling-with-ninja">Compiling with ninja</a></li>
+  <li><a href="#using-xcode" id="markdown-toc-using-xcode">Using Xcode</a></li>
+  <li><a href="#running-the-tests" id="markdown-toc-running-the-tests">Running the tests</a></li>
+  <li><a href="#deploying-to-device" id="markdown-toc-deploying-to-device">Deploying to Device</a></li>
+  <li><a href="#using-webrtc-in-your-app" id="markdown-toc-using-webrtc-in-your-app">Using WebRTC in your app</a></li>
+</ul>
+
+<h3 id="using-cocoapods">Using Cocoapods</h3>
+
+<p>The WebRTC framework  is published on <a href="https://cocoapods.org/pods/GoogleWebRTC">cocoapods.org</a>.
+The framework is built from tip-of-tree.</p>
+
+<p><em>NOTICE</em>: The pod version of the framework doesn’t support bitcode currently.
+If you need bitcode support, you’ll need to manually build the framework.
+The process is described in detail in the following sections.</p>
+
+<p>To integrate it into your project add the following lines to your Podfile</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>source 'https://github.com/CocoaPods/Specs.git'
+target 'YOUR_APPLICATION_TARGET_NAME_HERE' do
+  platform :ios, '9.0'
+  pod 'GoogleWebRTC'
+end
+</code></pre>
+</div>
+
+<p>The versioning system used is <em>1.1.cr-commit-position</em>, where <em>cr-commit-position</em> can
+be used to identify the exact WebRTC revision the pod was built from. You can check the
+revision at crrev.com/CR_COMMIT_POSITION_HERE.</p>
+
+<h3 id="development-environment">Development Environment</h3>
+
+<p>In case you need to build the framework manually
+(for instance if you need to support bitcode) or you want to try out the demo application
+AppRTCMobile, follow the instructions illustrated bellow.</p>
+
+<p>A macOS machine is required for iOS development. While it’s possible to
+develop purely from the command line with text editors, it’s easiest to use
+Xcode. Both methods will be illustrated here.</p>
+
+<p><em>NOTICE:</em> You will need to install <a href="/native-code/development/prerequisite-sw/">Chromium depot_tools</a>.</p>
+
+<h3 id="getting-the-code">Getting the Code</h3>
+
+<p>Create a working directory, enter it, and run:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>fetch --nohooks webrtc_ios
+gclient sync
+</code></pre>
+</div>
+
+<p>This will fetch a regular WebRTC checkout with the iOS-specific parts
+added. Notice the size is quite large: about 6GB. The same checkout can be used
+for both Mac and iOS development, since GN allows you to generate your
+<a href="https://chromium.googlesource.com/external/webrtc/+/master/tools_webrtc/ios/build_ios_libs.py">Ninja</a> project files in different directories for each build config.</p>
+
+<p>You may want to disable Spotlight indexing for the checkout to speed up
+file operations.</p>
+
+<p>Note that the git repository root is in <code class="highlighter-rouge">src</code>.</p>
+
+<p>From here you can check out a new local branch with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git new-branch &lt;branch name&gt;
+</code></pre>
+</div>
+
+<p>See <a href="/native-code/development/">Development</a> for generic instructions on how
+to update the code in your checkout.</p>
+
+<h3 id="generating-project-files">Generating project files</h3>
+
+<p><a href="https://chromium.googlesource.com/chromium/src/+/master/tools/gn/README.md">GN</a> is used to generate <a href="https://ninja-build.org/">Ninja</a> project files. In order to configure
+<a href="https://chromium.googlesource.com/chromium/src/+/master/tools/gn/README.md">GN</a> to generate build files for iOS certain variables need to be set.
+Those variables can be edited for the various build configurations as needed.</p>
+
+<p>The variables you should care about are the following:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">target_os</code>:
+    <ul>
+      <li>To build for iOS this should be set as <code class="highlighter-rouge">target_os="ios"</code> in your <code class="highlighter-rouge">gn args</code>.
+The default is whatever OS you are running the script on, so this can be
+omitted when generating build files for macOS.</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">target_cpu</code>:
+    <ul>
+      <li>For builds targeting iOS devices, this should be set to either <code class="highlighter-rouge">"arm"</code> or
+<code class="highlighter-rouge">"arm64"</code>, depending on the architecture of the device. For builds to run in
+the simulator, this should be set to <code class="highlighter-rouge">"x64"</code>.</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">is_debug</code>:
+    <ul>
+      <li>Debug builds are the default. When building for release, specify <code class="highlighter-rouge">false</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The component build is the default for Debug builds, which are also enabled by
+default unless <code class="highlighter-rouge">is_debug=false</code> is specified.</p>
+
+<p>The <a href="https://chromium.googlesource.com/chromium/src/+/master/tools/gn/README.md">GN</a> command for generating build files is <code class="highlighter-rouge">gn gen &lt;output folder&gt;</code>.</p>
+
+<p>After you’ve generated your build files once, subsequent invocations of <code class="highlighter-rouge">gn gen</code>
+with the same output folder will use the same arguments as first supplied.
+To edit these at any time use <code class="highlighter-rouge">gn args &lt;output folder&gt;</code>. This will open up
+a file in <code class="highlighter-rouge">$EDITOR</code> where you can edit the arguments. When you’ve made
+changes and save the file, <code class="highlighter-rouge">gn</code> will regenerate your project files for you
+with the new arguments.</p>
+
+<h4 id="examples">Examples</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># debug build for 64-bit iOS</span>
+gn gen out/ios_64 --args<span class="o">=</span><span class="s1">'target_os="ios" target_cpu="arm64"'</span>
+
+<span class="c"># debug build for simulator</span>
+gn gen out/ios_sim --args<span class="o">=</span><span class="s1">'target_os="ios" target_cpu="x64"'</span>
+</code></pre>
+</div>
+
+<h3 id="compiling-with-ninja">Compiling with ninja</h3>
+
+<p>To compile, just run ninja on the appropriate target. For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ninja -C out/ios_64 AppRTCMobile
+</code></pre>
+</div>
+
+<p>Replace <code class="highlighter-rouge">AppRTCMobile</code> in the command above with the target you
+are interested in.</p>
+
+<p>To see a list of available targets, run <code class="highlighter-rouge">gn ls out/&lt;output folder&gt;</code>.</p>
+
+<h3 id="using-xcode">Using Xcode</h3>
+
+<p>Xcode is the default and preferred IDE to develop for the iOS platform.</p>
+
+<p><em>Generating an Xcode project</em></p>
+
+<p>To have GN generate Xcode project files, pass the argument <code class="highlighter-rouge">--ide=xcode</code>
+when running <code class="highlighter-rouge">gn gen</code>. This will result in a file named <code class="highlighter-rouge">all.xcworkspace</code>
+placed in your specified output directory.</p>
+
+<p>Example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gn gen out/ios --args<span class="o">=</span><span class="s1">'target_os="ios" target_cpu="arm64"'</span> --ide<span class="o">=</span>xcode
+open -a Xcode.app out/ios/all.xcworkspace
+</code></pre>
+</div>
+
+<p><em>Compile and run with Xcode</em></p>
+
+<p>Compiling with Xcode is not supported! What we do instead is compile using a
+script that runs ninja from Xcode. This is done with a custom <em>run script</em>
+action in the build phases of the generated project. This script will simply
+call ninja as you would when building from the command line.</p>
+
+<p>This gives us access to the usual deployment/debugging workflow iOS developers
+are used to in Xcode, without sacrificing the build speed of Ninja.</p>
+
+<h3 id="running-the-tests">Running the tests</h3>
+
+<p>There are several test targets in WebRTC. To run the tests, you must deploy the
+<code class="highlighter-rouge">.app</code> bundle to a device (see next section) and run them from there.
+To run a specific test or collection of tests, normally with gtest one would pass
+the <code class="highlighter-rouge">--gtest_filter</code> argument to the test binary when running. To do this when
+running the tests from Xcode, from the targets menu, select the test bundle
+and press <em>edit scheme…</em> at the bottom of the target dropdown menu. From there
+click <em>Run</em> in the sidebar and add <code class="highlighter-rouge">--gtest_filter</code> to the <em>Arguments passed on
+Launch</em> list.</p>
+
+<p>If deploying to a device via the command line using <a href="https://github.com/phonegap/ios-deploy"><code class="highlighter-rouge">ios-deploy</code></a>,
+use the <code class="highlighter-rouge">-a</code> flag to pass arguments to the executable on launch.</p>
+
+<h3 id="deploying-to-device">Deploying to Device</h3>
+
+<p>It’s easiest to deploy to a device using Xcode. Other command line tools exist
+as well, e.g. <a href="https://github.com/phonegap/ios-deploy"><code class="highlighter-rouge">ios-deploy</code></a>.</p>
+
+<p><strong>NOTICE:</strong> To deploy to an iOS device you must have a valid signing identity
+set up. You can verify this by running:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>xcrun security find-identity -v -p codesigning
+</code></pre>
+</div>
+
+<p>If you don’t have a valid signing identity, you can still build for ARM,
+but you won’t be able to deploy your code to an iOS device. To do this,
+add the flag <code class="highlighter-rouge">ios_enable_code_signing=false</code> to the <code class="highlighter-rouge">gn gen</code> args when you
+generate the build files.</p>
+
+<h3 id="using-webrtc-in-your-app">Using WebRTC in your app</h3>
+
+<p>To build WebRTC for use in a native iOS app, it’s easiest to build
+<code class="highlighter-rouge">WebRTC.framework</code>. This can be done with ninja as follows, replacing <code class="highlighter-rouge">ios</code>
+with the actual location of your generated build files.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ninja -C out/ios framework_objc
+</code></pre>
+</div>
+
+<p>This should result in a <code class="highlighter-rouge">.framework</code> bundle being generated in <code class="highlighter-rouge">out/ios</code>.
+This bundle can now be directly included in another app.</p>
+
+<p>If you need a FAT <code class="highlighter-rouge">.framework</code>, that is, a binary that contains code for
+multiple architectures, and will work both on device and in the simulator,
+a script is available <a href="https://chromium.googlesource.com/external/webrtc/+/master/tools_webrtc/ios/build_ios_libs.py">here</a></p>
+
+<p>To build the framework with bitcode support, pass the <code class="highlighter-rouge">--bitcode</code> flag to the script like so</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>python build_ios_libs.py --bitcode
+</code></pre>
+</div>
+<p>The resulting framework can be found in out_ios_libs/.</p>
+
+<p>Please note that you can not ship the FAT framework binary with your app
+if you intend to distribute it through the app store.
+To solve this either remove “x86-64” from the list of architectures in
+the <a href="/native-code/development/">build script</a> or split the binary and recreate it without x86-64.
+For instructions on how to do this see <a href="http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/">here</a></p>
+
+
+          </div>
+        </div><!-- /.row -->
+      </article>
+
+    </div><!-- /.container -->
+
+  <footer class="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-1 col-sm-offset-1 fpanel">
+      <p class="center-block ftitle"><strong>About</strong></p>
+        <ul class="text-links">
+          <li><a href="/faq/">FAQ</a></li>
+          <li><a href="/architecture/">Architecture</a></li>
+          <li><a href="/videos/">Videos</a></li>
+          <li><a href="/release-notes/">Release Notes</a></li>
+          <li><a href="/reference-apps/">Reference Apps</a></li>
+          <li><a href="/license/">License</a></li>
+          <li><a href="/press/">Press</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-2 col-xs-2 fpanel">
+        <p class="center-block ftitle"><strong>Developer</strong></p>
+        <ul class="text-links">
+          <li><a href="/contributing/">Contributing</a></li>
+          <li><a href="/bugs/">Bug Reporting</a></li>
+          <li><a href="/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="/testing/continuous/">Continuous Testing</a></li>
+          <li><a href="/testing/conformance/">Conformance Testing</a></li>
+          <li><a href="/testing/wireshark/">Wireshark</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-2 col-xs-2  fpanel">
+        <p class="center-block ftitle"><strong>Native Code</strong></p>
+        <ul class="text-links">
+          <li><a href="/native-code/">Overview</a></li>
+          <li><a href="/native-code/development/">Development</a></li>
+          <li><a href="/native-code/development/prerequisite-sw/">Prerequisites</a></li>
+          <li><a href="/native-code/android/">Android</a></li>
+          <li><a href="/native-code/ios/">iOS</a></li>
+          <li><a href="/native-code/native-apis/">Native APIs</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-2 col-xs-2 fpanel">
+        <p class="center-block ftitle"><strong>Web APIs</strong></p>
+        <ul class="text-links">
+          <li><a href="/web-apis/">Overview</a></li>
+          <li><a href="/web-apis/development/">Development</a></li>
+          <li><a href="/web-apis/standardization/">Standarization</a></li>
+          <li><a href="/web-apis/chrome/">Chrome</a></li>
+          <li><a href="/web-apis/firefox/">Firefox</a></li>
+          <li><a href="/web-apis/interop/">Interop</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-2 col-xs-2 fpanel">
+        <p class="center-block ftitle">Contact</p>
+        <ul class="text-links">
+          <li><a href="https://plus.google.com/113817074606039822053">Google+</a></li>
+          <li><a href="https://twitter.com/webrtc">Twitter</a></li>
+          <li><a href="https://groups.google.com/group/discuss-webrtc">discuss-webrtc</a></li>
+        </ul>
+      </div>
+    </div><!-- /.row -->
+  </div>
+</footer>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23466548-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  <script>
+  $(document).ready(function(){
+    $("a.tocbutton").click(function () {
+      $("ul#markdown-toc").slideToggle("slow");
+      var text = $(this).text() == 'Show Contents' ? 'Hide Contents' : 'Show Contents';
+      $(this).text(text);
+    });
+  });
+  </script>
+
+</body>
+</html>

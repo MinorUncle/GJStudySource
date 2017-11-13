@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html style="font-size: 40px;"><head>
+   <link rel="canonical" href="http://blog.csdn.net/DittyChen/article/details/78065974">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes">    
+    <meta name="shenma-site-verification" content="bf32a58a3df1c3452b75fbe96c7feb42_1497604697">
+    <script type="text/javascript" async="" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/pr.js"></script><script type="text/javascript" async="" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/lpjnmjnpdmhhmyojn.js"></script><script src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/hm.js"></script><script src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/jquery-1.js" type="text/javascript"></script>
+    <!--link( rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/css/index.css" )-->
+    <link rel="stylesheet" href="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/bootstrap.css">
+    <link rel="stylesheet" href="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/avatar.css">
+    <link rel="stylesheet" href="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/common.css">
+    <!-- [if IE 7]-->
+    <!--link( rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" )-->
+    <!-- [endif]-->
+    <link rel="stylesheet" href="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/main.css">
+    <!-- [if lt IE 9]-->
+    <script src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/html5shiv.js"></script>
+    <!-- [endif]-->
+        <title>RTCP介绍及发送间隔控制 - 风清扬的博客 - CSDN博客</title>
+    
+    <script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/blog_mobile.js"></script>
+
+<script src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/dm.js"></script>
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+   
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style></head>
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><link href="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe style="position: fixed; display: none; opacity: 0;" frameborder="0"></iframe><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe style="display: none;" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/jiathis_utility.html" frameborder="0"></iframe><div id="MathJax_Message" style="display: none;"></div>
+    
+<!-- 广告位开始 --> 
+<ins data-revive-zoneid="202" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins> 
+<!-- 广告位结束 -->
+
+
+<script language="JavaScript" type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/jquery.js"></script>
+<script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/main.js"></script>
+
+<script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/MathJax.js"></script>
+<link rel="stylesheet" href="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/markdown_views.css">
+
+<script type="text/javascript">
+    var fileName = '78065974';
+    var commentscount = 0;
+    var islock = false;
+    var currentUserName='';
+    
+</script>
+
+<script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/digg.js"></script>
+
+
+<div class="blog_main">
+      <div class="blog_top_wrap">
+        <div class="blog_top"><i id="menu_J" class="iconfont icon_l"></i>
+            <form method="get" action="/search/index" id="searchform">
+    <i id="search_J" class="iconfont icon_r"></i>
+    <div id="search_c_J" class="search">
+         <input placeholder="请输入" id="search" name="keyword" page="1" type="text"><i class="iconfont icon_search"></i><i class="iconfont icon_close"></i>
+    </div>
+</form>
+<script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/search.js"></script>
+
+
+
+
+          <h2 class="blog_top_t">CSDN博客</h2>
+        </div>
+      </div>
+
+ 
+
+      <div class="main_list">
+     
+
+         
+        
+          
+                  
+          <!-- 广告位：WAP端-博客详情页banner1-20:3 -->
+        <script>
+            (function() {
+                var s = "_" + Math.random().toString(36).slice(2);
+                document.write('<div id="' + s + '"></div>');
+                (window.slotbydup=window.slotbydup || []).push({
+                    id: '4777139',
+                    container: s,
+                    size: '20,3',
+                    display: 'inlay-fix'
+                });
+            })();
+        </script><div id="_y90jyn0puxc"></div><script charset="utf-8" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/zcam"></script><div id="_becnxwwwdc9"><div style="margin-left:0px;"><div><iframe scrolling="no" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/s.html" width="1524" height="229" frameborder="0"></iframe></div></div></div><script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/ytibzciuzwai.js"></script>
+
+
+        <div class="blog_article">
+          <div class="blog_article_t">
+            <div class="article_l"><a href="http://m.blog.csdn.net/DittyChen"><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/1_dittychen.jpg" alt="img"></a>
+                <a href="http://m.blog.csdn.net/DittyChen" class="article_user">DittyChen</a></div>
+            <div class="article_r">
+            </div>
+          </div>
+          <div class="blog_article_c clearfix">
+            <h3 class="article_t">RTCP介绍及发送间隔控制</h3>
+            <p class="date"><i>发表于</i><em>2017/9/22 18:40:22  &nbsp;</em><i>145</i><span>人阅读</span></p>
+            <p class="category_p">
+                    分类：
+                        <span>Webrtc</span>
+                        <span>RTCP</span>
+            </p>
+             
+<div class="article_c">
+
+<h3>1、简述</h3>
+<p>RTP实时传输协议，广泛应用于流媒体传输应用场景，根据rfc3550介绍，RTP协议应用场景有如下几种：</p>
+<p>Ø&nbsp; 简单多播音频会议（Simple Multicast Audio Conference）</p>
+<p>Ø&nbsp; 音频和视频会议（Audioand Video Conference）</p>
+<p>Ø&nbsp; 混频器和转换器（MixersandTranslators）</p>
+<p>Ø&nbsp; 分层编码（LayeredEncodings）</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 在实时音视频应用场合，考虑低延迟问题一般都使用RTP over 
+UDP进行流媒体数据的传输，因此对于丢包、延迟、流畅性的考虑，发送端必须了解发送出去的流媒体数据到达对端的统计信息，RTP 控制协议 
+RTCP，就是用于监控服务质量和传达关于在一个正在进行的会议中的参与者的信息，包括对抗卡顿、网络拥塞控制扩展功能的实现，均利用RTCP报文实现，
+有名的是Google的GCC（拥塞控制算法(Google Congestion 
+Control,简称GCC[1])）），RTCP的Nack、fir、pli报文都是实现抗丢包的策略，详细可查看rfc4585；</p>
+<h3>2、RFC3550中关于RTCP的介绍</h3>
+<h4>2.1、基本场景介绍</h4>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;RTP 
+控制协议(RTCP)向会议中所有成员周期性发送控制包。它使用与数据包相同的传输机制。底层协议必须提供数据包和控制包的复用，例如用不同的 UDP 
+端口或相同的UDP端口（采用复用模式下）。RTCP 提供以下四个功能：</p>
+<p>Ø&nbsp; <strong>基本功能是提供数据传输质量的反馈；</strong></p>
+<p>&nbsp; &nbsp; &nbsp;这是 RTP 
+作为一种传输协议的主要作用，它与其他协议的流量和拥塞控制相关。反馈可能对自适应编码有直接作用，并且 IP 
+组播的实验表明它对于从接收端得到反馈信息以诊断传输故障也有决定性作用。向所有成员发送接收反馈可以使"观察员"评估这些问题是局部的还是全局的。利用
+类似多点广播的传输机制，可以使某些实体，诸如没有加入会议的网络业务观察员，接收到反馈信息并作为第三方监视员来诊断网络故障。反馈功能通过 RTCP
+ 发送者和接收者报告实现。</p>
+<p>Ø&nbsp; <strong>RTCP 为每个 RTP 源传输一个固定的识别符，称为规范名（CNAME）；</strong></p>
+<p>&nbsp; &nbsp; &nbsp;由于当发生冲突或程序重启时 SSRC可能改变，接收者要用 CNAME 来跟踪每个成员。接收者还要用 CNAME 来关联一系列相关 RTP 会话中来自同一个成员的多个数据流，例如同步语音和图像。</p>
+<p>Ø&nbsp; <strong>1和2功能要求参与方都发送RTCP报文，为保证会议参与方增长，必须严格控制发送包速率，避免过多占用本端带宽，导致视频质量差；</strong></p>
+<p>&nbsp; &nbsp; 通过让每个成员向所有成员发送控制包，各个成员都可以独立地观察会议中所有成员的数目。此数目可以用来估计发包速率。</p>
+<p>Ø&nbsp; <strong>传输最少的会议控制信息；</strong></p>
+<p>&nbsp; &nbsp; 例如在用户接口中显示参与的成员。这最可能在"松散控制"的会议中起作用，在"松散控制"会议里，成员可以不经过资格控制和参数协商而加入或退出会议。</p>
+<h4>2.2、包格类型介绍</h4>
+<blockquote style="margin:0 0 0 40px; border:none; padding:0px">
+<blockquote style="margin:0 0 0 40px; border:none; padding:0px">
+<blockquote style="margin:0 0 0 40px; border:none; padding:0px">
+<table cellspacing="0" cellpadding="0" border="1">
+<tbody>
+<tr>
+<td valign="top">
+<p><strong>类型</strong></p>
+</td>
+<td colspan="2" valign="top" width="138">
+<p><strong>类型简称</strong></p>
+</td>
+<td valign="top">
+<p><strong>描述</strong></p>
+</td>
+<td valign="top">
+<p><strong>RFC文档</strong></p>
+</td>
+</tr>
+<tr>
+<td style="background:silver" valign="top">
+<p><strong><span style="color:red">192</span></strong></p>
+</td>
+<td colspan="2" style="background:silver" valign="top" width="138">
+<p><span style="color:red">FIR</span></p>
+</td>
+<td style="background:silver" valign="top">
+<p><span style="color:red">关键帧重传请求（</span><span style="color:red">IDR</span><span style="color:red">帧，无需参考帧可解码）</span></p>
+</td>
+<td style="background:silver" valign="top">
+<p><span style="color:red">RFC2032</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p><strong><span style="color:red">193</span></strong></p>
+</td>
+<td colspan="2" valign="top" width="138">
+<p><span style="color:red">NACK</span></p>
+</td>
+<td valign="top">
+<p><span style="color:red">否定确认，</span><span style="color:red">NACK</span><span style="color:red">重传（丢包）</span></p>
+</td>
+<td valign="top">
+<p><span style="color:red">RFC2032</span></p>
+</td>
+</tr>
+<tr>
+<td style="background:silver" valign="top">
+<p><strong>194</strong></p>
+</td>
+<td colspan="2" style="background:silver" valign="top" width="138">
+<p>SMPTETC</p>
+</td>
+<td style="background:silver" valign="top">
+<p>SMPTE time-code 映射</p>
+</td>
+<td style="background:silver" valign="top">
+<p>RFC5484</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p><strong>195</strong></p>
+</td>
+<td colspan="2" valign="top" width="138">
+<p>IJ</p>
+</td>
+<td valign="top">
+<p>extended inter-arrival jitter report.</p>
+</td>
+<td valign="top">
+<p>RFC5450</p>
+</td>
+</tr>
+<tr>
+<td style="background:silver" valign="top">
+<p><strong><span style="color:red">200</span></strong></p>
+</td>
+<td colspan="2" style="background:silver" valign="top" width="138">
+<p><span style="color:red">SR</span></p>
+</td>
+<td style="background:silver" valign="top">
+<p><span style="color:red">发送者报告，描述作为活跃发送者成员的发送和接收统计数字</span></p>
+</td>
+<td style="background:silver" valign="top">
+<p><span style="color:red">RFC3550</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p><strong><span style="color:red">201</span></strong></p>
+</td>
+<td colspan="2" valign="top" width="138">
+<p><span style="color:red">RR</span></p>
+</td>
+<td valign="top">
+<p><span style="color:red">接收者报告，描述非活跃发送者成员的接收统计数字；</span></p>
+</td>
+<td valign="top">
+<p><span style="color:red">RFC3550</span></p>
+</td>
+</tr>
+<tr>
+<td style="background:silver" valign="top">
+<p><strong>202</strong></p>
+</td>
+<td colspan="2" style="background:silver" valign="top" width="138">
+<p>SDES</p>
+</td>
+<td style="background:silver" valign="top">
+<p>源描述项，其中包括规范名 CNAME。</p>
+</td>
+<td style="background:silver" valign="top">
+<p>RFC3550</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p><strong>203</strong></p>
+</td>
+<td colspan="2" valign="top" width="138">
+<p>BYE</p>
+</td>
+<td valign="top">
+<p>表明参与者将结束会话。</p>
+</td>
+<td valign="top">
+<p>RFC3550</p>
+</td>
+</tr>
+<tr>
+<td style="background:silver" valign="top">
+<p><strong>204</strong></p>
+</td>
+<td colspan="2" style="background:silver" valign="top" width="138">
+<p>APP</p>
+</td>
+<td style="background:silver" valign="top">
+<p>应用描述功能</p>
+</td>
+<td style="background:silver" valign="top">
+<p>RFC3550</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p><strong>205</strong></p>
+</td>
+<td colspan="2" valign="top" width="138">
+<p>RTPFB</p>
+</td>
+<td valign="top">
+<p>通用RTP反馈</p>
+</td>
+<td valign="top">
+<p>RFC4585</p>
+</td>
+</tr>
+<tr>
+<td rowspan="3" style="background:silver" valign="top">
+<p><strong><span style="color:red">&nbsp;</span></strong></p>
+<p><strong><span style="color:red">206</span></strong></p>
+</td>
+<td rowspan="3" style="background:silver" valign="top">
+<p align="center"><span style="color:red">&nbsp;</span></p>
+<p><span style="color:red">PSFB</span></p>
+</td>
+<td style="background:silver" valign="top">
+<p><span style="color:red">PLI</span></p>
+</td>
+<td rowspan="3" style="background:silver" valign="top">
+<p><span style="color:red">&nbsp;</span></p>
+<p><span style="color:red">有效载荷比</span></p>
+</td>
+<td rowspan="3" style="background:silver" valign="top">
+<p><span style="color:red">&nbsp;</span></p>
+<p><span style="color:red">RFC4585</span></p>
+</td>
+</tr>
+<tr>
+<td style="background:silver" valign="top">
+<p><span style="color:red">SLI</span></p>
+</td>
+</tr>
+<tr>
+<td style="background:silver" valign="top">
+<p><span style="color:red">RPSI</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p><strong>207</strong></p>
+</td>
+<td colspan="2" valign="top" width="138">
+<p>XR</p>
+</td>
+<td valign="top">
+<p>RTCP扩展</p>
+</td>
+<td valign="top">
+<p>RFC3611</p>
+</td>
+</tr>
+<tr>
+<td style="background:silver" valign="top">
+<p><strong>208</strong></p>
+</td>
+<td colspan="2" style="background:silver" valign="top" width="138">
+<p>AVB</p>
+</td>
+<td style="background:silver" valign="top">
+<p>AVB RTCP数据包</p>
+</td>
+<td style="background:silver" valign="top">
+<p>IEEE1733</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p><strong>209</strong></p>
+</td>
+<td colspan="2" valign="top" width="138">
+<p>RSI</p>
+</td>
+<td valign="top">
+<p>接收端汇总信息</p>
+</td>
+<td valign="top">
+<p>RFC5760</p>
+</td>
+</tr>
+<tr>
+<td style="background:silver" valign="top">
+<p><strong>&nbsp;</strong></p>
+</td>
+<td colspan="2" style="background:silver" valign="top" width="138">
+<p>&nbsp;</p>
+</td>
+<td style="background:silver" valign="top">
+<p>&nbsp;</p>
+</td>
+<td style="background:silver" valign="top">
+<p>&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>注：其中206Type的PSFB中又拥有三个子项，详见rfc4585第六章</p>
+<p>PSFB（Payload-Specific FB）消息被定义为载荷类型为PSFB的RTCP消息；</p>
+<p>PLI：The PLI FB messageis identified by PT=PSFB and FMT=1. Picture Loss Indication，为整个图像帧丢失后发送</p>
+<p>SLI：The SLI FB messageis identified by PT=PSFB and FMT=2. Slice Loss Indication，为帧内部分块损坏后发送</p>
+<p>RPSI：The RPSI FB messageis identified by PT=PSFB and FMT=3. Reference Picture Selection Indication</p>
+<p>&nbsp;</p>
+<p>其中各种类型报文均有用途，一般使用中各种类型有如下用途：</p>
+<p><strong>I 、关键帧请求</strong></p>
+<p>主要包括SLI／PLI／FIR，集中报文手段，目的是在关键帧丢失无法解码时，请求发送方重新生成并发送一个关键帧。本质是一种重传，但是跟传输层的重传的区别是，它重传是最新生成的帧。</p>
+<p>PLI 是Picture LossIndication，SLI 是Slice Loss Indication。发送方接收到接收方反馈的PLI或SLI需要重新让编码器生成关键帧并发送给接收端。</p>
+<p>FIR 是Full Intra 
+Request，这里面Intra的含义可能很多人不知道。Intra的含义是图像内编码，不需要其他图像信息即可解码；Inter指图像间编码，解码需
+要参考帧。故Intra Frame其实就是指I帧，Inter Frame指P帧或B帧。</p>
+<p>那么为什么在PLI和SLI之外还需要一个FIR呢？原因是使用场景不同，FIR更多是在一个中心化的Video 
+Conference中，新的参与者加入，就需要发送一个FIR，其他的参与者给他发送一个关键帧这样才能解码，而PLI和SLI的含义更多是在发生丢包
+或解码错误时使用。</p>
+<p>&nbsp;</p>
+<p><strong>II 、重传请求</strong></p>
+<p>主要包括RTX／NACK／RPSI</p>
+<p>这个重传跟关键帧请求的区别是它可以要求任意帧进行重传</p>
+<p>&nbsp;</p>
+<p><strong>III、码率控制</strong></p>
+<p>主要包括REMB／TMMBR／TMMBN</p>
+<p>TMMBR是Temporal Max MediaBitrate Request，表示临时最大码率请求。表明接收端当前带宽受限，告诉发送端控制码率。</p>
+<p>REMB是ReceiverEstimatedMax Bitrate，接收端估计的最大码率。</p>
+<p>TMMBN是Temporal Max MediaBitrate Notification</p>
+<p>另外，除了关键帧请求和重传，Webrtc还支持RED／FEC等冗余编码和前向纠错手段来保证视频质量。</p>
+<p>以上报文用途，摘录自<a target="_blank" href="http://blog.csdn.net/wangruihit/article/details/47041515">http://blog.csdn.net/wangruihit/article/details/47041515</a>的博客；</p>
+<h4>2.3、RTCP传输时间间隔</h4>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 为保证会议参与方人数稳定上升，必须对RTCP报文带宽进行管理控制，如一个上千人的会议，就必须对这个进行管理考虑，否则单端带宽占用严重，但对于MCU集中混屏会议来说，客户端不需要做这点，需要服务器去做。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; RTP 
+被设计为允许应用自动适应不同的规模的会话――从几个参与者到几千个参与者的会话。对每一个会话，我们假定数据传输受到一个上限――会话带宽的限制。会话
+带宽分配给所有的参与者。这个带宽会被预留，并由网络所限制。如果没有预留，基于环境的其他约束将会确定合理的最大带宽供会话使用，这就是会话带宽。会话
+带宽在一定程度上独立于媒体编码，但媒体编码却依赖于会话带宽。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 此参数由单个发送者选择的编码方式的数据带宽算出。会话管理可能会基于多播范围的规则或其他标准确定带宽限制。所有的参与者应使用相同的会话带宽值以保证计算出相同的 RTCP 间隔。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 控制传输带宽应当是会话带宽的一小部分，这部分所占总的会话带宽的百分比应是已知的一小部分；</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 传输协议的首要功能是传输数据；已知：控制传输带可以被放进带宽描述中提供给资源预留协议，并且使每个参与者都可以独立的计算出他所占有的带宽份额。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 控制传输带宽作为额外的一部分加入到会话带宽中。建议 RTCP 控制传输带宽为 
+RTCP 会话带宽的 5%。其中的 1/4 分配给发送者；当发送者的比例超过所有参与者的 1/4 时，其 RTCP 
+控制带宽相应增加。所有的会话参与者必须使用相同的常数（以上提到的百分比），以便计算出相同的发送时间间隔。这些常数应在一个特殊的描述文件中确定。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 计算出的 RTCP 
+复合包的发送时间间隔应该有一个下限，以免参与者数量较少时大量发送 RTCP 
+包。这也使网络暂时断开时，发送间隔不会太小。在应用开始时，一个延迟应加到第一个的 TCP 复合包发送之前，以便从其他参与者接收 RTCP 
+复合包。这样，发送时间间隔能更快的收敛到正确的值。这个延迟可以设为最小时间间隔的一半。固定的时间间隔建议为 5 秒。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 一个实现可能使 RTCP 最小发送时间间隔与会话带宽参数成比例，则应满足下列约束： </p>
+<p>1、对多播会话，只有活动的数据发送者使用减小的最小化的值计算 RTCP 复合包的发送时间间隔。</p>
+<p>2、对单播会话，减小的值也可能被不是活动的数据发送者使用，发送初始的 RTCP 复合包之前的延迟可能是 0。</p>
+<p>3、 对所有会话，在计算参与者的离开时间时，这个固定最小值会被用到。因此，不使用减小的值进行 RTCP包的发送，就不会被其他参与者提前宣布超时。</p>
+<p>4、减小的最小时间间隔建议为：360/sb(秒)，其中 sb：会话带宽（千字节/秒）。当sb&gt;72kb/s 时，最小时间间隔将小于 5s。</p>
+<p>5、计算出的 RTCP 包的时间间隔与组中参与者的人数成正比。（参与者越多，发送时间间隔越长，每个参与者占有的 RTCP 带宽越小）。</p>
+<p>6、 RTCP 包的（真实）时间间隔是计算出的时间间隔的 0.5～1.5 倍之间某个随机的值，以避免所有的参与者意外的同步。</p>
+<p>7、RTCP 复合包的平均大小将会被动态估计，包括所有发送的包和接收的包。以自动适应携带的控制信息数量的变化。</p>
+<p>8、由于计算出的时间间隔依赖于组中的人数。因此，当一个的用户加入一个已经存在的会话或者大量的用户几乎同时加入一个新的会话时，就会有意外的初
+始化效应。这些新 &nbsp; &nbsp; &nbsp; 用户将在开始时错误的估计组中的人数（估计太小）。因此他们的 RTCP 
+包的发送时间间隔就会太短。如果许多用户同时加入一个会话，这个问题就很重要了。为了处理这处问题考虑了一种叫“时间重估”的算法。这个算法使得组中人数
+增加时，用户能够支持 RTCP 包的传输。当有用户离开会话，不管是发送 BYE 包还是超时，组中的人数会减少。计算出的时间间隔也应当减少。</p>
+<p>&nbsp; &nbsp; &nbsp;因此，应用“逆向重估”算法，使组中的成员更快的减少他们的时间间隔，以对组中的人数减少做出响应。</p>
+<p>9、BYE 包的处理和其他 RTCP 包的处理不同。BYE 包的发送用到一个“放弃支持”算法。以避免大量的 BYE包同时发送，使大量参与者同时离开会话。</p>
+<p>这个算法适用于所有参与者都允许 RTCP 包的情况。此时，会话带宽＝每个发送者的带宽×会话中参与者的总人数。</p>
+<p>同时针对不同类型的RTCP报文，发送间隔时间不同，这样适应性更强，如语音包的反馈报文比视频包的间隔长，Tmmbr需立即发送，SSRC报文较短。</p>
+<h3>3、WebRtc中RTCP报文发送控制</h3>
+<p>&nbsp; &nbsp; &nbsp; Webrtc中RTCP报文发送间隔控制是相当好的基本处理流程如下：</p>
+<blockquote style="margin:0 0 0 40px; border:none; padding:0px">
+<blockquote style="margin:0 0 0 40px; border:none; padding:0px">
+<p>&nbsp; &nbsp; &nbsp;<img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/20170922184625873.bmp" alt=""></p>
+</blockquote>
+</blockquote>
+<p align="center"></p>
+<p>RTCPSender::TimeToSendRTCPReport(boolsendKeyframeBeforeRTP)接口中写道</p>
+<p>对于音频，我们使用一个固定的5秒间隔。在带宽小于360 kbit/s时，视频使用1秒的时间间隔，在视频带宽低于10kbit/s时，表面上我们打破最大5% RTCP 带宽限制，但那应该是非常罕见的。</p>
+<p><strong>RFC3550写道</strong></p>
+<p>最大的RTCP带宽应是会会话带宽的5%，一个SR报文在包含CNAME时，大约是65个字节，一个RR报文大约为28字节。</p>
+<p>最小发送间隔的值推荐为360/会话带宽，发送间隔单位为秒，带宽单位为kbps，这个最低在带宽大于72 kb / s时，这个最小值小于5秒。如果参与者尚未发送RTCP包（包已经初始化），则常量Tmin设置为2.5秒，否则设置为5秒。</p>
+<p>RTCP包的发送间隔是在[ 0.5,1.5 ]倍计算值之间随机变化的，避免所有参与者同步出现的意外情况</p>
+<p>1. &nbsp; 如果我们需要发送报文</p>
+<p>&nbsp; &nbsp; &nbsp; 参与者是发送者（we_sent为真），常数c设置为RTCP包大小平均值（avg_rtcp_size）除以RTCP带宽的25%（rtcp_bw），和常数n设置为发送的方数。</p>
+<p>2. &nbsp; 如果我们只接收报文</p>
+<p>&nbsp; &nbsp; &nbsp; 
+如果we_sent是不为真，常数c设置为RTCP包大小平均值（avg_rtcp_size）除以RTCP带宽的75%。常数n被设置为接收的方数
+（members - senders）。如果发件人 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp;senders的数量大于25%，senders和members一起处理。</p>
+<p>&nbsp; &nbsp; &nbsp; P2p不需要重新考虑</p>
+<p>&nbsp; &nbsp; &nbsp; “timer reconsideration”是使用的.该算法实现了一种简单的回退机制,会导致用户阻止RTCP包传输如果群体规模正在增加。</p>
+<p>&nbsp; &nbsp; &nbsp; N = number of members</p>
+<p>&nbsp; &nbsp; &nbsp; C = avg_size /（rtcpbw / 4）</p>
+<p>3. &nbsp; 确定性计算区间Td设置为最大（Tmin，N×C）。</p>
+<p>4. &nbsp; 计算出的区间t被设置为均匀分布在确定计算区间的0.5到1.5倍之间的数。</p>
+<p>5. &nbsp; 由此产生的t值除以3 / 2 = 1.21828，弥补了定时器复议算法收敛到一个值低于预期的平均RTCP带宽</p>
+<p></p>
+<blockquote style="margin:0 0 0 40px; border:none; padding:0px">
+<p></p>
+<blockquote style="margin:0 0 0 40px; border:none; padding:0px">
+<p><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/20170922184212931.jpg" alt=""></p>
+</blockquote>
+<p></p>
+</blockquote>
+<p><strong>位于rtcp_sender.cc中</strong></p>
+<p>&nbsp;</p>
+<p>以下为WebRtc中计算法源码：</p>
+<blockquote style="margin:0 0 0 40px; border:none; padding:0px">
+<blockquote style="margin:0 0 0 40px; border:none; padding:0px">
+<blockquote style="margin:0 0 0 40px; border:none; padding:0px">
+<table cellspacing="0" cellpadding="0" border="1">
+<tbody>
+<tr>
+<td valign="top">
+<p align="left"><span style="color:rgb(128,0,255)">void</span> RTCPSender<strong><span style="color:navy">::</span></strong>PrepareReport<strong><span style="color:navy">(</span></strong><span style="color:rgb(128,0,255)">const</span> std<strong><span style="color:navy">::</span></strong>set<strong><span style="color:navy">&lt;</span></strong>RTCPPacketType<strong><span style="color:navy">&gt;&amp;</span></strong>
+ packetTypes<strong><span style="color:navy">,</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <span style="color:rgb(128,0,255)">
+const</span> FeedbackState<strong><span style="color:navy">&amp;</span></strong> feedback_state<strong><span style="color:navy">)</span><span style="color:navy">{</span></strong></p>
+<p align="left">&nbsp; <span style="color:green">// Add all flags as volatile. Non volatile entries will not be overwritten</span></p>
+<p align="left">&nbsp; <span style="color:green">// and all new volatile flags added will be consumed by the end of this call.</span></p>
+<p align="left">&nbsp; SetFlags<strong><span style="color:navy">(</span></strong>packetTypes<strong><span style="color:navy">,</span></strong> true<strong><span style="color:navy">);</span></strong></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(</span></strong>packet_type_counter_<strong><span style="color:navy">.</span></strong>first_packet_time_ms<strong><span style="color:navy">==</span>
+<span style="color:navy">-</span></strong><span style="color:rgb(255,128,0)">1</span><strong><span style="color:navy">)</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; packet_type_counter_<strong><span style="color:navy">.</span></strong>first_packet_time_ms<strong><span style="color:navy">=</span></strong> clock_<strong><span style="color:navy">-&gt;</span></strong>TimeInMilliseconds<strong><span style="color:navy">();</span></strong></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp; bool generate_report<strong><span style="color:navy">;</span></strong></p>
+<p align="left">&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(</span></strong>IsFlagPresent<strong><span style="color:navy">(</span></strong>kRtcpSr<strong><span style="color:navy">)</span><span style="color:navy">||</span></strong> IsFlagPresent<strong><span style="color:navy">(</span></strong>kRtcpRr<strong><span style="color:navy">))</span><span style="color:navy">{</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; <span style="color:green">// Report type already explicitly set, don't automatically populate.</span></p>
+<p align="left">&nbsp;&nbsp;&nbsp; generate_report <strong><span style="color:navy">=</span></strong> true<strong><span style="color:navy">;</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; RTC_DCHECK<strong><span style="color:navy">(</span></strong>ConsumeFlag<strong><span style="color:navy">(</span></strong>kRtcpReport<strong><span style="color:navy">)</span><span style="color:navy">==</span></strong> false<strong><span style="color:navy">);</span></strong></p>
+<p align="left">&nbsp; <strong><span style="color:navy">}</span> <span style="color:blue">
+else</span> <span style="color:navy">{</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; generate_report <strong><span style="color:navy">=</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><span style="color:navy">(</span></strong>ConsumeFlag<strong><span style="color:navy">(</span></strong>kRtcpReport<strong><span style="color:navy">)</span><span style="color:navy">&amp;&amp;</span></strong> method_
+<strong><span style="color:navy">==</span></strong> RtcpMode<strong><span style="color:navy">::</span></strong>kReducedSize<strong><span style="color:navy">)</span><span style="color:navy">||</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; method_ <strong><span style="color:navy">==</span></strong> RtcpMode<strong><span style="color:navy">::</span></strong>kCompound<strong><span style="color:navy">;</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(</span></strong>generate_report<strong><span style="color:navy">)</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetFlag<strong><span style="color:navy">(</span></strong>sending_<strong><span style="color:navy">?</span></strong> kRtcpSr
+<strong><span style="color:navy">:</span></strong> kRtcpRr<strong><span style="color:navy">,</span></strong> true<strong><span style="color:navy">);</span></strong></p>
+<p align="left">&nbsp; <strong><span style="color:navy">}</span></strong></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(</span></strong>IsFlagPresent<strong><span style="color:navy">(</span></strong>kRtcpSr<strong><span style="color:navy">)</span><span style="color:navy">||</span>
+<span style="color:navy">(</span></strong>IsFlagPresent<strong><span style="color:navy">(</span></strong>kRtcpRr<strong><span style="color:navy">)</span><span style="color:navy">&amp;&amp;</span>
+<span style="color:navy">!</span></strong>cname_<strong><span style="color:navy">.</span></strong>empty<strong><span style="color:navy">()))</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; SetFlag<strong><span style="color:navy">(</span></strong>kRtcpSdes<strong><span style="color:navy">,</span></strong> true<strong><span style="color:navy">);</span></strong></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(</span></strong>generate_report<strong><span style="color:navy">)</span> <span style="color:navy">
+{</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(!</span></strong>sending_ <strong><span style="color:navy">&amp;&amp;</span></strong> xr_send_receiver_reference_time_enabled_<strong><span style="color:navy">)</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetFlag<strong><span style="color:navy">(</span></strong>kRtcpXrReceiverReferenceTime<strong><span style="color:navy">,</span></strong> true<strong><span style="color:navy">);</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(</span></strong>feedback_state<strong><span style="color:navy">.</span></strong>has_last_xr_rr<strong><span style="color:navy">)</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetFlag<strong><span style="color:navy">(</span></strong>kRtcpXrDlrrReportBlock<strong><span style="color:navy">,</span></strong> true<strong><span style="color:navy">);</span></strong></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;&nbsp;&nbsp; <span style="color:green">// generate next time to send an RTCP report</span></p>
+<p align="left">&nbsp;&nbsp;&nbsp; uint32_t minIntervalMs <strong><span style="color:navy">=</span></strong> RTCP_INTERVAL_AUDIO_MS<strong><span style="color:navy">;</span></strong></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;&nbsp;&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(!</span></strong>audio_<strong><span style="color:navy">)</span> <span style="color:navy">
+{</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(</span></strong>sending_<strong><span style="color:navy">)</span> <span style="color:navy">
+{</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">// Calculate bandwidth for video; 360 / send bandwidth in kbit/s.</span></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t send_bitrate_kbit <strong><span style="color:navy">=</span></strong> feedback_state<strong><span style="color:navy">.</span></strong>send_bitrate<strong><span style="color:navy">/</span></strong>
+<span style="color:rgb(255,128,0)">1000</span><strong><span style="color:navy">;</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(</span></strong>send_bitrate_kbit <strong><span style="color:navy">!=</span></strong><span style="color:rgb(255,128,0)">0</span><strong><span style="color:navy">)</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; minIntervalMs <strong><span style="color:navy">=</span></strong><span style="color:rgb(255,128,0)">360000</span>
+<strong><span style="color:navy">/</span></strong> send_bitrate_kbit<strong><span style="color:navy">;</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><span style="color:navy">}</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><span style="color:blue">if</span> <span style="color:navy">
+(</span></strong>minIntervalMs <strong><span style="color:navy">&gt;</span></strong> RTCP_INTERVAL_VIDEO_MS<strong><span style="color:navy">)</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; minIntervalMs <strong><span style="color:navy">=</span></strong> RTCP_INTERVAL_VIDEO_MS<strong><span style="color:navy">;</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; <strong><span style="color:navy">}</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; <span style="color:green">// The interval between RTCP packets is varied randomly over the</span></p>
+<p align="left">&nbsp;&nbsp;&nbsp; <span style="color:green">// range [1/2,3/2] times the calculated interval.</span></p>
+<p align="left">&nbsp; &nbsp;&nbsp;uint32_t timeToNext <strong><span style="color:navy">=</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; random_<strong><span style="color:navy">.</span></strong>Rand<strong><span style="color:navy">(</span></strong>minIntervalMs<strong><span style="color:navy">*</span></strong>
+<span style="color:rgb(255,128,0)">1</span> <strong><span style="color:navy">/</span></strong>
+<span style="color:rgb(255,128,0)">2</span><strong><span style="color:navy">,</span></strong> minIntervalMs
+<strong><span style="color:navy">*</span></strong> <span style="color:rgb(255,128,0)">
+3</span><strong><span style="color:navy">/</span></strong> <span style="color:rgb(255,128,0)">
+2</span><strong><span style="color:navy">);</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; next_time_to_send_rtcp_ <strong><span style="color:navy">=</span></strong> clock_<strong><span style="color:navy">-&gt;</span></strong>TimeInMilliseconds<strong><span style="color:navy">()</span><span style="color:navy">+</span></strong> timeToNext<strong><span style="color:navy">;</span></strong></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;&nbsp;&nbsp; StatisticianMap statisticians <strong><span style="color:navy">=</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; receive_statistics_<strong><span style="color:navy">-&gt;</span></strong>GetActiveStatisticians<strong><span style="color:navy">();</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; RTC_DCHECK<strong><span style="color:navy">(</span></strong>report_blocks_<strong><span style="color:navy">.</span></strong>empty<strong><span style="color:navy">());</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; <strong><span style="color:blue">for</span> <span style="color:navy">
+(</span></strong><span style="color:rgb(128,0,255)">auto</span><strong><span style="color:navy">&amp;</span></strong> it<strong><span style="color:navy">:</span></strong> statisticians<strong><span style="color:navy">)</span><span style="color:navy">{</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AddReportBlock<strong><span style="color:navy">(</span></strong>feedback_state<strong><span style="color:navy">,</span></strong> it<strong><span style="color:navy">.</span></strong>first<strong><span style="color:navy">,</span></strong>
+ it<strong><span style="color:navy">.</span></strong>second<strong><span style="color:navy">);</span></strong></p>
+<p align="left">&nbsp;&nbsp;&nbsp; <strong><span style="color:navy">}</span></strong></p>
+<p align="left">&nbsp; <strong><span style="color:navy">}</span></strong></p>
+<p><strong><span style="color:navy">}</span></strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>&nbsp;</p>
+ </div>
+
+          </div>
+
+                               
+
+             <div class="blog_handle">
+        <span id="digg" style="cursor:pointer"><i class="iconfont"></i><em>1</em></span>
+        <span id="bury" style="cursor:pointer"><i class="iconfont"></i><em>0</em></span>
+       
+    </div>
+
+
+
+              <div class="prev_next">
+                        <a href="http://m.blog.csdn.net/DittyChen/article/details/78063306" class="prev" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);">上一篇</a>                                                                       
+                        <a href="http://m.blog.csdn.net/DittyChen/article/details/78087963" class="next" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">下一篇</a>
+              </div>         
+        </div>
+        
+    
+
+          <script type="text/javascript">
+               /*csdn wap端 博客内页-20:3 创建于 2016-05-10*/
+               var cpro_id = "u2634430";
+            </script>           
+          <!-- 广告位：WAP端-博客详情页banner2-20:3 -->
+        <script>
+            (function() {
+                var s = "_" + Math.random().toString(36).slice(2);
+                document.write('<div id="' + s + '"></div>');
+                (window.slotbydup=window.slotbydup || []).push({
+                    id: '4777150',
+                    container: s,
+                    size: '20,3',
+                    display: 'inlay-fix'
+                });
+            })();
+        </script><div id="_82sn6gtzevx"></div><script charset="utf-8" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/zcam_003"></script><div><div id="ooovyt" style="display:none;"></div><iframe scrolling="no" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/s_002.html" width="1524" height="229" frameborder="0"></iframe></div><script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/avkunrrnbycx.js"></script>
+
+
+       
+<script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/highcode.js"></script>
+<script type="text/javascript">
+    var fileName = '78065974';
+    var commentscount = 0;
+    var islock = false;
+    var currentUserName='';
+    var topSize=3;
+    var listId = ".blog_comment_list";
+</script>
+
+<div class="no_comment" style=""><i class="iconfont"></i><span>暂无评论，</span><a href="http://m.blog.csdn.net/comment/post?id=78065974">我去发表</a><em>~</em></div>
+
+ <div class="blog_comment" style="display:none">
+       <h3 class="isComment">评论<span>（0）</span></h3>
+       <dl class="blog_comment_list"></dl>
+       <div class="checkAll"></div>
+ </div>
+
+<script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/comment.js"></script>
+
+
+
+       
+        <div style="display:none" id="tags">应用,rtp</div>
+
+   
+<script type="text/javascript">
+    /*wap端-博客内页热门文章上通栏-20:5*/
+    var cpro_id = "u2901277";
+</script>
+<!-- 广告位：WAP端-博客详情页banner3-20:5 -->
+<script>
+    (function () {
+        var s = "_" + Math.random().toString(36).slice(2);
+        document.write('<div id="' + s + '"></div>');
+        (window.slotbydup = window.slotbydup || []).push({
+            id: '4777155',
+            container: s,
+            size: '20,5',
+            display: 'inlay-fix'
+        });
+    })();
+</script><div id="_547xexkm1zw"></div><script charset="utf-8" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/zcam_002"></script><div id="_dsv7024yxo"><iframe scrolling="no" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/s_003.html" width="1524" height="381" frameborder="0"></iframe></div><script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/gbqjhkqcceix.js"></script>
+
+<div class="my_hot_article">
+         <h3 class="isArticle">相关博文</h3>
+
+                  <ul class="hot_article tracking-ad" id="res" data-mod="popu_36">
+                                   <li>                                      
+                                       <a href="http://download.csdn.net/download/hu_lin/8460115" title="基于Labview的时间间隔计数器SR620远程控制" strategy="BlogCommendFromCsdn" target="_blank">基于Labview的时间间隔计数器SR620远程控制</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://download.csdn.net/download/humicool/4341287" title="Timer時間間隔控制" strategy="BlogCommendFromCsdn" target="_blank">Timer時間間隔控制</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/Lostyears/article/details/7369911" title="基于RTP/RTCP的无线视频传输自适应带宽控制" strategy="BlogCommendFromCsdn" target="_blank">基于RTP/RTCP的无线视频传输自适应带宽控制</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/liwf616/article/details/46042983" title="流媒体协议介绍（rtp/rtcp/rtsp/rtmp/mms/hls）" strategy="BlogCommendFromCsdn" target="_blank">流媒体协议介绍（rtp/rtcp/rtsp/rtmp/mms/hls）</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/zc806/article/details/6415385" title="RTP与RTCP协议介绍" strategy="BlogCommendFromCsdn" target="_blank">RTP与RTCP协议介绍</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/comkingfly/article/details/7453931" title="流媒体分析之sipdroid的videocamera类，流程分析及RTP/RTCP介绍" strategy="BlogCommendFromCsdn" target="_blank">流媒体分析之sipdroid的videocamera类，流程分析及RTP/RTCP介绍</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/xietianhe/article/details/6556338" title="RTP与RTCP协议介绍" strategy="BlogCommendFromCsdn" target="_blank">RTP与RTCP协议介绍</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/oney139/article/details/6266165" title="RTP与RTCP协议介绍" strategy="BlogCommendFromCsdn" target="_blank">RTP与RTCP协议介绍</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/beilingshan/article/details/72905616" title="RTP/RTCP协议介绍" strategy="BlogCommendFromCsdn" target="_blank">RTP/RTCP协议介绍</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/wwwang89123/article/details/38414897" title="流媒体协议介绍（rtp/rtcp/rtsp/rtmp/mms/hls）" strategy="BlogCommendFromCsdn" target="_blank">流媒体协议介绍（rtp/rtcp/rtsp/rtmp/mms/hls）</a>
+                                   </li>
+                  </ul>
+        </div>
+
+      
+<script type="text/javascript">
+    /*wap端-博客内页相关博文上通栏-20:5*/
+    var cpro_id = "u2901286";
+</script>
+<!-- 广告位：WAP端-博客详情页banner4-20:5 -->
+<script>
+    (function () {
+        var s = "_" + Math.random().toString(36).slice(2);
+        document.write('<div id="' + s + '"></div>');
+        (window.slotbydup = window.slotbydup || []).push({
+            id: '4777158',
+            container: s,
+            size: '20,5',
+            display: 'inlay-fix'
+        });
+    })();
+</script><div id="_yrmxsyw19na"></div><script charset="utf-8" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/zcam_004"></script><div id="_zahfdpximjs"><div style="margin-right:0px;"><div style="margin-top:0px;"><iframe scrolling="no" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/s_004.html" width="1524" height="381" frameborder="0"></iframe></div></div></div><script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/gbqjhkqdaeix.js"></script>
+
+        
+    <div class="my_hot_article">
+          <h3 class="isArticle">我的热门文章</h3>
+          <ul class="hot_article">
+                <li><a href="http://m.blog.csdn.net/DittyChen/article/details/53338479">文章标题ffmpeg文档37-视频滤镜</a></li>
+                <li><a href="http://m.blog.csdn.net/DittyChen/article/details/55509718">H264码流的I/P/B帧NALU判断</a></li>
+                <li><a href="http://m.blog.csdn.net/DittyChen/article/details/70242798">Js网络视频播放器之VideoJs&amp;&amp;ckplayer（直播拉流rtmp、hls）</a></li>
+                <li><a href="http://m.blog.csdn.net/DittyChen/article/details/68067949">使用VLC和live555MediaServer搭建RTSP服务器</a></li>
+                <li><a href="http://m.blog.csdn.net/DittyChen/article/details/70226759">Cordova和React-Native两种框架的对比</a></li>
+          </ul>
+        </div>
+
+<script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/main_002.js"></script>
+
+
+
+
+
+
+
+
+       
+      </div>
+
+        
+   <div class="leftNav">
+      
+<div class="left_top">
+        <a href="https://passport.csdn.net/account/login?from=http%3a%2f%2fm.blog.csdn.net%2fDittyChen%2farticle%2fdetails%2f78065974"><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/1_csdn.gif"></a>
+        <a href="https://passport.csdn.net/account/login?from=http%3a%2f%2fm.blog.csdn.net%2fDittyChen%2farticle%2fdetails%2f78065974" class="sign">未登录</a> 
+</div>
+        
+        <ul class="nav_list">
+            <li><a href="http://m.blog.csdn.net/home/index"><i>•</i><span>首页</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=mobile&amp;Type="><i>•</i><span>移动开发</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=enterprise&amp;Type="><i>•</i><span>架构</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=cloud&amp;Type="><i>•</i><span>云计算/大数据</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=www&amp;Type="><i>•</i><span>互联网</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=system&amp;Type="><i>•</i><span>运维</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=database&amp;Type="><i>•</i><span>数据库</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=web&amp;Type="><i>•</i><span>前端</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=code&amp;Type="><i>•</i><span>编程语言</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=software&amp;Type="><i>•</i><span>研发管理</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=other&amp;Type="><i>•</i><span>综合</span><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+        </ul>
+   </div>
+   
+
+      <div id="mask"></div>
+    </div>
+
+
+   
+
+    <div class="backToTop" style="display: none;"><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-fudongxiangshang.png" alt="img"></div>
+    <!--分享弹窗：-->
+    <div class="popup_cover"></div>
+    <div class="sharePopup_box">
+      <div class="sharePopup">
+        <!--JiaThis Button BEGIN-->
+        <div class="jiathis_style_32x32"><a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jiathis_separator jtico jtico_weixin"><b><i class="iconfont"></i></b><em>微信分享</em></span></a><a class="jiathis_button_tsina" title="分享到微博"><span class="jiathis_txt jiathis_separator jtico jtico_tsina"><b><i class="iconfont"></i></b><em>新浪微博</em></span></a><a class="jiathis_button_cqq" title="分享到QQ好友"><span class="jiathis_txt jiathis_separator jtico jtico_cqq"><b><i class="iconfont"></i></b><em>QQ好友</em></span></a><a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jiathis_separator jtico jtico_qzone"><b><i class="iconfont"></i></b><em>QQ空间</em></span></a></div>
+        <script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/jia.js" charset="utf-8"></script><script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/plugin.js" charset="utf-8"></script>
+        <!--JiaThis Button END-->
+      </div>
+      <div class="sharePopup_cancel">取 消</div>
+    </div>
+    <script>
+      $(function(){
+        $('#share_btn').click(function(){
+          $('.popup_cover').stop().show();
+          $('.sharePopup_box').stop().slideDown();
+        });
+        $('.sharePopup_cancel').click(function(){
+          $('.popup_cover').stop().hide();
+          $('.sharePopup_box').stop().slideUp();
+        });
+      })
+    </script>
+
+
+
+
+
+
+
+   <div class="backToTop" style="z-index: 9999999; display: none;"><img src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/iconfont-fudongxiangshang.png" alt="img"></div>
+    <div class="blog_footer">©1999-2012, csdn.net, All Rights Reserved</div>
+    <script type="text/javascript" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/fontSize.js"></script>
+<script type="text/javascript" charset="utf-8" src="RTCP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%8F%91%E9%80%81%E9%97%B4%E9%9A%94%E6%8E%A7%E5%88%B6%20-%20%E9%A3%8E%E6%B8%85%E6%89%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%20-%20CSDN%E5%8D%9A%E5%AE%A2_files/tracking.js"></script>
+
+
+
+
+
+<div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" id="focus_retriever" readonly="true" type="text"></div></body></html>
