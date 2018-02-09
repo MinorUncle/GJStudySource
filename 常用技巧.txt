@@ -1,6 +1,8 @@
 wireshark开启对应uuid手机抓包
 rvictl  -s uuid 开启
 
+当自己个人电脑创建git仓库服务器的时候，电脑ip不固定，可以设置remote的地址用weichengniandashudeMacBook-Air.local表示ip，例如git@weichengniandashudeMacBook-Air.local:GJQueue,
+
 将.m文件转换成c++格式
 clang  -rewrite-objc  main.m
 
