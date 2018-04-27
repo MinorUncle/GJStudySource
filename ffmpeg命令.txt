@@ -1,0 +1,2 @@
+hls切片
+ffmpeg -re -i source.mp4 -codec:v libx264 -codec:a libfaac -f hls  -hls_list_size 6 -hls_wrap 10 -hls_time 10 source/source.m3u8 

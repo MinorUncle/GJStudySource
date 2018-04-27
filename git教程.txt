@@ -1,0 +1,5 @@
+1：添加工程，只需要clone的gitolite-admin仓库，然后在gitolite.conf中配置仓库权限，然后提交就会自动创建默认仓库。
+
+2：修改原有仓库到自己的gitolite中，只需修改remote的地址
+
+3：gitolite是仓库IP地址是动态改变，只需仓库地址不用ip，用电脑名就行，比如此电脑的GJCaptureTool 仓库地址“git@weichengniandashudeMacBook-Air.local:GJCaptureTool”（当然如果是本机也可以把weichengniandashudeMacBook-Air.local修改为localhost）
