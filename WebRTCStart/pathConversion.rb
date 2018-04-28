@@ -16,7 +16,9 @@ require 'pathname'
 
 ARGV[0] = Dir.pwd + "/obj"
 ARGV[1] = Dir.pwd + "/GWebRTC/pathConversConfig.txt"
-ARGV[2] = Dir.pwd + "third_party:test"
+ARGV[2] = "third_party:test:examples"
+
+puts "search root path:"+ARGV[0]+", save filepath:"+ARGV[1] +",ignore Grop:"+ARGV[2]
 
 $definesObj = Array.new()
 $destFile = File.new(ARGV[1],"w")
