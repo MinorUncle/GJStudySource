@@ -1,0 +1,53 @@
+
+<!-- saved from url=(0070)https://exmail.qq.com/cgi-bin/readtemplate?t=ajax_proxy/ajaxProxy.html -->
+<html class="cye-disabled cye-lm"><head><meta http-equiv="Content-Type" content="text/html; charset=gb18030"><script>
+function _html5detect()
+{
+var _oWin = window,
+_oInput = _oWin.document.createElement('input');
+
+_oInput.type = 'file';
+return 'multiple' in _oInput &&
+_oWin.File != undefined &&
+_oWin.XMLHttpRequest != undefined &&
+(new XMLHttpRequest).upload != undefined;
+}
+
+if(_html5detect()){
+window.addEventListener('message', function(e) {
+
+    var _oXhr = new XMLHttpRequest();
+
+    _oXhr.open('POST', e.data._sUrl, true);
+_oXhr.timeout = 20000;
+_oXhr.setRequestHeader('DATA-MD5', e.data._asHash);
+_oXhr.setRequestHeader('content-type', 'application/octet-stream');
+_oXhr.setRequestHeader('Cache-Control', 'no-cache');
+_oXhr.responseType = 'arraybuffer';
+
+_oXhr.onload = function()
+{
+if (_oXhr.readyState == 4)
+{
+_oXhr.upload.onprogress = null;
+
+if (_oXhr.status == 200)
+{
+e.source.postMessage(_oXhr.response, e.origin);
+}
+else
+{
+var _nErrCode = _oXhr.getResponseHeader('User-ReturnCode');
+e.source.postMessage(_nErrCode, e.origin);
+}
+}
+}
+
+_oXhr.send(e.data._oSendAB);
+
+}, false);
+
+}
+</script><style id="nightModeStyle">
+html.cye-enabled.cye-nm:not(*:-webkit-full-screen) body,
+ html.cye-enabled.cye-nm:not(*:-webkit-full-screen) #cye-workaround-body {-webkit-filter:contrast(91%) brightness(84%) invert(1);}</style><style id="cyebody">html.cye-enabled.cye-lm body{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyediv">html.cye-enabled.cye-lm div{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyetable">html.cye-enabled.cye-lm th{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}html.cye-enabled.cye-lm td{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyetextInput">html.cye-enabled.cye-lm input[type=text]{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}html.cye-enabled.cye-lm textarea{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeselect">html.cye-enabled.cye-lm select{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeul">html.cye-enabled.cye-lm ul{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeChangeByClick">html.cye-enabled.cye-lm .cye-lm-tag,html.cye-enabled.cye-lm.cye-lm-tag{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style></head><body style=""></body><div id="cyeBlackMaskLayer" style="background-color: rgb(19, 19, 19); position: fixed; width: 1980px; height: 1080px; z-index: -2147483648;"></div></html>

@@ -1,0 +1,69 @@
+
+<!-- saved from url=(0053)https://exmail.qq.com/zh_CN/htmledition/domain2.html? -->
+<html class="cye-disabled cye-lm"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+	
+<script>
+(function()
+ {
+ 	var _sDomain = location.search.split("?").pop().split("&").shift();
+	window.onerror = function(){return true;};
+	_sDomain && (document.domain = decodeURIComponent(_sDomain));
+ }
+ )();
+</script>
+<script>
+if(window.location.hostname.indexOf("exmail.qq.com")!=-1){
+	document.domain="exmail.qq.com";
+}
+function xmlHttp()
+{
+ return window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : (window.XMLHttpRequest ? new XMLHttpRequest() : null);
+}
+
+var goBody = [];
+(function()
+{
+	if(!parent.getTop)
+	{
+		return;
+	}
+	var _oFrameElm = window.frameElement,
+		_oHeader = [decodeURIComponent(_oFrameElm.getAttribute("_header") || "")],
+		_sBody = decodeURIComponent(_oFrameElm.getAttribute("_body") || ""),
+		_oFiles = decodeURIComponent(_oFrameElm.getAttribute("_file") || "").split("|"),
+		_oFileInfo, _sFileType, _sFile;
+	_sBody.indexOf("<body") == -1 ? goBody.push('<body class="domain">', _sBody, '</body>') : goBody.push(_sBody);
+	for (var i = _oFiles.length - 1; i >= 0; i--)
+	{
+		_oFileInfo = _oFiles[i].split(":");
+		_sFileType = _oFileInfo.shift();
+		_sFile = _oFileInfo.join(":");
+		switch(_sFileType)
+		{
+		case "js":
+		case "html":
+		case "img":
+			if (_sFileType == "img" || 
+				navigator.userAgent.toLowerCase().indexOf("webkit") != -1)
+			{
+				goBody.push('<img src="', _sFile, '"/>');
+				break;
+			}
+			if (!','.split(/,/).length) //ie
+			{
+				_oHeader.push('<script src="', _sFile, '" ><\/script>');
+				break;
+			}
+		case "css":
+			_oHeader.push('<link rel="stylesheet" type="text/css" href="', _sFile, '" />');
+		}
+	}
+	_oHeader.push('<link rel="stylesheet" type="text/css" href="/zh_CN/htmledition/style/domain2.css" />');
+	document.write(_oHeader.join(""));
+}
+)();
+</script><link rel="stylesheet" type="text/css" href="./domain2.css">
+<script>goBody && document.write(goBody.join(""));</script><style id="nightModeStyle">
+html.cye-enabled.cye-nm:not(*:-webkit-full-screen) body,
+ html.cye-enabled.cye-nm:not(*:-webkit-full-screen) #cye-workaround-body {-webkit-filter:contrast(91%) brightness(84%) invert(1);}</style><style id="cyebody">html.cye-enabled.cye-lm body{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyediv">html.cye-enabled.cye-lm div{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyetable">html.cye-enabled.cye-lm th{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}html.cye-enabled.cye-lm td{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyetextInput">html.cye-enabled.cye-lm input[type=text]{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}html.cye-enabled.cye-lm textarea{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeselect">html.cye-enabled.cye-lm select{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeul">html.cye-enabled.cye-lm ul{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style><style id="cyeChangeByClick">html.cye-enabled.cye-lm .cye-lm-tag,html.cye-enabled.cye-lm.cye-lm-tag{background-color:#cce8cf !important;border-color:rgb(51, 58, 51) !important;background-image:none !important;color:#000000  !important}</style></head><div id="cyeBlackMaskLayer" style="background-color: rgb(19, 19, 19); position: fixed; width: 1980px; height: 1080px; z-index: -2147483648;"></div><body class="domain" style="">
+</body></html>
