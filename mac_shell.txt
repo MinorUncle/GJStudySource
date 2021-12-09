@@ -1,0 +1,11 @@
+https://www.zealllot.com/posts/mac%E4%B8%8B%E7%9A%84sed%E5%91%BD%E4%BB%A4%E6%95%99%E7%A8%8B/
+sed 指定行替换：
+在第一行插入的表达式为1i\，注意这里必须要’反斜杠’，并且需要插入的语句要换行写。
+$ sed -i '.bak' '1i\
+hello
+' file  
+
+sed 修改保存到文件
+-i后面要添加空引号。
+sed -i '' '1d' file
+
